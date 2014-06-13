@@ -134,7 +134,7 @@
         aud = document.getElementById(notes[i]);
         aud.onloadeddata = function(){
             loaded++;
-            $('.load').text(Math.round(loaded/36)*100 + ' %');
+            $('.load').text(Math.round(loaded/36*100) + ' %');
         }
     }
     
