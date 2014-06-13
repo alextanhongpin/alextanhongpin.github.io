@@ -128,11 +128,17 @@
         'C5', 'Cb5', 'D5', 'Eb5', 'E5', 'F5', 'Fb5', 'G5', 'Ab5', 'A5', 'Bb5', 'B5',
                 ];
     
-    
+    var loaded = 0;
     for (var i = 0; i < 36; i++) {
         $('div').append("<audio id=" + notes[i] + " src=mp3/" + (notes[i] + ".mp3") + "></audio>");
-        $('.load').text('loaded ' + i/35*100 + '%');
+        aud = document.getElementById(notes[i]);
+        aud.onloadeddata = function(){
+            loaded++;
+            $('.load').text(loaded/36*100 + ' %');
+        }
     }
+    
+ 
     /**/
 	var colors = new Array();
 	for (var i=0; i<12; i++){
@@ -205,7 +211,7 @@
 <body>
     by alextanhongpin, #amalaysianprogrammer
 	<div id='keyboard'></div><br>
-    <a class='load'>0%</a>
+    <a class='load'>0 %</a>
 </body>
 
 </html>
