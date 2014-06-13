@@ -1,0 +1,21 @@
+SO I have basically learnt all the basics of HTML5, CSS3, WebGL etc.
+Time to make this to use.
+
+Problem:
+1.No Preloader for websites. Image load simultaneously.
+	-make Image load from top to bottom. 
+	-add preloader for each images?
+	-use jQuery to load images?
+	-use CSS3 3D to style images
+	-canvas Animation vs CSS Keyframes!
+	-$(document).ready() starts when the document is preparing
+	-$(windows).load() problem is that it waits for the window to load completely first. Maybe I can use this together with keyframes.
+
+var parent = document.getElementById("div1");
+var child = document.getElementById("p1");
+parent.removeChild(child);
+
+
+2.Grid Style
+
+3. No uummphh!!! Be creative! Let the creativity flows in you like a river! You can feel it.

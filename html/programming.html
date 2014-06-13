@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href='../img/icon.ico'>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-51651156-1', 'alextanhongpin.github.io');
+  ga('send', 'pageview');
+
+</script>
+      
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Dosis:300);
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Dosis', sans-serif;
+    }
+    
+    body{
+        display: block;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    div{
+        display: inline-block;
+        padding: 10px;
+        text-align: left;
+        vertical-align: top;
+    }
+    
+    ul{
+        display: inline-block;
+        list-style-type: none;
+        text-align: center;
+    }
+    
+    ul > li{
+        display: inline-block;
+    }
+    a{
+        text-decoration: none;
+        transition: 0.5s all;
+    }
+    a:link{
+        color: #222;
+    }
+    a:visited{
+        color: #228;
+    }
+    a:hover{
+        -webkit-filter: blur(2px);
+    }
+
+    header{
+        display: inline-block;
+        padding: 0.2em;
+        color: #f44;
+        border: 4px solid #f44;
+        border-radius: 5px;
+        font-size: 2em;
+        cursor: pointer;
+    }
+    
+    footer{
+        position: relative;
+        bottom: 0px;
+        width: 100%;
+        padding: 50px;
+        background: #bbb;
+    }
+  
+    iframe{
+        overflow: hidden;
+        height: 620px;
+        width: 100%;
+        border: 0;
+    }
+    
+    .fb-comments{
+        position: relative;
+        bottom: 0px;
+    }
+
+    .programs li:hover{
+        background: #f2f;
+    }
+    /*@media only screen and (min-device-width: 720px){}*/
+</style>
+    <title>alextanhongpin</title>
+      </head>
+  <body>
+      <div id="fb-root" style='display: none;'></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+      
+      
+      <ul>
+        <li class='col-2'><a href='guitar.html'>Guitar</a></li>
+        <li class='col-2'><a href='programming.html'>Programming</a></li>
+        <li class='col-2'><a href=#>Photography</a></li>
+        <li class='col-2'><a href='drawing.html'>Drawing</a></li>
+        <li class='col-2'><a href='books.html'>Bookshelf</a></li>
+        <li class='col-2'><a href=#><b>Resume</b></a></li>
+      </ul><br>
+      
+     <header class='col-3'>alextanhongpin</header><br>
+
+    
+    
+          
+          <iframe class='col-12 display' src='programming/p00_piano.html'></iframe>
+   <br>
+       
+          <ul class='programs'>
+              <b class='col-1'>jQuery</b>
+                      <li class='col-1' src="programming/p00_piano.html">digitalpiano</li>
+                      <li class='col-1' src='programming/p01_calculator.html'>calculator</li>
+              <b class='col-1'>javaScript</b>
+              <b class='col-1'>CSS3</b>
+              <b class='col-1'>PhoneGap</b>
+              <b class='col-1'>WebGL</b>
+              <b class='col-1'>Box2D</b>
+              <b class='col-1'>Python</b>
+              <b class='col-1'>LabVIEW</b>
+              <b class='col-1'>Ruby</b>
+              
+          </ul><br>
+       
+        <div class="fb-comments" data-href="http://127.0.0.1:38173/html/guitar.html" data-numposts="5" data-colorscheme="light"></div>
+      
+    
+      
+      <br>
+
+      <footer>All rights reserved. 01.06.2014</footer>
+     
+
+
+
+  </body>
+    
+  <script>$(document).ready(function(){
+
+    'use strict';
+    
+    $('header').click(function(){
+        window.location = '../index.html';
+    });
+
+    var percent = 0;
+    function load(){
+        if(percent <= 34.5){
+            percent += 0.5;
+            var width = $('.progressbar div').width(percent + '%').text(percent + '%');
+        }
+    }
+    setInterval(load, 1000/60);
+    
+    $('.programs li').click(function(){
+        $('.display').attr('src', $(this).attr('src'));
+        
+    });
+    
+  
+    
+});</script>
+</html>

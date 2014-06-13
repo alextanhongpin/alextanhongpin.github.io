@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+       <script src='../js/loadAnimation.js'></script>
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Dosis:300);
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Dosis', sans-serif;
+    }
+    
+    body{
+        
+        width: 100%;
+        min-width: 240px;
+        height: 100%;
+        display: block;
+        text-align: center;
+    }
+
+    img{
+        width: 100%;
+       -webkit-filter: grayscale(1);
+        transition: 1s all;
+        box-shadow: 5px 5px 5px #666;
+        vertical-align:top;
+    }
+    img:hover{
+         -webkit-filter: grayscale(0);
+    }
+    div{
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        box-shadow: 5px 5px 5px #666;
+        padding: 0px; 
+        overflow: hidden;
+    }
+    span{
+        position: absolute;
+        background: #222;
+        bottom: -30px;
+        color: #ddd;
+        display: inline-block;
+        width: 100%;
+        opacity: 0.65;
+        padding: 5px;
+        overflow: hidden;
+        transition: 1s all;
+    }
+    a{
+        display: inline-block;
+    }
+    
+    
+
+    #canvas{
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 100%;
+        background: #fff;
+        z-index: 10000;
+        top: 0;
+        left: 0;
+    }
+
+    /*@media only screen and (min-device-width: 720px){}*/
+</style>
+      
+    <title>@alextanhongpin</title>
+      
+  </head>
+<script>$(window).load(function() {
+	   animate();
+    });</script>
+    
+  <body>
+      
+      <canvas id='canvas' >Sorry your browser does not support Canvas API.</canvas>
+      <header><h1>Photography</h1></header>
+      <a href='../index.html'>Return to home page</a><br>
+      <a class='col-2'><b>Year 2013</b></a>
+      <a class='col-2' href='photography_page_01.html'>1. Christmas market.</a>    
+      <a class='col-2'><b>Year 2014</b></a>
+      <a class='col-2' href='photography_page_02.html'>2. Back in Malaysia!</a>
+      <a class='col-2' href='photography_page_03.html'>3. Schwetzingen Castle</a>
+      <a class='col-2' href='photography_page_04.html'>4. BBQ at Ulmenweg</a>
+      <br>
+      
+      
+      
+      
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2038.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2043.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2046.JPG'>    <span>Some Christmas decoration.</span></div>
+      
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2050.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2052.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2054.JPG'>    <span>Some Christmas decoration.</span></div>
+      
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2055.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2057.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2058.JPG'>    <span>Some Christmas decoration.</span></div>
+      
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2059.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2078.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2088.JPG'>    <span>Some Christmas decoration.</span></div>
+      
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2095.JPG'>    <span>Some Christmas decoration.</span></div>
+      <div class='col-7'><img src='../img/photography/01-christmas_market/DSCF2104.JPG'>    <span>Some Christmas decoration.</span></div>
+
+      
+
+
+
+      
+  </body>
+    
+  <script>$(document).ready(function(){
+    
+    $('img').hover(function(){
+        $(this).next().css('bottom','0');
+    },function(){
+        $('span').css('bottom','-30px');
+    });
+    
+
+
+
+});</script>
+</html>
