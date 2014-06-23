@@ -40,6 +40,10 @@
         vertical-align: top;
     }
     
+    img{
+        width: 100%;
+    }
+    
     ul{
         display: inline-block;
         list-style-type: none;
@@ -80,22 +84,15 @@
         padding: 50px;
         background: #bbb;
     }
-  
-    iframe{
-        overflow: hidden;
-        height: 620px;
-        width: 100%;
-        border: 0;
-    }
+    
     
     .fb-comments{
+        margin-top: 50px;
         position: relative;
         bottom: 0px;
     }
 
-    .programs li:hover{
-        background: #f2f;
-    }
+
     /*@media only screen and (min-device-width: 720px){}*/
 </style>
     <title>alextanhongpin</title>
@@ -119,38 +116,34 @@
         <li class='col-2'><a href='books.html'>Bookshelf</a></li>
         <li class='col-2'><a href=#><b>Resume</b></a></li>
       </ul><br>
-      
+    
      <header class='col-3'>alextanhongpin</header><br>
 
-    
-    
-          
-          <iframe class='col-12 display' src='programming/p00_piano.html'></iframe>
-   <br>
-       
-          <ul class='programs'>
-              <b class='col-1'>jQuery</b>
-                      <li class='col-1' src="programming/p00_piano.html">digitalpiano</li>
-                      <li class='col-1' src='programming/p01_calculator.html'>calculator</li>
-                      <li class='col-1' src="programming/p02_clock.html">clock</li>
-                      <li class='col-1' src="programming/p03_binary%20clock.html">binary clock</li>
-              <b class='col-1'>javaScript</b>
-              <b class='col-1'>CSS3</b>
-              <b class='col-1'>PhoneGap</b>
-              <b class='col-1'>WebGL</b>
-              <b class='col-1'>Box2D</b>
-              <b class='col-1'>Python</b>
-              <b class='col-1'>LabVIEW</b>
-              <b class='col-1'>Ruby</b>
-              
-          </ul><br>
-       
-        <div class="fb-comments" data-href="http://127.0.0.1:38173/html/guitar.html" data-numposts="5" data-colorscheme="light"></div>
       
-    
+      <b>personal data</b><br>
+      Firstname : Tan<br>
+      Last name: Alex<br>
+      Date of birth: 22. September 1990<br>
+      place of birth: Georgetown<br>
+      gender: male<br>
+      status: single<br>
+      nationality: malaysian<br>
+      <br>
+      <b>Education</b><br>
+      01/1997 - 12/2002 : Sekolah Kebangsaan Ibrahim, Sungai Petani, Kedah. Year End Result PMR: 5 A <br>
+      01/2003 - 12/2005: Sekolah Menengah Kebangsaan Ibrahim, Sungai Petani, Kedah. UPSR: 6xA 1xB<br>
+      01/2006 - 12/2007: Sekolah Menengah Kebangsaan Ibrahim, Sungai PEtani Kedah: SPM Result: 12xA1<br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      
       
       <br>
-
+<div class="fb-comments" data-href="http://127.0.0.1:38173/html/guitar.html" data-numposts="5" data-colorscheme="light"></div>
+      
       <footer>All rights reserved. 01.06.2014</footer>
      
 
@@ -175,12 +168,6 @@
     }
     setInterval(load, 1000/60);
     
-    $('.programs li').click(function(){
-        $('.display').attr('src', $(this).attr('src'));
-        
-    });
-    
-  
     
 });</script>
 </html>
