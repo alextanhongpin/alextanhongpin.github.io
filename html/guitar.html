@@ -86,11 +86,6 @@
     }
     
     
-    .fb-comments{
-        margin-top: 50px;
-        position: relative;
-        bottom: 0px;
-    }
 
 
     /*@media only screen and (min-device-width: 720px){}*/
@@ -98,14 +93,7 @@
     <title>alextanhongpin</title>
       </head>
   <body>
-      <div id="fb-root" style='display: none;'></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+
       
       
       <ul>
@@ -122,8 +110,8 @@
     <iframe class='col-8' width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/150323475&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
       <iframe class='col-8' width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/150634086&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
       <iframe class='col-8' width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/153449882&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_artwork=true&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-      <br>
-<div class="fb-comments" data-href="http://127.0.0.1:38173/html/guitar.html" data-numposts="5" data-colorscheme="light"></div>
+   
+
       
       <footer>All rights reserved. 01.06.2014</footer>
      
@@ -140,14 +128,11 @@
         window.location = '../index.html';
     });
 
-    var percent = 0;
-    function load(){
-        if(percent <= 34.5){
-            percent += 0.5;
-            var width = $('.progressbar div').width(percent + '%').text(percent + '%');
-        }
+        //correct the footer
+    if ($(window).height() >= $('body').height()){
+        var extra = $(window).height() - $('body').height();
+        $('footer').css('margin-top', extra);
     }
-    setInterval(load, 1000/60);
     
     
 });</script>

@@ -19,3 +19,9 @@ parent.removeChild(child);
 2.Grid Style
 
 3. No uummphh!!! Be creative! Let the creativity flows in you like a river! You can feel it.
+
+4. data visualization is the future. create amazing data visualization using canvas.this is your chance
+
+
+
+https://www.google.de/search?q=amazing+data+visualization&espv=2&source=lnms&tbm=isch&sa=X&ei=j6aoU-vNDInT7AaSyICICg&ved=0CAYQ_AUoAQ&biw=1920&bih=955
