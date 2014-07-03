@@ -31,6 +31,7 @@
         width: 100%;
         height: 100%;
         text-align: center;
+        overflow-x: hidden;
     }
 
     div{
@@ -77,8 +78,9 @@
         position: relative;
         bottom: 0px;
         width: 100%;
-        padding: 50px;
-        background: #bbb;
+        padding: 10px;
+        background: #222;
+        color: #fff;
     }
   
     iframe{
@@ -138,7 +140,7 @@
       
       <br>
 
-      <footer>All rights reserved. 01.06.2014</footer>
+      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was created on 1st June 2014.</footer>
      
   </body>
     
@@ -150,14 +152,12 @@
         window.location = '../index.html';
     });
 
-    var percent = 0;
-    function load(){
-        if(percent <= 34.5){
-            percent += 0.5;
-            var width = $('.progressbar div').width(percent + '%').text(percent + '%');
-        }
+
+    if ($(window).height() >= $('body').height()){
+        var extra = $(window).height() - $('body').height();
+        $('footer').css('margin-top', extra);
     }
-    setInterval(load, 1000/60);
+    
     
     $('.programs li').click(function(){
         $('.display').attr('src', $(this).attr('src'));

@@ -62,7 +62,9 @@
 	/*background: #fff;*/
 }
 .col-12{
-	width: 940px;
+    min-width: 60px;
+    max-width: 940px;
+	width: 100%;
 	margin: 10px;
 	/*background: #fff;*/
 }
