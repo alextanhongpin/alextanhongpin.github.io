@@ -24,6 +24,10 @@
         margin: 0;
         padding: 0;
         font-family: 'Dosis', sans-serif;
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select:none;
+        user-select:none;
     }
     
     body{
@@ -31,17 +35,12 @@
         width: 100%;
         height: 100%;
         text-align: center;
-    }
-
-    div{
-        display: inline-block;
-        padding: 10px;
-        text-align: left;
-        vertical-align: top;
+        overflow-x: hidden;
     }
     
-    img{
-        width: 100%;
+    div{
+        display: inline-block;
+        text-align: center;
     }
     
     ul{
@@ -81,72 +80,211 @@
         position: relative;
         bottom: 0px;
         width: 100%;
-        padding: 50px;
-        background: #bbb;
+        padding: 10px;
+        background: #222;
+        color: #fff;
     }
     
-    
-    .fb-comments{
-        margin-top: 50px;
-        position: relative;
-        bottom: 0px;
+    table{
+        text-align: left;
+        width: 100%;
+    }
+    tr, td{
+        padding: 1px;
+    }
+    b{
+        font-size: 1.25em;
     }
 
-
-    /*@media only screen and (min-device-width: 720px){}*/
 </style>
     <title>alextanhongpin</title>
       </head>
   <body>
-      <div id="fb-root" style='display: none;'></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-      
-      
+
       <ul>
         <li class='col-2'><a href='guitar.html'>Guitar</a></li>
         <li class='col-2'><a href='programming.html'>Programming</a></li>
         <li class='col-2'><a href=#>Photography</a></li>
         <li class='col-2'><a href='drawing.html'>Drawing</a></li>
         <li class='col-2'><a href='books.html'>Bookshelf</a></li>
-        <li class='col-2'><a href=#><b>Resume</b></a></li>
+        <li class='col-2'><a href='contact.html'>Contact</a></li>
+        <li class='col-2'><a href='resume.html'><b>Resume</b></a></li>
       </ul><br>
     
      <header class='col-3'>alextanhongpin</header><br>
+<div class='col-10'>
+      <table>
+        <!--row 1-->
+        <tr>
+            <td class='col-2'><b>Personal Data</b></td>
+            <td class='col-5'></td>
+            <td class='col-2'><img src='/img/My%20Picture1.jpg' height="200px" style='position:absolute;'></td>
+        </tr>
+        <!--row 2-->
+        <tr>
+            <td class='col-2'>First name:</td>
+            <td class='col-5'>Alex Hong Pin</td>
+            <td class='col-2'></td>
+        </tr>
+        <!--row 3-->
+        <tr>
+            <td class='col-2'>Last name:</td>
+            <td class='col-5'>Tan</td>
+            <td class='col-2'></td>
+        </tr>
+        <!--row 4-->
+        <tr>
+            <td class='col-2'>Date of Birth:</td>
+            <td class='col-5'>22 September 1990</td>
+            <td class='col-2'></td>
+        </tr>
+        <!--row 5-->
+        <tr>
+            <td class='col-2'>Place of Birth:</td>
+            <td class='col-5'>Georgetown, Penang</td>
+            <td class='col-2'></td>
+        </tr> 
+        <!--row 7-->
+        <tr>
+            <td class='col-2'>Gender:</td>
+            <td class='col-5'>male</td>
+            <td class='col-2'></td>
+        </tr>
+         <!--row 8-->
+        <tr>
+            <td class='col-2'>Status:</td>
+            <td class='col-5'>single</td>
+            <td class='col-2'></td>
+        </tr> 
+          <!--row 9-->
+        <tr>
+            <td class='col-2'>Nationality:</td>
+            <td class='col-5'>Malaysian</td>
+            <td class='col-2'></td>
+        </tr>
+          <tr><td><br></td></tr>
+        <tr>
+            <td class='col-2'><b>Education</b></td>
+            <td class='col-5'></td>
+            <td class='col-2'></td>
+        </tr>
+            <!--row 10-->
+        <tr>
+            <td class='col-2'>01/1997 - 12/2002:</td>
+            <td class='col-5'>Sekolah Kebangsaan Ibrahim, Sungai Petani, Kedah.</td>
+            <td class='col-2'></td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>Ujian Pencapaian Sekolah Rendah (UPSR).</td>
+            <td class='col-2'>Results: 5xA</td>
+        </tr>
+          <tr><td><br></td></tr>
+          <!--row 11-->
+        <tr>
+            <td class='col-2'>01/2003 - 12/2005:</td>
+            <td class='col-5'>Sekolah Menengah Kebangsaan Ibrahim, Sungai Petani, Kedah.</td>
+            <td class='col-2'></td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>Penilaian Menengah Rendah (PMR).</td>
+            <td class='col-2'>Results: 6xA 1xB</td>
+        </tr>
+          <tr><td><br></td></tr>
+          <!--row 12-->
+        <tr>
+            <td class='col-2'> 01/2006 - 12/2007:</td>
+            <td class='col-5'>Sekolah Menengah Kebangsaan Ibrahim, Sungai Petani, Kedah.</td>
+            <td class='col-2'></td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>Sijil Pelajaran Malaysia (SPM).</td>
+            <td class='col-2'>Results: 12xA1</td>
+        </tr>
+          <tr><td><br></td></tr>
+           <!--row 13-->
+        <tr>
+            <td class='col-2'>07/2008 - 05/2010:</td>
+            <td class='col-5'>International Education Centre (INTEC), Universiti Teknologi Mara (UiTM), Shah Alam</td>
+            <td class='col-2'></td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>Edexcel A-Level</td>
+            <td class='col-2'>AS-German 1xA</td>
+        </tr>
+         <tr>
+            <td class='col-2'></td>
+            <td class='col-5'></td>
+            <td class='col-2'>Chemistry 1xA*</td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'></td>
+            <td class='col-2'>Mathematics 1xA*</td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'></td>
+            <td class='col-2'>Physics 1xA</td>
+        </tr>
+          <tr><td><br></td></tr>
+          <!--row 14-->
+        <tr>
+            <td class='col-2'> 07/2010 - 09/2010:</td>
+            <td class='col-5'>International Education Centre (INTEC).</td>
+            <td class='col-2'></td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>DSH (Deutsche Sprachprüfung für den Hochschulzugang)</td>
+            <td class='col-2'>Results: DSH 3 (1.8)</td>
+        </tr>
+          <tr><td><br></td></tr>
+          <!--row 15-->
+        <tr>
+            <td class='col-2'> 03/2011 - current day:</td>
+            <td class='col-5'>Bachelor in Chemical Engineering</td>
+            <td class='col-2'></td>
+        </tr>
+        <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>The Mannheim University of Applied Sciences, Mannheim, Germany</td>
+            <td class='col-2'></td>
+        </tr>
+          <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>Foundation Course (Grundstudium)</td>
+            <td class='col-2'>Results: 1.2 (Highest: 1.0)</td>
+        </tr>
+          <tr>
+            <td class='col-2'></td>
+            <td class='col-5'>Main Course (Hauptstudium)</td>
+            <td class='col-2'>Results: t.b.a (Highest: 1.0)</td>
+        </tr>
+          
+      </table>
+     </div>
+      <br>
+      <h3 style='padding:80px;'><b>*to be updated*</b></h3>
+      <!--x
+      
+      <b>Internships</b><br>
+      09/2010-11/2010: Technisches Industriepraktikum am GMI (German-Malaysian Institute), Bangi<br>
+      Eurosol GmBH    <br>
+      <br>
+      <b>Languages</b><br>
+      English<br>
+      Malays<br>
+      German<br>
+      Japanese<br>
+      -->
+  
 
-      
-      <b>personal data</b><br>
-      Firstname : Tan<br>
-      Last name: Alex<br>
-      Date of birth: 22. September 1990<br>
-      place of birth: Georgetown<br>
-      gender: male<br>
-      status: single<br>
-      nationality: malaysian<br>
-      <br>
-      <b>Education</b><br>
-      01/1997 - 12/2002 : Sekolah Kebangsaan Ibrahim, Sungai Petani, Kedah. Year End Result PMR: 5 A <br>
-      01/2003 - 12/2005: Sekolah Menengah Kebangsaan Ibrahim, Sungai Petani, Kedah. UPSR: 6xA 1xB<br>
-      01/2006 - 12/2007: Sekolah Menengah Kebangsaan Ibrahim, Sungai PEtani Kedah: SPM Result: 12xA1<br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      <br>
-      
-      
-      <br>
-<div class="fb-comments" data-href="http://127.0.0.1:38173/html/guitar.html" data-numposts="5" data-colorscheme="light"></div>
-      
-      <footer>All rights reserved. 01.06.2014</footer>
      
-
+      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
 
 
   </body>
@@ -159,14 +297,11 @@
         window.location = '../index.html';
     });
 
-    var percent = 0;
-    function load(){
-        if(percent <= 34.5){
-            percent += 0.5;
-            var width = $('.progressbar div').width(percent + '%').text(percent + '%');
-        }
+    if ($(window).height() >= $('body').height()){
+        var extra = $(window).height() - $('body').height();
+        $('footer').css('margin-top', extra);
     }
-    setInterval(load, 1000/60);
+    
     
     
 });</script>

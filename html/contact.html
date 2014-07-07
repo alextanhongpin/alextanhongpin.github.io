@@ -45,6 +45,10 @@
         vertical-align: top;
     }
     
+    img{
+        width: 100%;
+    }
+    
     ul{
         display: inline-block;
         list-style-type: none;
@@ -86,35 +90,21 @@
         background: #222;
         color: #fff;
     }
-  
-    iframe{
-        overflow: hidden;
-        height: 500px;
-        width: 100%;
-        border: 0px solid #222;
-    }
     
-
-    .programs li, .programs b{
+    
+    span{
+        display: inline-block;
         width: 100%;
-        width: 140px;
-        display: block;
-        text-align: center;
-        padding: 5px;
-        float: left;
-        border-radius: 5px;
-        transition: 0.25s ease-in all;
-        cursor: pointer;
+        text-align: left;
+        margin: 2px !important;
     }
-    .programs li:hover{
-        background: #ffb;
-    }
+
     /*@media only screen and (min-device-width: 720px){}*/
 </style>
     <title>alextanhongpin</title>
       </head>
   <body>
-   
+
       <ul>
         <li class='col-2'><a href='guitar.html'>Guitar</a></li>
         <li class='col-2'><a href='programming.html'>Programming</a></li>
@@ -124,40 +114,17 @@
         <li class='col-2'><a href='contact.html'>Contact</a></li>
         <li class='col-2'><a href='resume.html'><b>Resume</b></a></li>
       </ul><br>
-      
+    
      <header class='col-3'>alextanhongpin</header><br>
 
-    
-    
-          
-          <iframe class='col-12 display' src='programming/p00_piano.html'></iframe>
-   <br>
-       
-          <ul class='programs col-12'>
-              <b>jQuery</b>
-                      <li src="programming/p00_piano.html">digitalpiano</li>
-                      <li src='programming/p01_calculator.html'>calculator</li>
-                      <li src="programming/p02_clock.html">clock</li>
-                      <li src="programming/p03_binary%20clock.html">binary clock</li>
-              <b>javaScript</b>
-              <b>CSS3</b>
-              <b>PhoneGap</b>
-              <b>WebGL</b>
-              <b>Box2D</b>
-              <b>Python</b>
-              <b>LabVIEW</b>
-              <b>Ruby</b>
-              <b>Android</b>
-              <b>WP8</b>
-          </ul>
-       
-
-    
+  
+  
+<iframe src="https://docs.google.com/forms/d/1SOT71KqzNeobB41lSFeRAy-7fVZOYkeVCL3uF9jnhUU/viewform?embedded=true" class='col-6' height='100%x' width='100%' frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
       
-      <br>
-
-      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
      
+      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
+
+
   </body>
     
   <script>$(document).ready(function(){
@@ -168,19 +135,12 @@
         window.location = '../index.html';
     });
 
-
     if ($(window).height() >= $('body').height()){
         var extra = $(window).height() - $('body').height();
         $('footer').css('margin-top', extra);
     }
     
     
-    $('.programs li').click(function(){
-        $('.display').attr('src', $(this).attr('src'));
-        
-    });
-    
-  
     
 });</script>
 </html>

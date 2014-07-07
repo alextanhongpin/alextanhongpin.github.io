@@ -16,7 +16,9 @@
 	/*background: #fff;*/
 }
 .col-4{
-	width: 300px;
+    min-width: 60px;
+    max-width: 300px;
+	width: 100%;
 	margin: 10px;
 	/*background: #fff;*/
 }
@@ -52,7 +54,9 @@
 	/*background: #fff;*/
 }
 .col-10{
-	width: 780px;
+    min-width: 60px;
+    max-width: 780px;
+	width: 100%;
 	margin: 10px;
 	/*background: #fff;*/
 }

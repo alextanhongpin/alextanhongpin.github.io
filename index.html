@@ -29,7 +29,12 @@
         margin: 0;
         padding: 0;
         font-family: 'Dosis', sans-serif;
-            }
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select:none;
+        user-select:none;
+        
+    }
     
     body{
         display: block;
@@ -87,8 +92,8 @@
         position: relative;
         width: 100%;
         padding: 10px;
-        color: #fff;
         background: #222;
+        color: #fff;
     }
     
     .progressbar{
@@ -106,7 +111,19 @@
         height: 20px;
         padding: 2px;
     }
+    /*
+    .facebook{
+        height: 55px;
+        background: url(img/logos/socialnetwork2.jpg) no-repeat;
+        background-position: -404px -105px;
+    }
     
+    .soundcloud{
+        height: 55px;
+        background: url(img/logos/socialnetwork2.jpg) no-repeat;
+        background-position: -594px -15px;
+    }
+    */
 
     
     /*@media only screen and (min-device-width: 720px){}*/
@@ -122,7 +139,8 @@
         <li class='col-2'><a href=#>Photography</a></li>
         <li class='col-2'><a href='html/drawing.html'>Drawing</a></li>
         <li class='col-2'><a href='html/books.html'>Bookshelf</a></li>
-        <li class='col-2'><a href=#><b>Resume</b></a></li>
+        <li class='col-2'><a href='html/contact.html'>Contact</a></li>
+        <li class='col-2'><a href='html/resume.html'><b>Resume</b></a></li>
       </ul><br>
     
      <header class='col-3'>alextanhongpin</header><br>
@@ -145,9 +163,19 @@
 
       <div class='col-3'><b>WARNING</b><br>This website is still under development - some links will not work. It is designed from scratch and will be updated over time. Current progress is shown in the progress bar.</div>
       <div class='col-6 progressbar'><div></div></div>
-
+      
+      
+      <br>
+      <!--
+    <a href='https://www.facebook.com/alex.tan.986227'>
+      <div class='col-1 facebook'></div>
+    </a>
+    <a href='https://soundcloud.com/alextanhongpin'>
+      <div class='col-1 soundcloud'></div>
+    </a>  
+ -->
   <audio autoplay loop>
-    <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'>    
+    <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'>
   </audio>
     
 
@@ -173,6 +201,11 @@
     $('header').click(function(){
         window.location = 'index.html';
     });
+    //correct the footer
+    if ($(window).height() >= $('body').height()){
+        var extra = $(window).height() - $('body').height();
+        $('footer').css('margin-top', extra);
+    }
 
     var percent = 0;
     function load(){
@@ -183,11 +216,8 @@
     }
     setInterval(load, 1000/60);
     
-    //correct the footer
-    if ($(window).height() >= $('body').height()){
-        var extra = $(window).height() - $('body').height();
-        $('footer').css('margin-top', extra);
-    }
+    
+    
     
     
     
