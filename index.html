@@ -53,6 +53,7 @@
     
     img{
         width: 100%;
+        border-radius: 5px;
     }
     
     ul{
@@ -94,6 +95,7 @@
         padding: 10px;
         background: #222;
         color: #fff;
+        z-index: 100;
     }
     
     .progressbar{
@@ -124,6 +126,20 @@
         background-position: -594px -15px;
     }
     */
+    
+    .notifications{
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+    }
+    
+    .notifications span{
+        width: 100%;
+        position: absolute;
+        text-align: center;
+        left: 0px;
+        
+    }
 
     
     /*@media only screen and (min-device-width: 720px){}*/
@@ -149,15 +165,21 @@
      
   
       
-        <div class='col-3 '>
+    <div class='col-3 '>
         <img src='img/My%20Picture1.jpg'>
-          This is me!
+        This is me!
+    </div>
+      
+      <div class='col-6'>
+          <b><h3>About Me</h3></b>
+            Watch me. I'm a person that lives my dream. I believe that everyone is special in their own way, and we give ourselves a meaning in life. If you couldn't find one (yet), look harder. If you don' stop looking for it, you will eventually find it. 
+          <br>
+          <br>
+          I know there are many people out there that are clueless about what they want to do - I seek those people, and motivate them. Because I was one of them. Besides, you get back as much as you give.<br><br>
+          <q>
+              You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one.   </q>―John Lennon
       </div>
-      <div class='col-6'><b><h3>About Me</h3></b>Watch me. I'm a person that lives my dream. I believe that everyone is special in their own way, and we give ourselves a meaning in life. If you couldn't find one (yet), look harder. If you don' stop looking for it, you will eventually find it. 
-        <br><br>I know there are many people out there that are clueless about what they want to do - I seek those people, and motivate them. Because I was one of them. Besides, you get back as much as you give.<br><br>
-          <q>You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one.</q>― John Lennon
-          
-      </div><br>
+      <br>
       
       
 
@@ -174,20 +196,12 @@
       <div class='col-1 soundcloud'></div>
     </a>  
  -->
-  <audio autoplay loop>
-    <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'>
-  </audio>
-    
-
+    <audio autoplay loop>
+     <!--   <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'> -->
+    </audio>
       
-      
-      
-    
-    
-</div>
-      
-      
-      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was created on 1st June 2014.</footer>
+      <footer>
+          Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was created on 1st June 2014.</footer>
 
 
 
@@ -201,6 +215,7 @@
     $('header').click(function(){
         window.location = 'index.html';
     });
+   
     //correct the footer
     if ($(window).height() >= $('body').height()){
         var extra = $(window).height() - $('body').height();
@@ -216,9 +231,7 @@
     }
     setInterval(load, 1000/60);
     
-    
-    
-    
+     
     
     
     
