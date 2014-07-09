@@ -17,6 +17,7 @@
   ga('send', 'pageview');
 
 </script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBoTJ4CecHfWwl5bGuWgCbYU2orud-oW-o&sensor=TRUE_OR_FALSE"></script>
       
 <style>
     @import url(http://fonts.googleapis.com/css?family=Dosis:300);
@@ -101,7 +102,7 @@
 
     /*@media only screen and (min-device-width: 720px){}*/
 </style>
-    <title>alextanhongpin</title>
+    <title>contact</title>
       </head>
   <body>
 
@@ -118,8 +119,11 @@
      <header class='col-3'>alextanhongpin</header><br>
 
   
-  
+    <div id="googleMap" style="width:500px;height:380px;"></div>
+      
 <iframe src="https://docs.google.com/forms/d/1SOT71KqzNeobB41lSFeRAy-7fVZOYkeVCL3uF9jnhUU/viewform?embedded=true" class='col-6' height='100%x' width='100%' frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
+      
+      
       
      
       <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
@@ -139,8 +143,12 @@
         var extra = $(window).height() - $('body').height();
         $('footer').css('margin-top', extra);
     }
-    
-    
-    
+    //gogoel map
+    var mapProp = {
+  center:new google.maps.LatLng(51.508742,-0.120850),
+  zoom:7,
+  mapTypeId: google.maps.MapTypeId.ROADMAP
+};
+    google.maps.event.addDomListener(window, 'load', initialize);
 });</script>
 </html>

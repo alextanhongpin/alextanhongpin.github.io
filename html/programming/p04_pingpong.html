@@ -53,6 +53,7 @@
     var y = canvas.height / 2;
     
     var mouseX = 0;
+    var mouseY = 0;
     
     var ballX = 0;
     var ballY = 0;
@@ -69,6 +70,7 @@
     function position(e){
         var region = canvas.getBoundingClientRect();
         mouseX = e.clientX - region.left;
+        mouseY = e.clientY - region.top;
     }
     
     //draw all shapes here
@@ -78,8 +80,10 @@
         context.fillRect(0,0, canvas.width, canvas.height);
         
         context.beginPath();
-            context.rect(mouseX - 50, 0, 100, 10);
+            context.rect(canvas.width - 50 - mouseX, 0, 100, 10);
             context.rect(mouseX - 50, canvas.height - 10, 100, 10);
+            context.rect(0, mouseY - 50, 10, 100);
+            context.rect(canvas.width - 10, canvas.height - mouseY - 50, 10, 100);
             context.fillStyle = '#fff';
             context.fill();
         context.closePath();
