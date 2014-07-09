@@ -17,60 +17,6 @@
   ga('send', 'pageview');
 
 </script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBoTJ4CecHfWwl5bGuWgCbYU2orud-oW-o&sensor=TRUE_OR_FALSE"></script>
-<script>
-    function initialize()
-    {
-        //create an array of styles
-        var styles = [
-            {
-                stylers: [{hue: '#dff'},{saturation: -20}]
-            },
-            {
-                featureType: 'road',
-                elementType: 'geometry',
-                stylers: [
-                    {lightness: 75},{visibility: 'simplified'}
-                ]
-            },
-            {
-                featureType: 'road',
-                elementType: 'labels',
-                stylers: [
-                    visibility: 'off'
-                ]
-            }
-        ];
-        
-        var styledMap = new google.maps.StyledMapTypes(styles, {name: 'Styled Map'});
-        
-        var mapProp = {
-            center: new google.maps.LatLng(49.488607, 8.466370),
-            zoom: 5,
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI:true
-            mapTypeControlOptions: {
-                mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
-            }
-        };
-        var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-            map.mapTypes.set('map_style', styledMap);
-            map.setMapTypeId('map_style');
-        var marker = new google.maps.Marker({
-            position: myCenter,
-            animation: google.maps.Animation.BOUNCE
-        });
-        market.setMap(map);
-        
-        var infowindow = new google.maps.InfoWindow({
-            content: 'Hello from Germany! :)'
-        });
-        infowindow.open(map,marker);
-    }
-
-    google.maps.event.addDomListener(window, 'load', initialize);
-      
-</script>
 
 <style>
     @import url(http://fonts.googleapis.com/css?family=Dosis:300);
@@ -171,11 +117,22 @@
     
      <header class='col-3'>alextanhongpin</header><br>
 
-  
-    <div id="googleMap" style="width:500px;height:380px;"></div>
-      
-<iframe src="https://docs.google.com/forms/d/1SOT71KqzNeobB41lSFeRAy-7fVZOYkeVCL3uF9jnhUU/viewform?embedded=true" class='col-6' height='auto' width='100%' frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
-      
+PhD? Get a windows 8.1 tablet. I have both windows 8.1 tablet (Dell Venue 8 Pro , ~RM800), an iPad 3 and also a 
+
+Samsung Galaxy Tab. From my experience, don't go for android. If it's speed and productivity you need, get iPad or a 
+
+windows tablet (unless you have a laptop already). If you already have a windows laptop, don't get a windows tablet. 
+
+It's more like a downgrade cause you don't have a keyboard (unless you can type fairly fast on the screen). I'm a programmer, so typing is what I do a lot. And not having a proper keyboard su***. smile.gif
+
+Windows tablet do have their advantages too. 
+
+1. it'S convenient to bring all your materials around (word, excel, powerpoint)
+2. you can sychronize all your stuffs with dropbox and can sync it automatically to the cloud
+3. you can run all the softwares you want
+4. it's a laptop without a keyboard
+
+as for the iPad, it's a beautiful tablet and I use it all the time too. There are a lot of useful apps which can help you organize your journals, note taking is splendid (I have a bamboo stylus which I used to write notes on noteshelf, sign documents, and also draw), typing is also a breeze if you have a keyboard. there are a lot of words editor too and if you use LaTeX to write your phd report, there's also an app for it.
       
       
      
