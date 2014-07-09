@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>binary clock</title>
+</head>
+
+
+<style type="text/css" rel="stylesheet">
+
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'Dosis', sans-serif;
+    }
+    
+    body{
+        width: 100%;
+        min-width: 240px;
+        height: 100%;
+        display: block;
+        text-align: center;
+    }
+    
+    #canvas{
+        display: block;
+        background: #222;
+    }
+    
+</style>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+<body>
+    <canvas id='canvas'>Sorry, your browser does not support Canvas API.</canvas>  
+</body>
+
+<script>$(document).ready(function(){
+
+    'use strict';
+    
+    var canvas = document.getElementById('canvas');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    var context = canvas.getContext('2d');
+    
+    var x = canvas.width / 2;
+    var y = canvas.height / 2;
+    
+    var mouseX = 0;
+    var mouseY = 0;
+    
+    var ballX = 0;
+    var ballY = 0;
+    
+    
+    $(window).resize(function(){
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        x = canvas.width / 2;
+        y = canvas.height / 2;
+    });
+    
+    //get mouse location on the canvas
+    function position(e){
+        var region = canvas.getBoundingClientRect();
+        mouseX = e.clientX - region.left;
+        mouseY = e.clientY - region.top;
+    }
+    
+    //draw all shapes here
+    function draw(){
+        
+        context.fillStyle = 'rgba(34,34,34,0.55)';
+        context.fillRect(0,0, canvas.width, canvas.height);
+        
+        context.beginPath();
+            context.rect(canvas.width - 50 - mouseX, 0, 100, 10);
+            context.rect(mouseX - 50, canvas.height - 10, 100, 10);
+            context.rect(0, mouseY - 50, 10, 100);
+            context.rect(canvas.width - 10, canvas.height - mouseY - 50, 10, 100);
+            context.fillStyle = '#fff';
+            context.fill();
+        context.closePath();
+        
+        context.beginPath();
+            ballX += 0.1;
+            ballY += 0.5;
+            context.arc(x + ballX,y + ballY,5,0,Math.PI*2);
+            context.fillStyle = '#f22';
+            context.fill();
+        context.closePath();
+        
+    }
+    
+    function loop(){
+        $('#canvas').mousemove(position);
+        draw();
+    
+    }
+    setInterval(loop, 1000/60);
+    
+});</script>
+    
+</html>

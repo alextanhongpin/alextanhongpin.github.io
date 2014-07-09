@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>binary clock</title>
+</head>
+
+
+<style type="text/css" rel="stylesheet">
+
+body{
+background-color: #dddddd;
+height: 768px; width: 1280px;
+}
+
+.layout{
+position: fixed;
+height: 768px; width: 1280px;
+background-color: #222222;
+top: 50%; left: 50%;
+margin-left: -640px; margin-top: -384px;
+}
+
+.frame{
+position: relative;
+width:498px; height: 278px;
+top:50%; left: 50%;
+margin-top: -139px; margin-left: -249px;
+}
+.row{
+width:80px;
+float:left;
+}
+
+a{
+display: block;
+height: 30px; width: 30px;
+background-color: #666666;
+margin: 15px; padding: 10px;
+border-radius: 50%; transition: 0.4s all;
+}
+
+.day1, .day2{
+color: white; color: #dddddd;
+font-size: 60px;
+position: relative;
+top:50%; left:50%;
+margin-left: -200px;
+width: 400px; text-align: center;
+}
+
+.hidden{
+background-color:transparent;
+}
+</style>
+
+
+
+
+
+<script src="jquery-1.10.2.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+<script>$(document).ready(function(){
+
+function time(){
+var date = new Date();
+var sec = date.getSeconds();
+var min = date.getMinutes();
+var hr = date.getHours();
+var day = date.getDay()+1;
+var days = date.getDate();
+var month = date.getMonth()+1;
+var year = date.getFullYear();
+
+
+
+
+
+//function for day
+var today='';
+switch(day){
+case 1: today='Sunday';break;
+case 2: today='Monday';break;
+case 3: today='Tuesday';break;
+case 4: today='Wednesday';break;
+case 5: today='Thursday';break;
+case 6: today='Friday';break;
+case 7: today='Saturday';break;
+}
+
+
+
+
+$('.day1').text(today);
+$('.day2').text(days+' / '+month+' / ' + year)
+
+//shortcuts
+var bcolor = 'background-color';
+var newcolor = '#ff4444';
+var oldcolor = '#666666';
+var row1 = '.one > a';
+var row2 = '.two > a';
+var row3 = '.three > a';
+var row4 = '.four > a';
+var row5 = '.five > a';
+var row6 = '.six > a';
+
+
+
+//create a function to determine which block to color
+//this function works for seconds and minutes
+
+function lessten(unit,row){
+if(unit%10==0){$(row).css(bcolor,oldcolor);}
+if(unit%10==1){$(row).css(bcolor,oldcolor);$(row).eq(3).css(bcolor,newcolor);}
+if(unit%10==2){$(row).css(bcolor,oldcolor);$(row).eq(2).css(bcolor,newcolor);}
+if(unit%10==3){$(row).css(bcolor,oldcolor);$(row).eq(2).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
+if(unit%10==4){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);}
+if(unit%10==5){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
+if(unit%10==6){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);$(row).eq(2).css(bcolor,newcolor);}
+if(unit%10==7){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);$(row).eq(2).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
+if(unit%10==8){$(row).css(bcolor,oldcolor);$(row).eq(0).css(bcolor,newcolor);}
+if(unit%10==9){$(row).css(bcolor,oldcolor);$(row).eq(0).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
+}
+
+function moreten(unit,row){
+if(unit>-1 && unit<10){$(row).not('.hidden').css(bcolor,oldcolor);}
+if(unit>9 && unit<19){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(2).css(bcolor,newcolor);}
+if(unit>19 && unit<30){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(1).css(bcolor,newcolor);}
+if(unit>29 && unit<40){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(1).css(bcolor,newcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);}
+if(unit>39 && unit<50){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);}
+if(unit>49 && unit<60){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);$(row).not('.hidden').eq(2).css(bcolor,newcolor);}
+}
+
+function specialhour(unit,row){
+if(unit>-1 && unit<20){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(1).css(bcolor,newcolor);}
+if(unit>19 && unit<25){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);}
+}
+
+specialhour(hr,row1);
+lessten(hr,row2);
+
+moreten(min,row3);
+lessten(min,row4);
+
+moreten(sec,row5);
+lessten(sec,row6);
+
+}
+
+setInterval(time,1000);
+
+});</script>
+
+
+
+
+
+
+
+
+
+
+
+<body>
+<div class='layout'>
+
+
+
+<div class='frame'>
+<div class = 'row one'><a class='hidden'></a><a class='hidden'></a><a></a><a></a></div>
+<div class = 'row two'><a></a><a></a><a></a><a></a></div>
+<div class = 'row three'><a class='hidden'></a><a></a><a></a><a></a></div>
+<div class = 'row four'><a></a><a></a><a></a><a></a></div>
+<div class = 'row five'><a class='hidden'></a><a></a><a></a><a></a></div>
+<div class = 'row six'><a></a><a></a><a></a><a></a></div>
+</div>
+
+
+
+
+<div class='day1'></div>
+<div class='day2'></div>
+</div>
+
+</body>
+</html>
