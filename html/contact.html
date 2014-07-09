@@ -21,12 +21,12 @@
 <script>
     function initialize()
     {
-
+        var myCenter = new google.maps.LatLng(49.488607, 8.466370);
         var mapProp = {
-            center: new google.maps.LatLng(49.488607, 8.466370),
-            zoom: 11,
+            center: myCenter, 
+            zoom: 5,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
-            disableDefaultUI:true
+            disableDefaultUI : true
         };
         var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
 
@@ -34,7 +34,7 @@
             position: myCenter,
             animation: google.maps.Animation.BOUNCE
         });
-        market.setMap(map);
+        marker.setMap(map);
         
         var infowindow = new google.maps.InfoWindow({
             content: 'Hello from Germany! :)'
