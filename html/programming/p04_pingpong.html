@@ -24,7 +24,6 @@
     
     #canvas{
         display: block;
-        background: #222;
     }
     
 </style>
@@ -76,7 +75,7 @@
     //draw all shapes here
     function draw(){
         
-        context.fillStyle = 'rgba(34,34,34,0.55)';
+        context.fillStyle = 'rgba(255,255,102,0.55)';
         context.fillRect(0,0, canvas.width, canvas.height);
         
         context.beginPath();
@@ -84,7 +83,7 @@
             context.rect(mouseX - 50, canvas.height - 10, 100, 10);
             context.rect(0, mouseY - 50, 10, 100);
             context.rect(canvas.width - 10, canvas.height - mouseY - 50, 10, 100);
-            context.fillStyle = '#fff';
+            context.fillStyle = '#444';
             context.fill();
         context.closePath();
         

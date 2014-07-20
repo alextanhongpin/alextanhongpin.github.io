@@ -1,188 +1,176 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<title>binary clock</title>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+<style>
+   
+    @font-face { 
+        font-family: Visitor; 
+        src: url('/fonts/visitor1.ttf'); 
+    } 
+    
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: Visitor;
+    }
+    
+    body{
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select:none;
+        cursor: pointer;
+        user-select:none;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        display: block;
+        text-align: center;
+    }
+    
+    
+    a{
+        display: block;
+        height: 40px;
+        width: 40px;
+        margin: 5px;
+        border-radius: 50%;
+        background: #ddd;
+        transition: 0.25s ease-in all;
+    }
 
-
-<style type="text/css" rel="stylesheet">
-
-body{
-background-color: #dddddd;
-height: 768px; width: 1280px;
-}
-
-.layout{
-position: fixed;
-height: 768px; width: 1280px;
-background-color: #222222;
-top: 50%; left: 50%;
-margin-left: -640px; margin-top: -384px;
-}
-
-.frame{
-position: relative;
-width:498px; height: 278px;
-top:50%; left: 50%;
-margin-top: -139px; margin-left: -249px;
-}
-.row{
-width:80px;
-float:left;
-}
-
-a{
-display: block;
-height: 30px; width: 30px;
-background-color: #666666;
-margin: 15px; padding: 10px;
-border-radius: 50%; transition: 0.4s all;
-}
-
-.day1, .day2{
-color: white; color: #dddddd;
-font-size: 60px;
-position: relative;
-top:50%; left:50%;
-margin-left: -200px;
-width: 400px; text-align: center;
-}
-
-.hidden{
-background-color:transparent;
-}
+    .frame{
+        position: fixed;
+        display: inline-block;
+        width: 330px;
+        height: 210px;
+        top: 50%;
+        left: 50%;
+        margin-top: -105px;
+        margin-left: -165px;
+        font-size: 2em;
+    }
+    #hh, #mm, #ss{
+        padding: 5px;
+        height: 200px;
+        width: 100px;
+        float: left;
+    }
+    
+    .ssone, .sstwo, .mmone, .mmtwo, .hhone, .hhtwo{
+        float: left;
+    }
+    
+    .hidden{
+        background: #fff;
+    }
+  
 </style>
+      
+    <title>@alextanhongpin</title>
+      
+  </head>
+  <body>
+    by alextanhongpin, #amalaysianprogrammer<br>
+      <div class='timer'></div>
+    
+    <div class='frame'>
+        <div id='hh'>
+            <div class='hhone'>
+                <a class='hidden'></a><a class='hidden'></a><a></a><a></a> 
+           </div>
+            <div class='hhtwo'>
+                <a></a><a></a><a></a><a></a> 
+            </div>
+          </div>
+          <div id='mm'> 
+            <div class='mmone'>
+                <a class='hidden'></a><a></a><a></a><a></a>
+            </div>
+            <div class='mmtwo'>
+                <a></a><a></a><a></a><a></a>  
+            </div>
+          </div>
+          <div id='ss'>
+            <div class='ssone'>
+                <a class='hidden'></a><a></a><a></a><a></a>
+            </div>
+            <div class='sstwo'>
+                <a></a><a></a><a></a><a></a> 
+            </div>
+          </div>
+        Binary Clock
+    </div>
+  </body>
+    
+  <script>$(document).ready(function(){
 
+    'use strict';
+ 
+    
+    function time(){
+        var date = new Date();
+        var s = date.getSeconds();
+        var m = date.getMinutes();
+        var h = date.getHours();
 
+        
+      binary(Math.floor(s/10), '.ssone a', 0,1,2,3);
+      binary(s%10, '.sstwo a',0,1,2,3);
+      binary(Math.floor(m/10), '.mmone a', 0,1,2,3);
+      binary(m%10, '.mmtwo a',0,1,2,3);
+      binary(Math.floor(h/10), '.hhone a', 0,1,2,3);
+      binary(h%10, '.hhtwo a',0,1,2,3);
+    }
 
-
-
-<script src="jquery-1.10.2.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-
-<script>$(document).ready(function(){
-
-function time(){
-var date = new Date();
-var sec = date.getSeconds();
-var min = date.getMinutes();
-var hr = date.getHours();
-var day = date.getDay()+1;
-var days = date.getDate();
-var month = date.getMonth()+1;
-var year = date.getFullYear();
-
-
-
-
-
-//function for day
-var today='';
-switch(day){
-case 1: today='Sunday';break;
-case 2: today='Monday';break;
-case 3: today='Tuesday';break;
-case 4: today='Wednesday';break;
-case 5: today='Thursday';break;
-case 6: today='Friday';break;
-case 7: today='Saturday';break;
-}
-
-
-
-
-$('.day1').text(today);
-$('.day2').text(days+' / '+month+' / ' + year)
-
-//shortcuts
-var bcolor = 'background-color';
-var newcolor = '#ff4444';
-var oldcolor = '#666666';
-var row1 = '.one > a';
-var row2 = '.two > a';
-var row3 = '.three > a';
-var row4 = '.four > a';
-var row5 = '.five > a';
-var row6 = '.six > a';
-
-
-
-//create a function to determine which block to color
-//this function works for seconds and minutes
-
-function lessten(unit,row){
-if(unit%10==0){$(row).css(bcolor,oldcolor);}
-if(unit%10==1){$(row).css(bcolor,oldcolor);$(row).eq(3).css(bcolor,newcolor);}
-if(unit%10==2){$(row).css(bcolor,oldcolor);$(row).eq(2).css(bcolor,newcolor);}
-if(unit%10==3){$(row).css(bcolor,oldcolor);$(row).eq(2).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
-if(unit%10==4){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);}
-if(unit%10==5){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
-if(unit%10==6){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);$(row).eq(2).css(bcolor,newcolor);}
-if(unit%10==7){$(row).css(bcolor,oldcolor);$(row).eq(1).css(bcolor,newcolor);$(row).eq(2).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
-if(unit%10==8){$(row).css(bcolor,oldcolor);$(row).eq(0).css(bcolor,newcolor);}
-if(unit%10==9){$(row).css(bcolor,oldcolor);$(row).eq(0).css(bcolor,newcolor);$(row).eq(3).css(bcolor,newcolor);}
-}
-
-function moreten(unit,row){
-if(unit>-1 && unit<10){$(row).not('.hidden').css(bcolor,oldcolor);}
-if(unit>9 && unit<19){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(2).css(bcolor,newcolor);}
-if(unit>19 && unit<30){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(1).css(bcolor,newcolor);}
-if(unit>29 && unit<40){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(1).css(bcolor,newcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);}
-if(unit>39 && unit<50){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);}
-if(unit>49 && unit<60){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);$(row).not('.hidden').eq(2).css(bcolor,newcolor);}
-}
-
-function specialhour(unit,row){
-if(unit>-1 && unit<20){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(1).css(bcolor,newcolor);}
-if(unit>19 && unit<25){$(row).not('.hidden').css(bcolor,oldcolor);$(row).not('.hidden').eq(0).css(bcolor,newcolor);}
-}
-
-specialhour(hr,row1);
-lessten(hr,row2);
-
-moreten(min,row3);
-lessten(min,row4);
-
-moreten(sec,row5);
-lessten(sec,row6);
-
-}
-
-setInterval(time,1000);
-
+    
+    function binary(a,b,c,d,e,f){
+        switch(a){
+            case 1: 
+                $(b).not('.hidden').css('background','#ddd'); 
+                $(b).eq(f).css('background','#66f'); break;
+            case 2: 
+                $(b).not('.hidden').css('background','#ddd'); 
+                $(b).eq(e).css('background','#66f'); break;
+            case 3: 
+                $(b).not('.hidden').css('background','#ddd'); 
+                $(b).eq(e).css('background','#66f');
+                $(b).eq(f).css('background','#66f'); break;  
+            case 4: 
+                $(b).not('.hidden').css('background','#ddd');
+                $(b).eq(d).css('background','#66f'); break;  
+            case 5: 
+                $(b).not('.hidden').css('background','#ddd');
+                $(b).eq(d).css('background','#66f');
+                $(b).eq(f).css('background','#66f'); break;  
+            case 6: 
+                $(b).not('.hidden').css('background','#ddd'); 
+                $(b).eq(d).css('background','#66f');
+                $(b).eq(e).css('background','#66f'); break;  
+            case 7: 
+                $(b).not('.hidden').css('background','#ddd');
+                $(b).eq(d).css('background','#66f');
+                $(b).eq(e).css('background','#66f');
+                $(b).eq(f).css('background','#66f'); break;  
+            case 8: 
+                $(b).not('.hidden').css('background','#ddd');
+                $(b).eq(c).css('background','#66f'); break;  
+            case 9: 
+                $(b).not('.hidden').css('background','#ddd'); 
+                $(b).eq(c).css('background','#66f');
+                $(b).eq(f).css('background','#66f'); break;  
+            default: 
+                $(b).not('.hidden').css('background','#ddd');
+                break;
+        }
+    }
+    
+    setInterval(time,1000/60);
+    
 });</script>
-
-
-
-
-
-
-
-
-
-
-
-<body>
-<div class='layout'>
-
-
-
-<div class='frame'>
-<div class = 'row one'><a class='hidden'></a><a class='hidden'></a><a></a><a></a></div>
-<div class = 'row two'><a></a><a></a><a></a><a></a></div>
-<div class = 'row three'><a class='hidden'></a><a></a><a></a><a></a></div>
-<div class = 'row four'><a></a><a></a><a></a><a></a></div>
-<div class = 'row five'><a class='hidden'></a><a></a><a></a><a></a></div>
-<div class = 'row six'><a></a><a></a><a></a><a></a></div>
-</div>
-
-
-
-
-<div class='day1'></div>
-<div class='day2'></div>
-</div>
-
-</body>
 </html>

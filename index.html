@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <link rel="shortcut icon" href='img/icon.ico'>
@@ -46,7 +46,6 @@
 
     div{
         display: inline-block;
-        padding: 10px;
         text-align: left;
         vertical-align: top;
     }
@@ -127,19 +126,7 @@
     }
     */
     
-    .notifications{
-        width: 100%;
-        display: inline-block;
-        text-align: center;
-    }
-    
-    .notifications span{
-        width: 100%;
-        position: absolute;
-        text-align: center;
-        left: 0px;
-        
-    }
+
 
     
     /*@media only screen and (min-device-width: 720px){}*/
@@ -152,7 +139,7 @@
       <ul>
         <li class='col-2'><a href='html/guitar.html'>Guitar</a></li>
         <li class='col-2'><a href='html/programming.html'>Programming</a></li>
-        <li class='col-2'><a href=#>Photography</a></li>
+        <li class='col-2'><a href='html/photography.html'>Photography</a></li>
         <li class='col-2'><a href='html/drawing.html'>Drawing</a></li>
         <li class='col-2'><a href='html/books.html'>Bookshelf</a></li>
         <li class='col-2'><a href='html/contact.html'>Contact</a></li>
@@ -196,6 +183,7 @@
       <div class='col-1 soundcloud'></div>
     </a>  
  -->
+
     <audio autoplay loop>
         <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'>
     </audio>
@@ -221,6 +209,7 @@
         var extra = $(window).height() - $('body').height();
         $('footer').css('margin-top', extra);
     }
+
 
     var percent = 0;
     function load(){

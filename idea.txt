@@ -24,4 +24,59 @@ parent.removeChild(child);
 
 
 
+
+
+#app that tracks all your daily map locations. allow one tap identification and saving. create visualization
+#productivity with gannt chart.
+#pomodoro
+#malaysia freelancer job
+-provide access to everyone
+-toast notifications
+-simple search
+#toilet searcher
+#tic-tac-toe
+#ping pong with accelerometer
+
+#analog, digital and also binary clock
+#weight tracker (before and after, lbs, pounds, kg)
+#to-do-list
+#google map maker? nah, just send the coordinate to me,
+#toilet searcher
+#tic-tac-toe
+#finance app
+#guitar tuner
+#metronome
+#wedding calculator - prepare to get married
+#SVG photo filter
+
+CATEGORY  SIMULATIONS
+#fun with flags
+#planets
+#periodic table of element
+#brownian movement
+
+EDUCATION
+#formelsammlung
+#youtube app api
+#compass
+
+how to make smart phone smarter?
+what kind of data does people want?
+#guitar tuner?
+#image recognition
+#item recognition
+#handwriting recognition
+
+
+FOR BACKEND
+-Parse
+
+BEST API
+-Face Recognition, (Face's API)
+-Dictionary, Thesauraus and related words ( wordnik's API)
+-Animation API for Augmented Reality (Layar’s Animation API, Layar’s Sharing API)
+-An API That Brings a Wealth of Data (Wolfram’s API)
+-Real-Time Streams API; Twitter, Facebook, FriendFeed, RSS (Cadmus’ API)
+
+-others - http://www.webdesignerdepot.com/2011/07/40-useful-apis-for-web-designers-and-developers/
 https://www.google.de/search?q=amazing+data+visualization&espv=2&source=lnms&tbm=isch&sa=X&ei=j6aoU-vNDInT7AaSyICICg&ved=0CAYQ_AUoAQ&biw=1920&bih=955

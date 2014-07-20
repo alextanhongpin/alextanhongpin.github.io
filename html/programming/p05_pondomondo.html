@@ -1,0 +1,89 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>binary clock</title>
+</head>
+
+
+<style type="text/css" rel="stylesheet">
+
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: Arial;
+    }
+    
+    body{
+        width: 320px;
+        height: 540px;
+        display: block;
+        text-align: center;
+        border: 1px solid #222;
+    }
+
+    
+</style>
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+<body>
+    <h2>Pondomondo</h2>
+	<div class='start'>Start</div>
+	<div class='end'>End</div>
+	<div class='timer'>0</div>
+	
+	<div class='display'>0</div>
+</body>
+
+<script>$(document).ready(function(){
+
+    'use strict';
+    var timeStart = [];
+	var timeEnd = [];
+	var run = false;
+	var startTime = 0;
+	
+	var date = 0;
+	var sec = 0;
+	var min = 0;
+	var hr = 0;
+	
+		date = new Date();
+		sec = date.getSeconds();
+		min = date.getMinutes();
+		hr = date.getHours();
+	
+
+	
+	
+	function clock(){
+	
+		date = new Date();
+		sec = date.getSeconds();
+		min = date.getMinutes();
+		hr = date.getHours();
+		
+		$('.start').click(function(){
+			timeStart.push(sec/60 + min);
+			
+			
+			$('.timer').text(timeStart[timeStart.length-1]);
+
+		});
+					if( (sec/60+ min) > timeStart[timeStart.length-1]+0.1){
+				$('.end').text('time over!');
+			}
+		$('.display').text(sec/60 + min);
+	}
+	setInterval(clock, 1000/60);
+	
+    
+});</script>
+    
+</html>
