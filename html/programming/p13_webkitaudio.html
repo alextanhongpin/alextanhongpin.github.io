@@ -41,6 +41,7 @@
       
   </head>
   <body>
+      
        <p>Web audio API example: load a sound file and play/stop it on a button click.</p>
   <button onclick="initContext()">Init</button>
   <button onclick="loadSound(url)">Load</button>
@@ -71,7 +72,7 @@ function initContext() {
 var myAudioBuffer = null;
  
 //Steps 3 and 4
-var url = 'http://alextanhongpin.github.io/audio/06%20Einaudi_%20I%20Giorni.mp3';
+var url = '/audio/06%20Einaudi_%20I%20Giorni.mp3';
 function loadSound(url) {
   var request = new XMLHttpRequest();
   request.open('GET', url, true);
