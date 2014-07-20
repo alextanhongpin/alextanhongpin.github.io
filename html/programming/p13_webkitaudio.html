@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+<style>
+   
+
+    
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    
+    body{
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select:none;
+        cursor: pointer;
+        user-select:none;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        display: block;
+        text-align: center;
+        font-family: Tahoma;
+    }
+    
+    #canvas{
+        display: block;
+    }
+    
+  
+</style>
+      
+    <title>@alextanhongpin</title>
+      
+  </head>
+  <body>
+       <p>Web audio API example: load a sound file and play/stop it on a button click.</p>
+  <button onclick="initContext()">Init</button>
+  <button onclick="loadSound(url)">Load</button>
+  <button onclick="playSound(myAudioBuffer)">Play</button>
+  <button onclick="stopSound()">Stop</button>
+   </body>
+    
+  <script>$(document).ready(function(){
+
+    'use strict';
+    
+    //var canvas = document.getElementById('canvas');
+    //    canvas.height = window.innerHeight;
+    //    canvas.width = window.innerWidth;
+    //var context = canvas.getContext('2d');
+var context;
+function initContext() {
+  try {
+    context = new webkitAudioContext();
+    alert("context created"); //test
+  }
+  catch(e) {
+    alert('Sorry, your browser does not support the Web Audio API.');
+  }
+}
+ 
+//Step 2
+var myAudioBuffer = null;
+ 
+//Steps 3 and 4
+var url = 'http://alextanhongpin.github.io/audio/06%20Einaudi_%20I%20Giorni.mp3';
+function loadSound(url) {
+  var request = new XMLHttpRequest();
+  request.open('GET', url, true);
+  request.responseType = 'arraybuffer';
+  // . . . step 3 code above this line, step 4 code below
+  request.onload = function() {
+    alert("sound loaded"); //test
+    context.decodeAudioData(request.response, function(buffer) {
+      myAudioBuffer = buffer;
+      alert("sound decoded"); //test
+    });
+  }
+  request.send();
+}
+ 
+//Step 5
+var source = null;
+function playSound(anybuffer) {
+  source = context.createBufferSource();
+  source.buffer = anybuffer;
+  source.connect(context.destination);
+  source.start();
+  //source.noteOn(0); //see note in Step 6 text
+}
+ 
+//Step 6
+function stopSound() {
+  if (source) {
+    source.stop();
+    //source.noteOff(0); //see note in Step 6 text
+  }
+}
+    
+    
+    //setInterval(loop, FRAME_RATE);
+    
+});</script>
+</html>
