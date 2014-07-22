@@ -47,16 +47,18 @@
   <button onclick="loadSound(url)">Load</button>
   <button onclick="playSound(myAudioBuffer)">Play</button>
   <button onclick="stopSound()">Stop</button>
+      
+      <canvas id='canvas'></canvas>
    </body>
     
   <script>//$(document).ready(function(){
 
    // 'use strict';
     
-    //var canvas = document.getElementById('canvas');
-    //    canvas.height = window.innerHeight;
-    //    canvas.width = window.innerWidth;
-    //var context = canvas.getContext('2d');
+    var canvas = document.getElementById('canvas');
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+    var drawContext = canvas.getContext('2d');
 var context;
 function initContext() {
   try {
@@ -72,32 +74,76 @@ function initContext() {
 var myAudioBuffer = null;
  
 //Steps 3 and 4
-var url = '/audio/06%20Einaudi_%20I%20Giorni.mp3';
+var url = '/audio/GMS%20Juice%20-%20Requiem%20of%20a%20Dream.mp3';
+      
 function loadSound(url) {
   var request = new XMLHttpRequest();
   request.open('GET', url, true);
   request.responseType = 'arraybuffer';
   // . . . step 3 code above this line, step 4 code below
   request.onload = function() {
-    alert("sound loaded"); //test
+
     context.decodeAudioData(request.response, function(buffer) {
       myAudioBuffer = buffer;
-      alert("sound decoded"); //test
     });
+      
   }
   request.send();
 }
  
 //Step 5
 var source = null;
+    var analyser = null;  
+      var frequencyData = null;
 function playSound(anybuffer) {
   source = context.createBufferSource();
+    analyser = context.createAnalyser();
+    
   source.buffer = anybuffer;
-  source.connect(context.destination);
+    source.connect(analyser);
+  analyser.connect(context.destination);
+    
+    console.log(analyser.fftSize);
+    console.log(analyser.frequencyBinCount);
+    
+    analyser.fftSize = 64;
+    console.log(analyser.frequencyBinCount);
+    frequencyData = new Uint8Array(analyser.frequencyBinCount);
+    update();
+    
   source.start();
   //source.noteOn(0); //see note in Step 6 text
 }
  
+      
+      function update(){
+        requestAnimationFrame(update);
+          analyser.getByteFrequencyData(frequencyData);
+                  for (var i = 0; i < analyser.frequencyBinCount; i++) {
+  var value = freqDomain[i];
+  var percent = value / 256;
+  var height = HEIGHT * percent;
+  var offset = HEIGHT - height - 1;
+  var barWidth = WIDTH/analyser.frequencyBinCount;
+  var hue = i/analyser.frequencyBinCount * 360;
+  drawContext.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
+  drawContext.fillRect(i * barWidth, offset, barWidth, height);
+}
+          
+          var timeDomain = new Uint8Array(analyser.frequencyBinCount);
+analyser.getByteTimeDomainData(freqDomain);
+for (var i = 0; i < analyser.frequencyBinCount; i++) {
+  var value = timeDomain[i];
+  var percent = value / 256;
+  var height = HEIGHT * percent;
+  var offset = HEIGHT - height - 1;
+  var barWidth = WIDTH/analyser.frequencyBinCount;
+  drawContext.fillStyle = 'black';
+  drawContext.fillRect(i * barWidth, offset, 1, 1);
+}
+          
+          
+      }
 //Step 6
 function stopSound() {
   if (source) {
