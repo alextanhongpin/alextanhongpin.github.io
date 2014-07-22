@@ -41,119 +41,85 @@
       
   </head>
   <body>
-      
-       <p>Web audio API example: load a sound file and play/stop it on a button click.</p>
-  <button onclick="initContext()">Init</button>
-  <button onclick="loadSound(url)">Load</button>
-  <button onclick="playSound(myAudioBuffer)">Play</button>
-  <button onclick="stopSound()">Stop</button>
-      
-      <canvas id='canvas'></canvas>
+      <canvas id="canvas" width="300" height="200"></canvas>
+<audio id="player"></audio>
+
    </body>
     
-  <script>//$(document).ready(function(){
-
-   // 'use strict';
+  <script>$(document).ready(function(){
+    
+    
+    var SoundCloudAudioSource = function(audioElement) {
+        var player = document.getElementById(audioElement);
+        var self = this;
+        var analyser;
+   
+        
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext); // this is because it's not been standardised accross browsers yet.
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256; // see - there is that 'fft' thing. 
+       
+        var source = audioCtx.createMediaElementSource(player); // this is where we hook up the <audio> element
+        source.connect(analyser);
+        
+        analyser.connect(audioCtx.destination);
+        var sampleAudioStream = function() {
+        // This closure is where the magic happens. Because it gets called with setInterval below, it continuously samples the audio data
+        // and updates the streamData and volume properties. This the SoundCouldAudioSource function can be passed to a visualization routine and 
+        // continue to give real-time data on the audio stream.
+            analyser.getByteFrequencyData(self.streamData);
+        // calculate an overall volume value
+            var total = 0;
+            for (var i = 0; i < 80; i++) { // get the volume from the first 80 bins, else it gets too loud with treble
+                total += self.streamData[i];
+            }
+            self.volume = total;
+        };
+        setInterval(sampleAudioStream, 20); // 
+    // public properties and methods
+    this.volume = 0.02;
+       
+    this.streamData = new Uint8Array(128); // This just means we will have 128 "bins" (always half the analyzer.fftsize value), each containing a number between 0 and 255. 
+    this.playStream = function(streamUrl) {
+        // get the input stream from the audio element
+        player.setAttribute('src', streamUrl);
+        player.play();
+    }
+};
+    
+    
     
     var canvas = document.getElementById('canvas');
         canvas.height = window.innerHeight;
         canvas.width = window.innerWidth;
-    var drawContext = canvas.getContext('2d');
-var context;
-function initContext() {
-  try {
-    context = new webkitAudioContext();
-    alert("context created"); //test
-  }
-  catch(e) {
-    alert('Sorry, your browser does not support the Web Audio API.');
-  }
-}
- 
-//Step 2
-var myAudioBuffer = null;
- 
-//Steps 3 and 4
-var url = '/audio/GMS%20Juice%20-%20Requiem%20of%20a%20Dream.mp3';
-      
-function loadSound(url) {
-  var request = new XMLHttpRequest();
-  request.open('GET', url, true);
-  request.responseType = 'arraybuffer';
-  // . . . step 3 code above this line, step 4 code below
-  request.onload = function() {
+    var context = canvas.getContext('2d');
 
-    context.decodeAudioData(request.response, function(buffer) {
-      myAudioBuffer = buffer;
-    });
-      
-  }
-  request.send();
-}
+      var audioSource = new SoundCloudAudioSource('player');
+
+var url = '/audio/GMS%20Juice%20-%20Requiem%20of%20a%20Dream.mp3';
+var draw = function() {
+    // you can then access all the frequency and volume data
+    // and use it to draw whatever you like on your canvas
+    for(bin = 0; bin < audioSource.streamData.length; bin ++) {
+        // do something with each value. Here's a simple example
+        var val = audioSource.streamData[bin];
+        var percent = bin/256;
+        
+        var red = percent * 255;
+        var green = bin/2;
+        var blue = 255; 
+        context.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+        context.fillRect(bin*5, bin/256*10, 5, 200);
+        // use lines and shapes to draw to the canvas is various ways. Use your imagination!
+    }
+    requestAnimationFrame(draw);
+};
+
+audioSource.playStream(url);
+draw();
  
-//Step 5
-var source = null;
-    var analyser = null;  
-      var frequencyData = null;
-function playSound(anybuffer) {
-  source = context.createBufferSource();
-    analyser = context.createAnalyser();
+
     
-  source.buffer = anybuffer;
-    source.connect(analyser);
-  analyser.connect(context.destination);
-    
-    console.log(analyser.fftSize);
-    console.log(analyser.frequencyBinCount);
-    
-    analyser.fftSize = 64;
-    console.log(analyser.frequencyBinCount);
-    frequencyData = new Uint8Array(analyser.frequencyBinCount);
-    update();
-    
-  source.start();
-  //source.noteOn(0); //see note in Step 6 text
-}
- 
-      
-      function update(){
-        requestAnimationFrame(update);
-          analyser.getByteFrequencyData(frequencyData);
-                  for (var i = 0; i < analyser.frequencyBinCount; i++) {
-  var value = freqDomain[i];
-  var percent = value / 256;
-  var height = HEIGHT * percent;
-  var offset = HEIGHT - height - 1;
-  var barWidth = WIDTH/analyser.frequencyBinCount;
-  var hue = i/analyser.frequencyBinCount * 360;
-  drawContext.fillStyle = 'hsl(' + hue + ', 100%, 50%)';
-  drawContext.fillRect(i * barWidth, offset, barWidth, height);
-}
-          
-          var timeDomain = new Uint8Array(analyser.frequencyBinCount);
-analyser.getByteTimeDomainData(freqDomain);
-for (var i = 0; i < analyser.frequencyBinCount; i++) {
-  var value = timeDomain[i];
-  var percent = value / 256;
-  var height = HEIGHT * percent;
-  var offset = HEIGHT - height - 1;
-  var barWidth = WIDTH/analyser.frequencyBinCount;
-  drawContext.fillStyle = 'black';
-  drawContext.fillRect(i * barWidth, offset, 1, 1);
-}
-          
-          
-      }
-//Step 6
-function stopSound() {
-  if (source) {
-    source.stop();
-    //source.noteOff(0); //see note in Step 6 text
-  }
-}
-    
-    
-    //setInterval(loop, FRAME_RATE);
-    
-//});</script>
+
+});</script>
 </html>
