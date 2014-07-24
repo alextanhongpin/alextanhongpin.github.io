@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+<style>
+   
+
+    
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    
+    body{
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select:none;
+        cursor: pointer;
+        user-select:none;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        display: block;
+        text-align: center;
+        font-family: Tahoma;
+    }
+    
+    #canvas{
+        display: block;
+    }
+    
+  
+</style>
+      
+    <title>@alextanhongpin</title>
+      
+  </head>
+  <body>
+      <canvas id="canvas" width="300" height="200"></canvas>
+<audio id="player"></audio>
+
+   </body>
+    
+  <script>$(document).ready(function(){
+    
+    
+    var SoundCloudAudioSource = function(audioElement) {
+        var player = document.getElementById(audioElement);
+        var self = this;
+        var analyser;
+   
+        
+        var audioCtx = new (window.AudioContext || window.webkitAudioContext); // this is because it's not been standardised accross browsers yet.
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256; // see - there is that 'fft' thing. 
+       
+        var source = audioCtx.createMediaElementSource(player); // this is where we hook up the <audio> element
+        source.connect(analyser);
+        
+        analyser.connect(audioCtx.destination);
+        var sampleAudioStream = function() {
+        // This closure is where the magic happens. Because it gets called with setInterval below, it continuously samples the audio data
+        // and updates the streamData and volume properties. This the SoundCouldAudioSource function can be passed to a visualization routine and 
+        // continue to give real-time data on the audio stream.
+            analyser.getByteFrequencyData(self.streamData);
+        // calculate an overall volume value
+            var total = 0;
+            for (var i = 0; i < 80; i++) { // get the volume from the first 80 bins, else it gets too loud with treble
+                total += self.streamData[i];
+            }
+            self.volume = total;
+        };
+        setInterval(sampleAudioStream, 20); // 
+    // public properties and methods
+    this.volume = 0.02;
+       
+    this.streamData = new Uint8Array(128); // This just means we will have 128 "bins" (always half the analyzer.fftsize value), each containing a number between 0 and 255. 
+    this.playStream = function(streamUrl) {
+        // get the input stream from the audio element
+        player.setAttribute('src', streamUrl);
+        player.play();
+    }
+};
+    
+    
+    
+    var canvas = document.getElementById('canvas');
+        canvas.height = window.innerHeight;
+        canvas.width = window.innerWidth;
+    var context = canvas.getContext('2d');
+
+      var audioSource = new SoundCloudAudioSource('player');
+
+var url = '/audio/GMS%20Juice%20-%20Requiem%20of%20a%20Dream.mp3';
+var draw = function() {
+    // you can then access all the frequency and volume data
+    // and use it to draw whatever you like on your canvas
+    for(bin = 0; bin < audioSource.streamData.length; bin ++) {
+        // do something with each value. Here's a simple example
+        var val = audioSource.streamData[bin];
+        var percent = bin/256;
+        
+        var red = percent * 255;
+        var green = bin/2;
+        var blue = 255; 
+        context.fillStyle = 'rgb(' + red + ', ' + green + ', ' + blue + ')';
+        context.fillRect(bin*5, bin/256*10, 5, 200);
+        // use lines and shapes to draw to the canvas is various ways. Use your imagination!
+    }
+    requestAnimationFrame(draw);
+};
+
+audioSource.playStream(url);
+draw();
+ 
+
+    
+
+});</script>
+</html>
