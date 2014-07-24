@@ -101,33 +101,19 @@
       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
+       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
+
       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
+       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
+
       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div><div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
+
       <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
      
 
@@ -146,33 +132,48 @@
         window.location = '../index.html';
     });
     
+    
+  
     var pathToImg = '../img/photography/';
-    var pathToFolder = '01-christmas_market/';
-    var imgName = 'DSCF2104.JPG';
-    
-    var imgSrc = pathToImg + pathToFolder + imgName;
+    var pathToFolder = '01-christmas_market/DSCF2';
+    var imgName = [
+        '043.JPG', 
+        '046.JPG',
+        '050.JPG', 
+        '052.JPG',
+        '054.JPG', 
+        '055.JPG',
+        '057.JPG', 
+        '058.JPG',
+        '059.JPG', 
+        '078.JPG',
+        '088.JPG', 
+        '095.JPG',
+        '104.JPG', 
+    ];
 
-    var $imgCaption = $('div span').text('null    '+'  &nbsp;&nbsp;  '+'asda');
+    var imgSrc = new Array();
+    for (var i = 0; i < imgName.length; i++){
+         imgSrc.push(pathToImg + pathToFolder + imgName[i]);
+    }
     
-    $(window).load(function(){
-    $('div img').attr('src' , imgSrc);
-    
+       $(window).load(function(){
+        for (var i = 0; i < imgSrc.length; i++){
+            $('div img').eq(i).attr('src' , imgSrc[i]);
+        }
     });
-    //$('audio').prop('volume', 0.1);
-    
-    //var $images = $('div img'),
-      //  preloaded = 0,
-    //    total = $images.length;
-    /*$images.load(function() {
-        if (++preloaded === total) {
-         }
-    });*/
-    //var newImage = null;
-    //var imgSrc = '/img/photography/01-christmas_market/DSCF2104.JPG';
 
+   //var $imgCaption = $('div span').text('null    '+'  &nbsp;&nbsp;  '+'asda');
+    
+      
+    $('audio').prop('volume', 0.1);
+    
         
     
     
     
-});</script>
+});
+
+
+</script>
 </html>
