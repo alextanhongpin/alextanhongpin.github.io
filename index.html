@@ -144,10 +144,12 @@
     });
    
     //correct the footer
-    if ($(window).height() >= $('body').height()){
-        var extra = $(window).height() - $('body').height();
-        $('footer').css('margin-top', extra);
-    }
+    $(window).load(function(){
+        if ($(window).height() >= $('body').height()){
+            var extra = $(window).height() - $('body').height();
+            $('footer').css('margin-top', extra);
+        }
+    });
 
 
     var percent = 0;

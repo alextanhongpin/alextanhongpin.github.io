@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      
+    <link rel="shortcut icon" href='../img/icon.ico'>
+    <meta charset="utf-8">
+    <meta name="description" content="The personal website of Alex Tan Hong Pin, a fellow programmer from Malaysia. He is on a journey to find ways to contribute to mankind and to change the world.">
+    <meta name="keywords" content="css3, html5, phonegap, webgl, wp8, windows phone 8, cordova, alextanhongpin, programmer, malaysia, #amalaysianprogrammer, danboard">
+    <meta name="author" content="Alex Tan Hong Pin">  
+      
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+      
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+          <link rel="stylesheet" type="text/css" href="../css/index.css">
+      
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+<script src='/js/googleAnalytics.js'></script>
+      
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Dosis:300);
+    *{
+        font-family: 'Dosis', sans-serif;
+    }
+    
+    img{
+        width: 100%;
+       -webkit-filter: grayscale(1);
+        border-radius: 5px;
+        transition: 0.5s all ease-in;
+    }
+    
+    img:hover{
+         -webkit-filter: grayscale(0);
+    }
+    
+    div{
+        display: inline-block;
+        position: relative;
+        text-align: left;
+        padding: 0px; 
+        overflow: hidden;
+    }
+    span{
+        display: inline-block;
+        width: 100%;
+        padding: 5px;
+        color: #888;
+    }
+
+    
+
+    /*@media only screen and (min-device-width: 720px){}*/
+</style>
+    <title>danboard the robot</title>     
+  </head>
+  <body>
+
+      
+      <ul>
+        <li class='col-2'><a href='guitar.html'>Guitar</a></li>
+        <li class='col-2'><a href='programming.html'>Programming</a></li>
+        <li class='col-2'><a href='photography.html'>Photography</a></li>
+        <li class='col-2'><a href='drawing.html'>Drawing</a></li>
+        <li class='col-2'><a href='books.html'>Bookshelf</a></li>
+        <li class='col-2'><a href='contact.html'>Contact</a></li>
+        <li class='col-2'><a href='resume.html'><b>Resume</b></a></li>
+      </ul><br>
+    
+      
+     <header class='col-3'>alextanhongpin</header><br>
+      
+      <a class="col-2" href="/html/photography.html">Return to Album List</a><br>
+      
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+     
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+      <div class='col-8'><img src='/img/photography/loading.gif'><span></span></div>
+     
+
+      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
+     
+
+    <audio autoplay loop>
+        <source src='/audio/moumoon-%E3%81%A9%E3%81%93%E3%81%B8%E3%82%82%E8%A1%8C%E3%81%8B%E3%81%AA%E3%81%84%E3%82%88%20(www.myfreemp3.cc).mp3'>
+    </audio>
+
+  </body>
+    
+  <script>$(document).ready(function(){
+
+    'use strict';
+
+    $('header').click(function(){
+        window.location = '../index.html';
+    });
+    
+    
+  
+    var pathToImg = '../img/photography/';
+    var pathToFolder = '06-danboard/IMG_';
+    var space = '\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0';
+    var imgData = [
+        {name: '4735.JPG', dof:'f/2.8', shutterSpeed:'1/50 sec',iso:'ISO-1600'},
+        {name: '2630.JPG', dof:'f/2.8', shutterSpeed:'1/20 sec',iso:'ISO-800'},
+        {name: '2641.JPG', dof:'f/2.8', shutterSpeed:'1/20 sec',iso:'ISO-800'},
+        {name: '3166.JPG', dof:'f/5', shutterSpeed:'1/60 sec',iso:'ISO-200'},
+        
+        {name: '3171.JPG', dof:'f/3.5', shutterSpeed:'1/125 sec',iso:'ISO-200'},
+        {name: '3174.JPG', dof:'f/5', shutterSpeed:'1/125 sec',iso:'ISO-200'},
+        {name: '3175.JPG', dof:'f/5', shutterSpeed:'1/80 sec',iso:'ISO-200'},
+        {name: '3619.JPG', dof:'f/3.5', shutterSpeed:'1/60 sec',iso:'ISO-100'},
+        
+    ];
+    var camera = {
+        model: 'Canon EOS 600D',
+        focalLength: '100 mm'
+    }
+        
+    var imgSrc = new Array();
+    for (var i = 0; i < imgData.length; i++){
+         imgSrc.push(pathToImg + pathToFolder + imgData[i].name);
+    }
+    
+       $(window).load(function(){
+        for (var i = 0; i < imgSrc.length; i++){
+            $('div img').eq(i).attr('src' , imgSrc[i]);
+            $('div span').eq(i).text(camera.model + space + imgData[i].dof + space + imgData[i].shutterSpeed + space + imgData[i].iso + space + camera.focalLength);
+        }
+    });
+
+      
+    $('audio').prop('volume', 0.1);
+    
+        
+    
+    
+    
+});
+
+
+</script>
+</html>
