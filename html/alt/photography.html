@@ -70,7 +70,7 @@
     
       
      <header class='col-3'>alextanhongpin</header><br>
-<!--
+
 <div class='col-8'><img src='../img/photography/01-christmas_market/DSCF2043.JPG'>  <span>Fujifilm XE-1 &nbsp;&nbsp;&nbsp;&nbsp; f/1.4 &nbsp;&nbsp;&nbsp;&nbsp; 1/220 sec &nbsp;&nbsp;&nbsp;&nbsp; ISO-200 &nbsp;&nbsp;&nbsp;&nbsp;35mm</span></div>
       
 <div class='col-8'><img src='../img/photography/01-christmas_market/DSCF2046.JPG'>  <span>Fujifilm XE-1 &nbsp;&nbsp;&nbsp;&nbsp; f/1.4 &nbsp;&nbsp;&nbsp;&nbsp; 1/480 sec &nbsp;&nbsp;&nbsp;&nbsp; ISO-200 &nbsp;&nbsp;&nbsp;&nbsp;35mm</span></div>
@@ -96,84 +96,35 @@
 <div class='col-8'><img src='../img/photography/01-christmas_market/DSCF2095.JPG'>  <span>Fujifilm XE-1 &nbsp;&nbsp;&nbsp;&nbsp; f/1.4 &nbsp;&nbsp;&nbsp;&nbsp; 1/52 sec &nbsp;&nbsp;&nbsp;&nbsp; ISO-3200 &nbsp;&nbsp;&nbsp;&nbsp;35mm</span></div>
 
 <div class='col-8'><img src='../img/photography/01-christmas_market/DSCF2104.JPG'>  <span>Fujifilm XE-1 &nbsp;&nbsp;&nbsp;&nbsp; f/1.4 &nbsp;&nbsp;&nbsp;&nbsp; 1/52 sec &nbsp;&nbsp;&nbsp;&nbsp; ISO-2000 &nbsp;&nbsp;&nbsp;&nbsp;35mm</span></div>
-      -->
       
-      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-
-      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-       <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-
-      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-     <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-      <div class='col-8'><img src='/img/swords/unknown.png'><span></span></div>
-
       <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
      
 
-<!--
+
     <audio autoplay loop>
         <source src='/audio/Hammock%20-%20I%20Could%20Hear%20The%20Water%20At%20The%20Edge%20Of%20All%20Things.mp3'>
-    </audio>-->
+    </audio>
 
   </body>
     
   <script>$(document).ready(function(){
 
     'use strict';
-
+    
     $('header').click(function(){
         window.location = '../index.html';
     });
-    
-    
-  
-    var pathToImg = '../img/photography/';
-    var pathToFolder = '01-christmas_market/DSCF2';
-    var imgName = [
-        '043.JPG', 
-        '046.JPG',
-        '050.JPG', 
-        '052.JPG',
-        '054.JPG', 
-        '055.JPG',
-        '057.JPG', 
-        '058.JPG',
-        '059.JPG', 
-        '078.JPG',
-        '088.JPG', 
-        '095.JPG',
-        '104.JPG', 
-    ];
 
-    var imgSrc = new Array();
-    for (var i = 0; i < imgName.length; i++){
-         imgSrc.push(pathToImg + pathToFolder + imgName[i]);
-    }
-    
-       $(window).load(function(){
-        for (var i = 0; i < imgSrc.length; i++){
-            $('div img').eq(i).attr('src' , imgSrc[i]);
-        }
-    });
-
-   //var $imgCaption = $('div span').text('null    '+'  &nbsp;&nbsp;  '+'asda');
-    
-      
     $('audio').prop('volume', 0.1);
     
-        
+    var $images = $('div img'),
+        preloaded = 0,
+        total = $images.length;
+    /*$images.load(function() {
+        if (++preloaded === total) {
+         }
+    });*/
     
     
-    
-});
-
-
-</script>
+});</script>
 </html>
