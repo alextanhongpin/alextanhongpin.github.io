@@ -6,167 +6,295 @@
 /*album one*/    
 @-webkit-keyframes fader1{
     0%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
-    10%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
-    40%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
-    70% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    20%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    45%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    70%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    
+    75% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    95% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    
     100% {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
 }
 @-moz-keyframes fader1{
     0%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
-    10%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
-    40%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
-    70% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    20%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    45%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    70%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    
+    75% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    95% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    
     100% {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
 }
 @-o-keyframes fader1{
     0%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
-    10%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
-    40%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
-    70% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    20%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    45%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    70%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    
+    75% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    95% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    
     100% {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
 }
 @keyframes fader1{
     0%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
-    10%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
-    40%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
-    70% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    20%   {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    45%  {background-image: url(/img/photography/01-christmas_market/DSCF2052_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    70%  {background-image: url(/img/photography/01-christmas_market/DSCF2055_small.jpg);}
+    
+    75% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    95% {background-image: url(/img/photography/01-christmas_market/DSCF2057_small.jpg);}
+    
     100% {background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);}
 }
 .album-one{
     background-image: url(/img/photography/01-christmas_market/DSCF2043_small.jpg);
-    -webkit-animation: fader1 20s infinite;
-    -moz-animation: fader1 20s infinite;
-    -o-animation: fader1 20s infinite;
-    animation: fader1 20s infinite;
+    -webkit-animation: fader1 16s infinite;
+    -moz-animation: fader1 16s infinite;
+    -o-animation: fader1 16s infinite;
+    animation: fader1 16s infinite;
 }
 
 /*album two*/  
 @-webkit-keyframes fader2{
     0%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
-    10%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
-    40%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
-    70% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    20%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    45%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    70%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    
+    75% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    95% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    
     100% {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
 }
 
 @-moz-keyframes fader2{
     0%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
-    10%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
-    40%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
-    70% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    20%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    45%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    70%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    
+    75% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    95% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    
     100% {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
 }
 @-o-keyframes fader2{
     0%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
-    10%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
-    40%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
-    70% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    20%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    45%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    70%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    
+    75% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    95% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    
     100% {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
 }
 @keyframes fader2{
     0%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
-    10%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
-    40%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
-    70% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    20%   {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
+    
+    25%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    45%  {background-image: url(/img/photography/02-malaysia/DSCF2342_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    70%  {background-image: url(/img/photography/02-malaysia/DSCF2346_small.jpg);}
+    
+    75% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    95% {background-image: url(/img/photography/02-malaysia/DSCF2348_small.jpg);}
+    
     100% {background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);}
 }
 
 .album-two{
 
     background-image: url(/img/photography/02-malaysia/DSCF2336_small.jpg);
-    -webkit-animation: fader2 20s infinite;
-    -moz-animation: fader2 20s infinite;
-    -o-animation: fader2 20s infinite;
-    animation: fader2 20s infinite;
-    -webkit-animation-delay: 2s;
-    -moz-animation-delay: 2s;
-    -o-animation-delay: 2s;
-    animation-delay: 2s;
+    -webkit-animation: fader2 16s infinite;
+    -moz-animation: fader2 16s infinite;
+    -o-animation: fader2 16s infinite;
+    animation: fader2 16s infinite;
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
+    -o-animation-delay: 1s;
+    animation-delay: 1s;
 }
 
 /*album three*/  
 @-webkit-keyframes fader3{
     0%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
-    10%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
-    40%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
-    70% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    20%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
+
+    25%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    45%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    70%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    
+    75% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    95% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    
     100% {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
 }
 
 @-moz-keyframes fader3{
     0%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
-    10%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
-    40%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
-    70% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    20%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
+
+    25%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    45%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    70%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    
+    75% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    95% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    
     100% {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
 }
 @-o-keyframes fader3{
     0%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
-    10%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
-    40%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
-    70% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    20%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
+
+    25%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    45%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    70%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    
+    75% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    95% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    
     100% {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
 }
 @keyframes fader3{
     0%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
-    10%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
-    40%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
-    70% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    20%   {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
+
+    25%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    45%  {background-image: url(/img/photography/06-danboard/IMG_2641_edited_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    70%  {background-image: url(/img/photography/06-danboard/IMG_3166_edited_small.jpg);}
+    
+    75% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    95% {background-image: url(/img/photography/06-danboard/IMG_3171_edited_small.jpg);}
+    
     100% {background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);}
 }
 
 .album-three{
 
     background-image: url(/img/photography/06-danboard/IMG_2630_edited_small.jpg);
-    -webkit-animation: fader3 20s infinite;
-    -moz-animation: fader3 20s infinite;
-    -o-animation: fader3 20s infinite;
-    animation: fader3 20s infinite;
-    -webkit-animation-delay: 4s;
-    -moz-animation-delay: 4s;
-    -o-animation-delay: 4s;
-    animation-delay: 4s;
+    -webkit-animation: fader3 16s infinite;
+    -moz-animation: fader3 16s infinite;
+    -o-animation: fader3 16s infinite;
+    animation: fader3 16s infinite;
+    -webkit-animation-delay: 2s;
+    -moz-animation-delay: 2s;
+    -o-animation-delay: 2s;
+    animation-delay: 2s;
 }
 
 /*album four*/  
 @-webkit-keyframes fader4{
     0%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
-    10%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
-    40%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
-    70%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    20%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
+
+    25%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    45%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    70%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    
+    75%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    95%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    
     100% {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
 }
 
 @-moz-keyframes fader4{
     0%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
-    10%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
-    40%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
-    70%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    20%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
+
+    25%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    45%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    70%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    
+    75%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    95%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    
     100% {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
 }
 @-o-keyframes fader4{
     0%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
-    10%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
-    40%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
-    70%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    20%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
+
+    25%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    45%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    70%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    
+    75%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    95%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    
     100% {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
 }
 @keyframes fader4{
     0%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
-    10%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
-    40%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
-    70%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    20%   {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
+
+    25%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    45%  {background-image: url(/img/photography/07-preiser_figure/04_small.jpg);}
+    
+    50%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    70%  {background-image: url(/img/photography/07-preiser_figure/06_small.jpg);}
+    
+    75%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    95%  {background-image: url(/img/photography/07-preiser_figure/08_small.jpg);}
+    
     100% {background-image: url(/img/photography/07-preiser_figure/02_small.jpg);}
 }
 
 .album-four{
     background-image: url(/img/photography/07-preiser_figure/02_small.jpg);
-    -webkit-animation: fader4 20s infinite;
-    -moz-animation: fader4 20s infinite;
-    -o-animation: fader4 20s infinite;
-    animation: fader4 20s infinite;
-    -webkit-animation-delay: 2s;
-    -moz-animation-delay: 2s;
-    -o-animation-delay: 2s;
-    animation-delay: 2s;
+    -webkit-animation: fader4 16s infinite;
+    -moz-animation: fader4 16s infinite;
+    -o-animation: fader4 16s infinite;
+    animation: fader4 16s infinite;
+    -webkit-animation-delay: 3s;
+    -moz-animation-delay: 3s;
+    -o-animation-delay: 3s;
+    animation-delay: 3s;
 }
