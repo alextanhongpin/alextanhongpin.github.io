@@ -109,6 +109,13 @@
         }
     });
     
+    $(window).resize(function(){
+        $('.crossfade').css('height', 2/3* $('.crossfade').width());
+    }).load(function(){
+        $('.crossfade').css('height', 2/3* $('.crossfade').width());
+    });
+    
+    
     $('audio').prop('volume', 0.1);
 });
 

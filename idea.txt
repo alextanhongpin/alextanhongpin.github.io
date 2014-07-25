@@ -68,6 +68,8 @@ what kind of data does people want?
 #handwriting recognition
 
 
+make a printing css to print page in a4 size
+
 FOR BACKEND
 -Parse
 
