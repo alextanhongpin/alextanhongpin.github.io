@@ -10,18 +10,22 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
-      <link rel="stylesheet" type="text/css" href="css/grid_layout.css">
-      <link rel="stylesheet" type="text/css" href="css/index.css">
-      
+    <link rel="stylesheet" type="text/css" href="css/grid_layout.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
- <script src='js/googleAnalytics.js'></script>
+<script src='/js/googleAnalytics.js'></script>
+	
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+
 <style>
+
     @import url(http://fonts.googleapis.com/css?family=Dosis:300);
+    
     *{
         font-family: 'Dosis', sans-serif;
     }
     
-
     div{
         display: inline-block;
         text-align: left;
@@ -33,8 +37,6 @@
         border-radius: 5px;
     }
     
-    
-    
     .progressbar{
         background-image: linear-gradient(#222,#666);
         height: 24px;
@@ -42,6 +44,7 @@
         border-radius: 5px;
         overflow: hidden;
     }
+    
     .progressbar div{
         background: #f22;
         width: 0px;
@@ -50,51 +53,29 @@
         height: 20px;
         padding: 2px;
     }
-    /*
-    .facebook{
-        height: 55px;
-        background: url(img/logos/socialnetwork2.jpg) no-repeat;
-        background-position: -404px -105px;
-    }
-    
-    .soundcloud{
-        height: 55px;
-        background: url(img/logos/socialnetwork2.jpg) no-repeat;
-        background-position: -594px -15px;
-    }
-    */
-    
 
-
-    
-    /*@media only screen and (min-device-width: 720px){}*/
 </style>
     <title>alextanhongpin</title>     
   </head>
-  <body>
-  
-      
+  <body>    
       <ul>
-        <li class='col-2'><a href='html/guitar.html'>Guitar</a></li>
-        <li class='col-2'><a href='html/programming.html'>Programming</a></li>
-        <li class='col-2'><a href='html/photography.html'>Photography</a></li>
-        <li class='col-2'><a href='html/drawing.html'>Drawing</a></li>
-        <li class='col-2'><a href='html/books.html'>Bookshelf</a></li>
-        <li class='col-2'><a href='html/contact.html'>Contact</a></li>
-        <li class='col-2'><a href='html/resume.html'><b>Resume</b></a></li>
+        <li class='col-2'><a href='html/guitar.html'><i class="fa fa-music"></i>&nbsp;&nbsp;&nbsp;&nbsp;Guitar</a></li>
+        <li class='col-2'><a href='html/programming.html'><i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;Programming</a></li>
+        <li class='col-2'><a href='html/photography.html'><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;&nbsp;&nbsp;Photography</a></li>
+        <li class='col-2'><a href='html/drawing.html'><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Drawing</a></li>
+        <li class='col-2'><a href='html/books.html'><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;&nbsp;Bookshelf</a></li>
+        <li class='col-2'><a href='html/contact.html'><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Contact</a></li>
+        <li class='col-2'><a href='html/resume.html'><i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Resume</b></a></li>
       </ul><br>
-    
-     <header class='col-3'>alextanhongpin</header><br>
 
-      
-     
+
+      <header class='col-3'>alextanhongpin</header><br>
   
-      
     <div class='col-3 '>
         <img src='img/My%20Picture1.jpg' alt='img'>
-        This is me!
+        <div class='col-2'><i class='fa fa-facebook'></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/alex.tan.986227">Facebook</a></div>
     </div>
-      
+
       <div class='col-6'>
           <h3><b>About Me</b></h3>
             Watch me. I'm a person that lives my dream. I believe that everyone is special in their own way, and we give ourselves a meaning in life. If you couldn't find one (yet), look harder. If you don' stop looking for it, you will eventually find it. 
@@ -110,28 +91,17 @@
 
       <div class='col-3'><b>WARNING</b><br>This website is still under development - some links will not work. It is designed from scratch and will be updated over time. Current progress is shown in the progress bar.</div>
       <div class='col-6 progressbar'><div></div></div>
-      
-      
       <br>
-      <!--
-    <a href='https://www.facebook.com/alex.tan.986227'>
-      <div class='col-1 facebook'></div>
-    </a>
-    <a href='https://soundcloud.com/alextanhongpin'>
-      <div class='col-1 soundcloud'></div>
-    </a>  
- -->
-
+    
     <audio autoplay loop>
         <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'>
     </audio>
       
       <footer>
-          Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was created on 1st June 2014.</footer>
-      
-      
-      
-  <script>$(document).ready(function(){
+          Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was created on 1st June 2014.
+      </footer>
+  
+<script>$(document).ready(function(){
 
     'use strict';
     
@@ -160,13 +130,6 @@
         
 });</script>
 
-
-  </body>
-
-
-
-
-
-
+    </body>
 
 </html>
