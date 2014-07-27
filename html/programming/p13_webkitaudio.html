@@ -42,7 +42,7 @@
       
   </head>
   <body>
-      <canvas id="canvas" width="300" height="200"></canvas>
+      <canvas id="canvas"></canvas>
       <audio id="player"></audio>
    </body>
     
@@ -54,6 +54,8 @@
         canvas.height = window.innerHeight;
         canvas.width  = window.innerWidth;
     var ctx = canvas.getContext('2d');
+    var x = window.innerWidth;
+    var y = window.innerHeight;
     
     if (! window.AudioContext){
         if(! window.webkitAudioContext){
@@ -67,8 +69,9 @@
 
     //load the sound
     setupAudioNodes();
-    loadSound('/audio/x -files theme.mp3');
-    
+    //loadSound('/audio/x -files theme.mp3');
+    loadSound('/audio/GMS%20Juice%20-%20Requiem%20of%20a%20Dream.mp3');
+    //loadSound('/audio/Richard Marx - Hazard.mp3');
     function setupAudioNodes(){
         sourceNode = context.createBufferSource();
         sourceNode.connect(context.destination);
@@ -117,11 +120,11 @@
  
     }
     
-    var gradient = ctx.createLinearGradient(0,0,0,window.innerHeight);
-        gradient.addColorStop(1,'#000000');
-        gradient.addColorStop(0.75,'#ff0000');
-        gradient.addColorStop(0.25,'#ffff00');
-        gradient.addColorStop(0,'#ffffff');
+    var gradient = ctx.createLinearGradient(0,0,0,y);
+        gradient.addColorStop(1,'#444');
+        gradient.addColorStop(0.75,'#6f6');
+        gradient.addColorStop(0.25,'#66f');
+        gradient.addColorStop(0,'#fff');
     
     
     
@@ -130,7 +133,7 @@
     function drawSpectrum(array) {
     for ( var i = 0; i < array.length; i++ ){
             var value = array[i];
-            ctx.fillRect(i*5,window.innerHeight-value,3,window.innerHeight);
+            ctx.fillRect(i*x/256, y*(1-value/256),x/256,y);
         }
     };
     
@@ -149,7 +152,7 @@
         analyser.getByteFrequencyData(array);
  
         // clear the current state
-        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        ctx.clearRect(0, 0, x, y);
  
         // set the fill style
         ctx.fillStyle = gradient;
