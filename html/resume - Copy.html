@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" href='../img/icon.ico'>
+    <meta charset="utf-8">
+    <meta name="description" content="The personal website of Alex Tan Hong Pin, a fellow programmer from Malaysia. He is on a journey to find ways to contribute to mankind and to change the world.">
+    <meta name="keywords" content="alextanhongpin, resume, programmer, malaysian programmer, #amalaysianprogrammer">
+    <meta name="author" content="Alex Tan Hong Pin">  
+      
+      
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
+    <link rel="stylesheet" type="text/css" href="../css/index.css">
+       <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+
+  <script>
+
+</script>
+      
+<style>
+    @import url(http://fonts.googleapis.com/css?family=Dosis:300);
+    *{
+        font-family: 'Dosis', sans-serif;
+    }
+    
+    div{
+        display: inline-block;
+        text-align: center;
+    }
+    
+   
+    
+    table{
+        text-align: left;
+        width: 100%;
+    }
+    tr, td{
+        padding: 1px;
+    }
+    b{
+        font-size: 1.25em;
+    }
+
+    .add{
+        padding: 5px;
+        width: 80px;
+        box-shadow: 0px 0px 2px #bbb;
+        border: 1px solid #bbb;
+        transition: 0.25s all;
+    }
+    
+    .add:hover{
+        background: #ffd;
+    }
+</style>
+    <title>resume</title>
+      </head>
+  <body>
+
+      <ul>
+        <li class='col-2'><a href='guitar.html'><i class="fa fa-music"></i>&nbsp;&nbsp;&nbsp;&nbsp;Guitar</a></li>
+        <li class='col-2'><a href='programming.html'><i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;Programming</a></li>
+        <li class='col-2'><a href='photography.html'><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;&nbsp;&nbsp;Photography</a></li>
+        <li class='col-2'><a href='drawing.html'><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Drawing</a></li>
+        <li class='col-2'><a href='books.html'><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;&nbsp;Bookshelf</a></li>
+        <li class='col-2'><a href='contact.html'><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Contact</a></li>
+        <li class='col-2'><a href='resume.html'><i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Resume</b></a></li>
+      </ul><br>
+    
+     <header class='col-3'>alextanhongpin</header><br>
+
+      <div class='add'><i class='fa fa-envelope'></i>&nbsp;&nbsp;&nbsp;&nbsp;Button</div>
+     
+      <footer>Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This site was created on 1st June 2014.</footer>
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+    <script src='/js/googleAnalytics.js'></script>
+<script>$(document).ready(function(){
+
+    'use strict';
+    
+    $('header').click(function(){
+        window.location = '../index.html';
+    });
+
+    if ($(window).height() >= $('body').height()){
+        var extra = $(window).height() - $('body').height();
+        $('footer').css('margin-top', extra);
+    }
+        
+});</script>      
+      
+
+  </body>
+
+</html>
