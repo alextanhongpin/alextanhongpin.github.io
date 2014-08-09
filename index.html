@@ -19,7 +19,15 @@
         text-align: left;
         vertical-align: top;
     }
-    
+
+    ul
+
+{
+    display :none;
+        
+        
+    }
+
     img{
         width: 100%;
         border-radius: 5px;
@@ -101,6 +109,8 @@ Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was c
     $('header').click(function(){
         window.location = 'index.html';
     });
+    
+    $('ul').slideDown(750);
    
     //correct the footer
     $(window).load(function(){
@@ -122,7 +132,7 @@ Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was c
     setInterval(load, 1000/60);
 	
 });</script>
-
+<script src='/js/index.js'></script>
     </body>
 
 </html>
