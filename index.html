@@ -19,13 +19,9 @@
         text-align: left;
         vertical-align: top;
     }
-
-    ul
-
-{
-    display :none;
-        
-        
+    
+    ul{
+        display :none;        
     }
 
     img{
@@ -110,10 +106,12 @@ Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was c
         window.location = 'index.html';
     });
     
-    $('ul').slideDown(750);
+    
    
     //correct the footer
+    
     $(window).load(function(){
+        $('ul').slideDown(750);
         if ($(window).height() >= $('body').height()){
             var extra = $(window).height() - $('body').height();
             $('footer').css('margin-top', extra);
@@ -131,6 +129,9 @@ Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was c
     }
     setInterval(load, 1000/60);
 	
+    
+    
+    
 });</script>
 <script src='/js/index.js'></script>
     </body>
