@@ -1,139 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="shortcut icon" href='img/icon.ico'>
-    <link rel="stylesheet" type="text/css" href="css/index.min.css">
-	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-
-<style>
-
-    @import url(http://fonts.googleapis.com/css?family=Dosis:300);
-    
-    *{
-        font-family: 'Dosis', sans-serif;
-    }
-
-    div{
-        display: inline-block;
-        text-align: left;
-        vertical-align: top;
-    }
-    
-    ul{
-        display :none;        
-    }
-
-    img{
-        width: 100%;
-        border-radius: 5px;
-    }
-    
-    .progressbar{
-        background-image: linear-gradient(#222,#666);
-        height: 24px;
-        padding: 0px;
-        border-radius: 5px;
-        overflow: hidden;
-    }
-    
-    .progressbar div{
-        background: #f22;
-        width: 0px;
-        color: #fff;
-        text-align: right;
-        height: 20px;
-        padding: 2px;
-    }
-
-</style>
-    <title>alextanhongpin</title>
-      
-      <meta charset="utf-8">
-      <meta name="description" content="The personal website of Alex Tan Hong Pin, a fellow programmer from Malaysia. He is on a journey to find ways to contribute to mankind and to change the world.">
-        <meta name="keywords" content="alextanhongpin, programmer, malaysia, #amalaysianprogrammer">
-        <meta name="author" content="Alex Tan Hong Pin">      
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-  </head>
-    
-    
-  <body>    
-      <ul>
-        <li class='col-2'><a href='html/guitar.html'><i class="fa fa-music"></i>&nbsp;&nbsp;&nbsp;&nbsp;Guitar</a></li>
-        <li class='col-2'><a href='html/programming.html'><i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp;Programming</a></li>
-        <li class='col-2'><a href='html/photography.html'><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;&nbsp;&nbsp;Photography</a></li>
-        <li class='col-2'><a href='html/drawing.html'><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Drawing</a></li>
-        <li class='col-2'><a href='html/books.html'><i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;&nbsp;Bookshelf</a></li>
-        <li class='col-2'><a href='html/contact.html'><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;&nbsp;&nbsp;Contact</a></li>
-        <li class='col-2'><a href='html/resume.html'><i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp;<b>Resume</b></a></li>
-      </ul><br>
+	<head>
+		<link rel="shortcut icon" href='img/icon.ico'>
+		<link rel="stylesheet" href="css/css.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="css/app.css" type="text/css" media="screen" title="no title" charset="utf-8">
 
 
-      <header class='col-3'>alextanhongpin</header><br>
-      <div class='col-3 '>
-        <img src='img/My%20Picture1.jpg' alt='img'>
-        <div class='col-2'><i class='fa fa-facebook'></i>&nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.facebook.com/alex.tan.986227">Facebook</a>
-        </div>
-      </div>
-
-      <div class='col-6'>
-          <h3><b>About Me</b></h3>Watch me. I'm a person that lives my dream. I believe that everyone is special in their own way, and we give ourselves a meaning in life. If you couldn't find one (yet), look harder. If you don' stop looking for it, you will eventually find it. 
-          <br>
-          <br>
-          I know there are many people out there that are clueless about what they want to do - I seek those people, and motivate them. Because I was one of them. Besides, you get back as much as you give.<br><br>
-          <q>
-              You may say I'm a dreamer, but I'm not the only one. I hope someday you'll join us. And the world will live as one.   </q>―John Lennon
-      </div>
-      <br>
-      <div class='col-3'><b>WARNING</b><br>This website is still under development - some links will not work. It is designed from scratch and will be updated over time. Current progress is shown in the progress bar.</div>
-      <div class='col-6 progressbar'><div></div></div>
-      <br>
-    
-    <audio autoplay loop>
-        <source src='audio/06%20Einaudi_%20I%20Giorni.mp3'>
-    </audio>
-
-      <footer>
-Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. This page was created on 1st June 2014.
-      </footer>
-      
-      <script src='js/jquery-2.1.1.min.js'></script>
-      <script src='js/index.min.js'></script>
-      <script>$(document).ready(function(){
-    
-    'use strict';
-    
-    $('header').click(function(){
-        window.location = 'index.html';
-    });
-    
-    
-   
-    //correct the footer
-    
-    $(window).load(function(){
-        $('ul').slideDown(750);
-        if ($(window).height() >= $('body').height()){
-            var extra = $(window).height() - $('body').height();
-            $('footer').css('margin-top', extra);
-        }
-    });
-
-    $('audio').prop('volume', 0.2);
-
-    var percent = 0;
-    function load(){
-        if(percent <= 69.5){
-            percent += 0.5;
-            var width = $('.progressbar div').width(percent + '%').text(percent + '%');
-        }
-    }
-    setInterval(load, 1000/60);
+	<title>alextanhongpin</title>
+		<meta charset="utf-8">
+		<meta name="description" content="The personal website of Alex Tan Hong Pin, a fellow programmer from Malaysia. He is on a journey to find ways to contribute to mankind and to change the world.">
+		<meta name="keywords" content="alextanhongpin, programmer, malaysia, #amalaysianprogrammer">
+		<meta name="author" content="Alex Tan Hong Pin">      
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
 	
-    
-    
-    
-});</script>
-      
+		
+	<body> 
+		
+		<div id='main'></div>
+		
+		<footer> Copyright &copy; 2014 by Alex Tan Hong Pin. All rights reserved. (blueinktheme)</footer>
+    <script src='/js/jquery.js'></script>
+	<script src='/js/googleAnalytic.js'></script>
+	<script src='/js/underscore.js'></script>
+	<script src='/js/backbone.js'></script>
+		
+	<script src='/js/templates.js'></script>
+	<script src='/js/index.js'></script>
+	
+	<script>
+
+		var appRouter = new App.Router({
+			main: $('#main'),
+			body: $('body')
+		});
+		Backbone.history.start({ pushState: true });
+
+		
+		
+	</script>
     </body>
 
 </html>
