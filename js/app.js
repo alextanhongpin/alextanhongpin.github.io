@@ -14,7 +14,7 @@ function resize() {
 		$('#main').css({'height': '100%'});
 	}
     $('.intro').css({
-        'font-size': window.innerWidth / 15
+        'font-size': 60
     }).next().css({'text-align': 'left'});
 }
 

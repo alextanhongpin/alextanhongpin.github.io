@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
+<style>
+   
+    @font-face { 
+        font-family: Visitor; 
+        src: url('/fonts/visitor1.ttf'); 
+    } 
+    
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: Visitor;
+    }
+    
+    body{
+        -moz-user-select: none; 
+        -webkit-user-select: none; 
+        -ms-user-select:none;
+        cursor: pointer;
+        user-select:none;
+        background: #fff;
+        width: 100%;
+        height: 100%;
+        display: block;
+        text-align: center;
+    }
+    
+    .frame{
+        position: fixed;
+        width: 200px;
+        height: 320px;
+        top: 50%;
+        left: 50%;
+        margin-top: -190px;
+        margin-left: -120px;
+        padding: 20px;
+        background: #f66;
+        box-shadow: 0px 20px #f44;
+        border-radius: 10px;
+    }
+    
+    a{
+        display: block;
+        position: relative;
+        top: 0px;
+        float: left;
+        height: 25px;
+        width: 30px;
+        margin: 5px;
+        padding: 5px;
+        background: #222;
+        transition: 0.25s all;
+        color: #fff;
+        font-size: 1.25em;
+        box-shadow: 0px 5px #111;
+  
+    }
+    
+    .display{
+        width: 180px;
+        height: 35px;
+        background: #fff;
+        margin-bottom: 15px;
+        color: #000;
+        font-size: 2.5em;
+        box-shadow: inset 0px 5px #bbb;
+        overflow: hidden;
+    }
+    
+    .history{
+        width: 180px;
+        background: none;
+        text-align: right;
+        margin-bottom: -15px;
+        box-shadow: none;
+        overflow: hidden;
+    }
+  
+</style>
+      
+    <title>@alextanhongpin</title>
+      
+  </head>
+  <body>
+    by alextanhongpin, #amalaysianprogrammer
+      
+    <br>
+    <div class='frame'>
+        <a class='history'>0</a>
+        <a class='display'>0</a>
+      <a>(</a><a>)</a><a>Del</a><a class='clear'>AC</a>
+      <a>7</a><a>8</a><a>9</a>  <a class='operators'>&#43</a>
+      <a>4</a><a>5</a><a>6</a>  <a class='operators'>&#8722</a>
+      <a>1</a><a>2</a><a>3</a>  <a class='operators'>&times</a>
+      <a>0</a><a>.</a><a class='equal'>&#61</a> <a class='operators'>&divide</a>
+        
+    </div>
+  </body>
+    
+  <script>$(document).ready(function(){
+
+    'use strict';
+    
+
+    
+    function calculator(){
+        this.id = 'v1.0';
+        this.output = '';
+        this.outputGhost = '';
+        
+ 
+        
+        
+        this.addition = function(input){
+            
+            if($('.history').text() == '0'){
+                this.output = '';
+                this.outputGhost = '';
+            }
+     
+            switch(input){
+                case '+': 
+                    this.output += input;
+                    this.outputGhost += '+';
+                    break;
+                case '−': 
+                    this.output += input;
+                    this.outputGhost += '-';
+                    break;
+                case '×': 
+                    this.output += input;
+                    this.outputGhost += '*';
+                    break;
+                case '÷': 
+                    this.output += input;
+                    this.outputGhost += '/';
+                    break;
+                case '=':
+                    this.output = eval(this.outputGhost);
+                    this.outputGhost = this.output;
+                    break;
+                case 'Del':
+                    
+                    if(this.output.length > 1){
+                        this.output = this.output.slice(0,this.output.length-1);
+                        this.outputGhost = this.output;
+                    }else{
+                        this.output = '0';
+                        this.outputGhost = '0';
+                    }
+                    break;
+                default:
+                    this.output += input;
+                    this.outputGhost += input;
+                    break;
+            }
+            
+            
+            
+        }
+        
+        this.clear = function(){
+            this.output = '0';
+            this.outputGhost = '0';
+            $('.history').text(this.output);
+            $('.display').text(this.outputGhost);
+        }        
+    }
+    
+    var app = new calculator();
+  
+    $('a').not('.clear, .history, .display').click(function(){
+        app.addition($(this).text());
+        
+        
+        $('.history').text(app.output);
+
+        if(isNaN(eval(app.outputGhost)) == true){
+            $('.display').text(app.outputGhost);
+        }else{
+            $('.display').text(eval(app.outputGhost));
+        }
+        
+    }).mousedown(function(){
+        $(this).css('top', '5px').css('box-shadow','0px 0px #111');
+    }).mouseup(function(){
+        $(this).css('top', '0px').css('box-shadow','0px 5px #111');
+    }).mouseleave(function(){
+        $(this).css('top', '0px').css('box-shadow','0px 5px #111');
+    });
+    
+    $('.clear').click(app.clear).mousedown(function(){
+        $(this).css('top', '5px').css('box-shadow','0px 0px #111');
+    }).mouseup(function(){
+        $(this).css('top', '0px').css('box-shadow','0px 5px #111');
+    }).mouseleave(function(){
+        $(this).css('top', '0px').css('box-shadow','0px 5px #111');
+    });;
+    
+
+    
+
+});</script>
+</html>

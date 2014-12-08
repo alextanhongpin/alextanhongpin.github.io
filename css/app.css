@@ -13,6 +13,10 @@ body {
 	color: #007;
 	display: block;
 	text-align:center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 ul {
 	transition: 0.5s all;
@@ -70,6 +74,9 @@ span {
 }
 iframe {
 	border-style: none;
+    border: 0px;
+    width: 100%;
+    height: 600px;
 }
 
 td {
