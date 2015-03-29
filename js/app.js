@@ -13,9 +13,7 @@ function resize() {
 	} else {
 		$('#main').css({'height': '100%'});
 	}
-    $('.intro').css({
-        'font-size': 60
-    }).next().css({'text-align': 'left'});
+    
 }
 
 
@@ -40,56 +38,42 @@ App.NavBarView = Backbone.View.extend({
 	}
 });
 
-App.ProfileView = Backbone.View.extend({
+App.DefaultView = Backbone.View.extend({
+    render: function () {
+        this.el.innerHTML = this.template();
+        return this;
+    }
+});
+
+App.ProfileView = App.DefaultView.extend({
 	className: 'col-10',
-	template: JST.profile,
-	render: function () {
-		this.el.innerHTML = this.template();
-		return this;
-	}
+	template: JST.profile
 });
 
 
-App.BooksView = Backbone.View.extend({
-	template: JST.books,
-	render: function () {
-		this.el.innerHTML = this.template();
-		return this;
-	}
+App.BooksView = App.DefaultView.extend({
+	template: JST.books
 });
 
-App.CodesView = Backbone.View.extend({
-	template: JST.programming,
-	render: function () {
-		this.el.innerHTML = this.template();
-		return this;
-	}
+App.CodesView = App.DefaultView.extend({
+	template: JST.programming
 });
 
-App.GuitarPageView = Backbone.View.extend({
-	template: JST.guitar,
-	render: function () {
-		this.el.innerHTML = this.template();
-		return this;
-	}
+App.GuitarPageView = App.DefaultView.extend({
+	template: JST.guitar
 });
 
-App.ResumeView = Backbone.View.extend({
+App.ResumeView = App.DefaultView.extend({
 	className: 'col-10',
-	template: JST.resume,
-	render: function () {
-		this.el.innerHTML = this.template();
-		return this;
-	}
+	template: JST.resume
 });
 
-App.DrawingView = Backbone.View.extend({
-	template: JST.drawing,
-	render: function () {
-		this.el.innerHTML = this.template();
-	    
-		return this;
-	}
+App.DrawingView = App.DefaultView.extend({
+	template: JST.drawing
+});
+
+App.ProjectView = App.DefaultView.extend({
+    template: JST.project
 });
 App.Router = Backbone.Router.extend({
 	initialize: function (options) {
@@ -105,6 +89,7 @@ App.Router = Backbone.Router.extend({
 		'codes': 'codes',
 		'guitar': 'guitar',
 		'resume': 'resume',
+        'project': 'project',
 		'drawing': 'drawing',
         'programming': 'codes'
 	},
@@ -112,12 +97,14 @@ App.Router = Backbone.Router.extend({
 		this.main.hide();
 		var pv = new App.ProfileView();
 		this.main.html(pv.render().el);
+        resize();
 		this.main.fadeIn('slow', resize);
 	},
     books: function () {
         this.main.hide();
 		var bv = new App.BooksView();
 		this.main.html(bv.render().el);
+        resize();
 		this.main.fadeIn('slow', resize);
 	},
     
@@ -125,12 +112,14 @@ App.Router = Backbone.Router.extend({
         this.main.hide();
 		var cv = new App.CodesView();
 		this.main.html(cv.render().el);
+        resize();
 		this.main.fadeIn('slow', resize);
 	},
 	drawing: function () {
 		this.main.hide();
 		var dv = new App.DrawingView();
 		this.main.html(dv.render().el);
+        resize();
 		this.main.fadeIn('slow', resize);
 	    $('img').hover(function () {
 	    	$(this).next().css('color', '#222');
@@ -139,16 +128,31 @@ App.Router = Backbone.Router.extend({
 	    });
         
 	},
+    project: function () {
+        this.main.hide();
+        var pv = new App.ProjectView();
+        this.main.html(pv.render().el);
+        resize();
+        this.main.fadeIn('slow', resize);
+        
+        $('img').hover(function () {
+	    	$(this).next().css('color', '#222');
+	    }, function () {
+	    	$(this).next().css('color', '#fff');
+	    });
+    },
 	guitar: function () {
         this.main.hide();
 		var gpv = new App.GuitarPageView();
 		this.main.html(gpv.render().el);
+        resize();
 		this.main.fadeIn('slow', resize);
 	},
 	resume: function () {
 		this.main.hide();
 		var rv = new App.ResumeView();
 		this.main.html(rv.render().el);
+        resize();
 		this.main.fadeIn('slow', resize);
 		
 		this.main.append('<h3 style="padding:80px;"><b>*to be updated*</b></h3>');

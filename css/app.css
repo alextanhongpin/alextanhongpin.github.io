@@ -34,6 +34,9 @@ a:visited {
 }
 li {
     list-style-type: none;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 25px 10px 25px;
 }
 header {
 	border: 3px solid #f44;
@@ -79,6 +82,10 @@ iframe {
     height: 600px;
 }
 
+.soundcloud {
+    height: 166px !important;
+}
+
 td {
 	display: table-cell !important; /*I used inline block for the css, disrupting the natural block*/
 	margin: 0px !important;
@@ -96,4 +103,8 @@ b{
 }
 ul li b {
     font-size: 1em !important;
+}
+
+.intro {
+    font-size: 60px;
 }
