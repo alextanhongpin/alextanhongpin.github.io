@@ -13,13 +13,15 @@ function resize() {
 	} else {
 		$('#main').css({'height': '100%'});
 	}
-    
 }
 
 
 App.NavBarView = Backbone.View.extend({
 	tagName: 'ul',
 	template: JST.navbar,
+    initialize: function (options) {
+        this.nav = options.nav;    
+    },
 	render: function () {
 		this.el.innerHTML = this.template();
 		this.$el.find('li').hover(function () {
@@ -32,9 +34,10 @@ App.NavBarView = Backbone.View.extend({
 	events: {
 		'click a': 'link'
 	},
-	link: function (e) {
-		e.preventDefault();
-		appRouter.navigate($(e.target).attr('href'), {trigger: true});
+	link: function (evt) {
+		evt.preventDefault();
+		this.nav($(evt.target).attr('href'), {trigger: true});
+        return false;
 	}
 });
 
@@ -79,10 +82,15 @@ App.Router = Backbone.Router.extend({
 	initialize: function (options) {
 		this.main = options.main;
 		this.body = options.body;
-		var nbv = new App.NavBarView();
+        this.nav = this.navigate.bind(this);
+        
+		var nbv = new App.NavBarView({
+            nav: this.nav
+        });
 		$(nbv.render().el).insertBefore(this.main);
+        
 	},
-	root: '/',
+	//root: '/index.html',
 	routes: {
 		'': 'index',
         'books': 'books',
