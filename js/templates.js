@@ -1,5 +1,15 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["_photography"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '\n\n<a href=\'/photography/christmas-market\'></a>\n<a href=\'/photography/malaysia\'></a>\n<a href=\'/photography/danboard\'></a>\n<a href=\'/photography/preiser-figure\'></a>\n';
+
+}
+return __p
+};
+
 this["JST"]["books"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -34,7 +44,22 @@ this["JST"]["navbar"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<header class="col-2"> <h3><a href="/"> alextanhongpin </a></h3> </header>\n<li> <a href="books"> <i class="fa fa-book"></i>&nbsp;&nbsp;&nbsp;&nbsp; Books </a> </li>\n<li> <a href="codes"> <i class="fa fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp; Codes </a> </li>\n<li> <a href="drawing"> <i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp; Drawing </a> </li>\n<li> <a href="guitar"> <i class="fa fa-music"></i>&nbsp;&nbsp;&nbsp;&nbsp; Guitar </a> </li>\n<li> <a href="photography"> <i class="fa fa-camera-retro"></i>&nbsp;&nbsp;&nbsp;&nbsp; Photography </a> </li>\n<li> <a href="project"> <i class="fa fa-desktop"></i>&nbsp;&nbsp;&nbsp;&nbsp; Project </a> </li>\n<li> <a href="resume"><i class="fa fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp; Resume </a> </li>\n\n';
+__p += '<ul><header class="col-2"> <h3><a href="/"> alextanhongpin </a></h3> </header><span class=\'menu\'><i class=\'fa fa-fw fa-bars\'></i></span>\n    <li> <a href="/books"> <i class="fa fa-fw fa-book"></i>&nbsp;&nbsp;&nbsp;&nbsp; Books </a> </li>\n    <li> <a href="/codes"> <i class="fa fa-fw fa-code"></i>&nbsp;&nbsp;&nbsp;&nbsp; Codes </a> </li>\n    <li> <a href="/drawing"> <i class="fa fa-fw fa-pencil-square-o"></i>&nbsp;&nbsp;&nbsp;&nbsp; Drawing </a> </li>\n    <li> <a href="/guitar"> <i class="fa fa-fw fa-music"></i>&nbsp;&nbsp;&nbsp;&nbsp; Guitar </a> </li>\n    <li> <a href="/photography"> <i class="fa fa-fw fa-camera-retro"></i>&nbsp;&nbsp;&nbsp;&nbsp; Photography </a> </li>\n    <li> <a href="/project"> <i class="fa fa-fw fa-desktop"></i>&nbsp;&nbsp;&nbsp;&nbsp; Project </a> </li>\n    <li> <a href="/resume"><i class="fa fa-fw fa-envelope"></i>&nbsp;&nbsp;&nbsp;&nbsp; Resume </a> </li>\n</ul>\n';
+
+}
+return __p
+};
+
+this["JST"]["photography"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<a class="col-2" href="/photography">Return to Album List</a><br>\n      \n';
+ for (var i = 0; i < count; i++) { ;
+__p += '\n    <div class=\'col-8\'><img src=\'/img/photography/loading.gif\' alt=\'\'><span></span></div>\n';
+ } ;
+__p += '\n\n<div class=\'gallery\'>\n    <span class=\'close fa-stack fa-lg\'><i class=\'fa fa-fw fa-circle-thin fa-stack-2x\'></i><i class=\'fa fa-fw fa-close fa-stack-1x\'></i></span>\n    <div class=\'info\'>\n        <div class=\'preview\'></div>\n        <div class=\'desc\'></div>\n    </div>\n</div>';
 
 }
 return __p

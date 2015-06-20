@@ -1,0 +1,296 @@
+/*@import url(http://fonts.googleapis.com/css?family=Dosis:300);*/
+@font-face {
+	font-family: Dosis;
+	src: url(../fonts/Dosis-Light.ttf);
+}
+
+*{
+	font-family: 'Dosis', Tahoma;
+	padding: 0px;
+	margin: 0px;
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 34, .4);
+    border-radius: 2px;
+}
+::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, .2);
+}
+
+body {
+	color: #007;
+	display: block;
+	text-align: center;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+ul {
+	transition: 0.3s all ease-out;
+}
+a {
+	text-decoration: none;
+	color: #007;
+	transition: 0.3s all;
+}
+a:link {
+	color: #222;
+}
+a:visited {
+	color: #228;
+}
+li {
+    list-style-type: none;
+    display: inline-block;
+    box-sizing: border-box;
+    padding: 10px 25px 10px 25px;
+    transition: .3s all ease-out;
+    border-radius: 2px;
+    position: relative;
+}
+
+li.active {
+    background: #eee;
+    box-shadow: inset 0 5px 10px #ddd;
+}
+header + span {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    header + span {
+        display: inline-block;
+        color: #222;
+        float: right;
+        padding: .5em;
+        font-size: 1.5em;
+    }
+    header {
+        text-align: center;
+        float: left;
+    }
+    li {
+        display: none;
+        clear: both;
+    } 
+}
+header {
+    display: inline-block;
+	border: 3px solid #f44;
+	border-radius: 5px;
+	padding: 10px 0px 10px 0px;
+}
+table tr td:nth-child(1) {
+	font-weight: 400;
+}
+header a {
+	color: #f44 !important;
+}
+
+footer {
+	padding: 10px;
+}
+
+#main {
+	display: block;
+	width: 100%;
+	box-shadow: 0px 2px 15px #ddd;
+}
+
+img {
+	width: 100%;
+	border-radius: 5px;
+}
+
+span {
+	transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+	color: #fff;
+}
+
+.photography-view > div {
+    text-align: left;
+}
+.photography-view img {
+    filter: grayscale(1.0);
+    -webkit-filter: grayscale(1.0);
+    transition: .5s all ease-in;
+    -webkit-transition: .5s all ease-in;
+    cursor: pointer;
+}
+
+.photography-view img + span {
+    color: #666;
+}
+
+.photography-view img:hover {
+    filter: grayscale(0.0);
+    -webkit-filter: grayscale(0.0);
+}
+
+.overflow {
+    overflow: hidden;
+}
+.gallery {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    background-image:url('../img/photography/01-christmas_market/DSCF2043.JPG');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+    .gallery .close {
+        position: absolute;
+        margin: 0.5em;
+        right: 0;
+        padding: 0;
+    }
+    .gallery .info {
+        color: white;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: rgba(34, 34, 34, .5);
+        padding: .8em;
+    }
+
+    .gallery .info .preview {
+        text-align: center;
+        overflow-x: scroll;
+        padding-top: 5px;
+        white-space: nowrap;
+    }
+    .gallery .info .preview > div {
+        background-size: cover;
+        background-position: center center;
+        display: inline-block;
+        width: 50px; height: 50px;
+        font-size: 0;
+
+        border-radius: 50%;
+        margin: 5px;
+        box-shadow: 0 5px 15px #000;
+
+        transition: .3s all ease-out;
+        -webkit-transition: .3s all ease-out;
+        cursor: pointer;
+    }
+    .gallery .info .preview > div:hover {
+        transform: translateY(-10px);
+        -webkit-transform: translateY(-10px);
+    }
+
+.album {
+}
+.album a {
+    display: inline-block;
+    height: 150px;
+    width: 150px;
+    margin-top: 10px;
+    background: white;
+    background-size: cover;
+    background-position: center center;
+    border-width: 10px 10px 30px 10px;
+    border-color: white;
+    border-style: solid;
+    box-shadow: 0 2px 10px #bbb, inset 0 0 15px #222;
+    position: relative;
+    -webkit-transform-style: preserve-3d;
+    margin: 10px;
+    -webkit-backface-visibility: hidden;
+    vertical-align: top;
+}
+.album a:after {
+    content: '';
+    /*background: -webkit-linear-gradient(50deg, #666, #ddd, #666);*/
+    display: block;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 100%;
+}
+
+.album a:first-child {
+    background-image: url('../img/photography/01-christmas_market/DSCF2043_small.jpg');
+    transform: rotateZ(-10deg) translateZ(0px);
+    -webkit-transform: rotateZ(-10deg) translateZ(0px);
+}
+.album a:first-child:after {
+    content: 'Christmas Market';
+    
+}
+.album a:nth-child(2) {
+    background-image: url('../img/photography/02-malaysia/DSCF2336_small.jpg');
+    -webkit-transform: rotateZ(5deg) translateY(50px) translateZ(0);
+}
+.album a:nth-child(2):after {
+    content: 'Malaysia';
+}
+.album a:nth-child(3) {
+    background-image: url('../img/photography/06-danboard/IMG_2641_edited_small.jpg');
+    -webkit-transform: rotateZ(-25deg) translateY(0px) translateZ(0);
+}
+.album a:nth-child(3):after {
+    content: 'Danboard';
+}
+.album a:last-child {
+    background-image: url('../img/photography/07-preiser_figure/06_small.jpg');
+    -webkit-transform: rotateZ(20deg) translateY(50px)  translateZ(0);
+}
+.album a:last-child:after {
+    content: 'Preiser Figure';
+}
+#profile {
+	position: absolute;
+	height: 200px;
+	display: inline-block;
+	width: auto !important;
+}
+iframe {
+	border-style: none;
+    border: 0px;
+    width: 100%;
+    height: 600px;
+}
+
+.soundcloud {
+    height: 166px !important;
+}
+
+
+td {
+	display: table-cell !important; /*I used inline block for the css, disrupting the natural block*/
+	margin: 0px !important;
+	padding: 5px 0px 5px 0px !important;
+	vertical-align: middle;
+}
+
+table{
+    text-align: left;
+    width: 100%;
+}
+
+b{
+    font-size: 1.25em;
+}
+ul li b {
+    font-size: 1em !important;
+}
+
+.intro {
+    font-size: 60px;
+}
