@@ -111,7 +111,7 @@ App.PhotographyView = App.DefaultView.extend({
         'click .close': 'closeGallery',
         'click img': 'openGallery',
         'mousemove .gallery': 'showControls',
-        'click .gallery': 'hideControls',
+        'click .gallery': 'toggleControls',
         'click .preview > div': 'displayImage',
         'click a': 'link'
     },
@@ -140,9 +140,9 @@ App.PhotographyView = App.DefaultView.extend({
         $('.gallery .desc').html(imgSelected + imgDesc);
         $('.gallery').css('background-image', 'url(' + imgSrc + ')')
     },
-    hideControls: function (evt) {
+    toggleControls: function (evt) {
         
-        $('.info, .close').fadeOut();
+        $('.info, .close').fadeToggle();
     },
     showControls: function (evt) {
         evt.stopPropagation();

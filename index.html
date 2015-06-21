@@ -25,17 +25,17 @@
 <!----	<script src='/js/googleAnalytic.js'></script>-->
 	<script src='/js/underscore.js'></script>
 	<script src='/js/backbone.js'></script>
-        <script src='/js/backbone-touch.js'></script>
+        <!--<script src='/js/backbone-touch.js'></script>-->
 	<script src='/js/templates.js'></script>
 	<script src='/js/app.js'></script>
 	<script src='/js/fastclick.js'></script>
 	<script>
         // add fastClick
-        /*if ('addEventListener' in document) {
+        if ('addEventListener' in document) {
             document.addEventListener('DOMContentLoaded', function() {
                 FastClick.attach(document.body);
             }, false);
-        };*/
+        };
         
 		var appRouter = new App.Router({
 			main: $('#main'),
