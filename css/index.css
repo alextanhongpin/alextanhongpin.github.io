@@ -15,7 +15,7 @@
     height: 4px;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 34, .4);
+    background: rgba(68, 68, 68, .6);
     border-radius: 2px;
 }
 ::-webkit-scrollbar-track {

@@ -111,6 +111,7 @@ App.PhotographyView = App.DefaultView.extend({
         'click .close': 'closeGallery',
         'click img': 'openGallery',
         'mousemove .gallery': 'showControls',
+        'click .gallery': 'hideControls',
         'click .preview > div': 'displayImage',
         'click a': 'link'
     },
@@ -128,6 +129,7 @@ App.PhotographyView = App.DefaultView.extend({
 	},
     
     displayImage: function (evt) {
+        evt.stopPropagation();
         var index = $(evt.target).index();
         
         var img = $(this.el).find('img').eq(index);
@@ -138,14 +140,18 @@ App.PhotographyView = App.DefaultView.extend({
         $('.gallery .desc').html(imgSelected + imgDesc);
         $('.gallery').css('background-image', 'url(' + imgSrc + ')')
     },
-    
+    hideControls: function (evt) {
+        
+        $('.info, .close').fadeOut();
+    },
     showControls: function (evt) {
-        $('.info, .close').show();
+        evt.stopPropagation();
+        $('.info, .close').fadeIn();
         if (this.timeout) {
             window.clearTimeout(this.timeout);
         };
         this.timeout = window.setTimeout(function () {
-            $('.info, .close').hide();
+            $('.info, .close').fadeOut();
             window.clearTimeout(this.timeout);
         }.bind(this), 3000);
     },
