@@ -143,9 +143,7 @@ App.PhotographyView = App.DefaultView.extend({
     ignoreEvent: function (evt) {
         evt.stopPropagation();
         evt.preventDefault();
-        if (this.timeout) {
-                window.clearTimeout(this.timeout);
-            };
+ 
         return false;
     },
     
@@ -164,14 +162,20 @@ App.PhotographyView = App.DefaultView.extend({
         var imgLength = $(this.el).find('img').length;
         var imgSelected = 'Image ' + (index + 1) + ' of ' + imgLength + ' selected.  |  ';
         $('.gallery .desc').html(imgSelected + imgDesc);
-        $('.gallery').css('background-image', 'url(' + imgSrc + ')')
+        $('.gallery').css('background-image', 'url(' + imgSrc + ')');
+        
+        if (this.timeout) {
+            window.clearTimeout(this.timeout);
+        };
     },
     toggleControls: function (evt) {
         evt.stopPropagation();
-        $('.info, .close').fadeToggle();
+        
         
         
         if ($('.info, .close').is(':visible')) {
+            $('.info, .close').fadeOut();
+            
             if (this.timeout) {
                 window.clearTimeout(this.timeout);
             };
@@ -179,8 +183,12 @@ App.PhotographyView = App.DefaultView.extend({
                 $('.info, .close').fadeOut();
                 window.clearTimeout(this.timeout);
             }.bind(this), 3000);
+        } else {
+            $('.info, .close').fadeIn();
+            if (this.timeout) {
+                window.clearTimeout(this.timeout);
+            };
         }
-        
     },
     showControls: function (evt) {
         

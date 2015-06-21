@@ -4,7 +4,7 @@ this["JST"]["_photography"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<a href=\'/photography/christmas-market\'></a>\n<a href=\'/photography/malaysia\'></a>\n<a href=\'/photography/danboard\'></a>\n<a href=\'/photography/preiser-figure\'></a>\n<a href=\'/photography/berlin\'>Berlin</a>\n';
+__p += '<a href=\'/photography/christmas-market\'></a>\n<a href=\'/photography/malaysia\'></a>\n<a href=\'/photography/danboard\'></a>\n<a href=\'/photography/preiser-figure\'></a>\n<a href=\'/photography/berlin\'></a>\n';
 
 }
 return __p
