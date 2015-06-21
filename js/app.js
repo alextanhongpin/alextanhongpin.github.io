@@ -141,7 +141,6 @@ App.PhotographyView = App.DefaultView.extend({
         $('.gallery').css('background-image', 'url(' + imgSrc + ')')
     },
     toggleControls: function (evt) {
-        
         $('.info, .close').fadeToggle();
     },
     showControls: function (evt) {
