@@ -267,7 +267,7 @@ span {
     content: 'Malaysia';
 }
 .album a:nth-child(3) {
-    background-image: url('../img/photography/06-danboard/IMG_2641_edited_small.jpg');
+    background-image: url('../img/photography/06-danboard/IMG_4735_edited_small.jpg');
     -webkit-transform: rotateZ(-25deg) translateY(0px) translateZ(0);
 }
 .album a:nth-child(3):after {
@@ -282,7 +282,7 @@ span {
     content: 'Preiser Figure';
 }
 .album a:last-child {
-    background-image: url('../img/photography/05-berlin_trip/DSCF2626.JPG');
+    background-image: url('../img/photography/05-berlin_trip/DSCF2626_small.jpeg');
     -webkit-transform: rotateZ(-5deg) translateY(20px)  translateZ(0);
 }
 .album a:last-child:after {
