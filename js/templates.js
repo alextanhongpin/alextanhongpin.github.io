@@ -4,7 +4,7 @@ this["JST"]["_photography"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '\n\n<a href=\'/photography/christmas-market\'></a>\n<a href=\'/photography/malaysia\'></a>\n<a href=\'/photography/danboard\'></a>\n<a href=\'/photography/preiser-figure\'></a>\n';
+__p += '<a href=\'/photography/christmas-market\'></a>\n<a href=\'/photography/malaysia\'></a>\n<a href=\'/photography/danboard\'></a>\n<a href=\'/photography/preiser-figure\'></a>\n<a href=\'/photography/berlin\'>Berlin</a>\n';
 
 }
 return __p
@@ -55,11 +55,15 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<a class="col-2" href="/photography">Return to Album List</a><br>\n      \n';
+__p += '<a class="col-12" href="/photography">Return to Album List</a><br>\n      \n';
  for (var i = 0; i < count; i++) { ;
 __p += '\n    <div class=\'col-8\'><img src=\'/img/photography/loading.gif\' alt=\'\'><span></span></div>\n';
  } ;
-__p += '\n\n<div class=\'gallery\'>\n    <span class=\'close fa-stack fa-lg\'><i class=\'fa fa-fw fa-circle-thin fa-stack-2x\'></i><i class=\'fa fa-fw fa-close fa-stack-1x\'></i></span>\n    <div class=\'info\'>\n        <div class=\'preview\'></div>\n        <div class=\'desc\'></div>\n    </div>\n</div>';
+__p += '\n\n<div class=\'gallery\'>\n    <span class=\'close fa-stack fa-lg\'><i class=\'fa fa-fw fa-circle-thin fa-stack-2x\'></i><i class=\'fa fa-fw fa-close fa-stack-1x\'></i></span>\n    <div class=\'info\'>\n        <div class=\'preview\'>\n            ';
+ for (var i = 0; i < count; i++) { ;
+__p += '\n                <div></div>\n            ';
+ } ;
+__p += '\n        </div>\n        <div class=\'desc\'></div>\n    </div>\n</div>';
 
 }
 return __p
