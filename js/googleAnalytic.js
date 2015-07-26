@@ -6,9 +6,9 @@
   ga('create', 'UA-51651156-1', 'auto');
   ga('send', 'pageview');
 
-   
-    $('header').click(function(){
-        window.location = 'index.html';
-    });
-    
-    $('ul').slideDown(750);
+//   
+//    $('header').click(function(){
+//        window.location = 'index.html';
+//    });
+//    
+//    $('ul').slideDown(750);
