@@ -73,7 +73,7 @@ this["JST"]["profile"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<p class="intro">Hello <strike>World!</strike> Alex!</p><p>That\'s the first program I wrote.</p>';
+__p += '<p class="intro">Hello <strike>World!</strike> Alex!</p><p>That\'s the first program I wrote.</p>\n\n\n';
 
 }
 return __p
