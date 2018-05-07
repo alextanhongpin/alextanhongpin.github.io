@@ -1,1 +1,21 @@
 @import '../../../styles/theme.css';
+
+.caret {
+  height: 30px;
+  width: 5px;
+  background: var(--coral-red);
+  display: inline-block;
+  animation: 1s blink step-end infinite;
+  opacity: .5;
+  vertical-align: top;
+  margin: 0 3px;
+}
+
+@keyframes blink{
+  from, to {
+    background: transparent;
+  }
+  50% {
+    background: var(--coral-red);
+  }
+}
