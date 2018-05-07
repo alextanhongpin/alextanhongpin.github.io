@@ -3,8 +3,6 @@
 .header {
 	height: var(--header-height);
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	align-content: center;
 }
 
 .header-brand {
@@ -19,6 +17,16 @@
 	font-weight: bold;
 	border-radius: 3px;
 	justify-self: flex-start;
+}
+
+.header-column {
+	max-width: var(--max-width);
+	width: 100%;
+	margin: auto;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-content: center;
 }
 
 .header-photo-holder {

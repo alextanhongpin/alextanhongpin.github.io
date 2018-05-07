@@ -9,5 +9,6 @@
   --navbar-height: 40px;
   --footer-height: 40px;
 
-	--brand-height: 35px;
+  --brand-height: 35px;
+  --max-width: 800px;
 }
