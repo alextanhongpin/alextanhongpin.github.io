@@ -30,7 +30,7 @@ export default {
       history.replaceState(null, null, sessionStorage.redirect)
       delete sessionStorage.redirect
       if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js')
-    `,
+    `
   },
   plugins: [
     postcss({
@@ -58,13 +58,20 @@ export default {
     // This is required to compile JSX
     babel({
       babelrc: false,
-      presets: ["es2015-rollup"],
+      presets: [
+        ['@babel/preset-env', {
+          targets: {
+            browser: 'current'
+          },
+          modules: false
+        }]
+      ],
       plugins: [
-        ["transform-react-jsx", { pragma: "h" }]
+        ['transform-react-jsx', { pragma: 'h' }]
       ]
     }),
-    resolve({ 
-      jsnext: true 
+    resolve({
+      jsnext: true
     }),
     commonjs(),
     buble({ jsx: 'h' }),
@@ -74,7 +81,7 @@ export default {
       serve({
         contentBase: ['static'],
         historyApiFallback: true,
-        port: 8080,
+        port: 8080
       })
   ]
 }

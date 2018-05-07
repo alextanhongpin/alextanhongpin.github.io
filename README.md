@@ -90,3 +90,9 @@ var processorsArray = [
   require('cssnext')()
 ];
 ```
+
+## Installing @babel/preset-env
+
+```bash
+$ yarn add --dev @babel/preset-env @babel/core babel-polyfill
+```

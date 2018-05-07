@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import { app, h } from 'hyperapp'
 import { Route, location } from '@hyperapp/router'
 
@@ -17,15 +18,14 @@ import AboutPage from './atomic/pages/About'
 import type from './utils/type'
 import pause from './utils/pause'
 
+// Modules
+import typewriterModule from './store/typewriter'
+
 const state = {
   header: 'alextanhongpin',
   username: 'Alex Tan',
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
-  // Typing animation
-  heading: '',
-  headingGhost: 'Hi, I am Alex.',
-  subheading: '',
-  subheadingGhost: 'This is my journey as a Developer.',
+  ...typewriterModule.state,
   // Register state for @hyperapp/router
   location: location.state
 }
@@ -33,12 +33,7 @@ const state = {
 const actions = {
   // Register actions for @hyperapp/router
   location: location.actions,
-  updateHeading: value => state => ({
-    heading: state.heading + value
-  }),
-  updateSubheading: value => state => ({
-    subheading: state.subheading + value
-  })
+  ...typewriterModule.actions
 }
 
 const view = (state, actions) => (
@@ -55,16 +50,17 @@ const view = (state, actions) => (
 
 const main = app(state, actions, view, document.body)
 
-async function startTyping (heading, subheading) {
-  await type(heading.length, 0, counter => main.updateHeading(heading[counter]))
+// Register @hyperapp/router
+location.subscribe(main.location)
+
+async function startTyping (app, heading, subheading) {
+  await type(heading.length, 0, counter => app.updateHeading(heading[counter]))
   await pause(250)
-  await type(subheading.length, 0, counter => main.updateSubheading(subheading[counter]))
+  await type(subheading.length, 0, counter => app.updateSubheading(subheading[counter]))
 }
 
 startTyping(
+  main,
   state.headingGhost.split(''),
   state.subheadingGhost.split('')
 )
-
-// Register @hyperapp/router
-location.subscribe(main.location)
