@@ -3,7 +3,7 @@ import './index.css'
 
 const page = () => (
 	<div class="body">
-		Home Page
+		Hello world
 	</div>
 )
 

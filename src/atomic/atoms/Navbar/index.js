@@ -4,8 +4,8 @@ import './index.css'
 
 const component = () => (
 	<navbar class="navbar">
-    <Link class="navbar-link" to="/">Home</Link>
-    <Link class="navbar-link" to="/about">About</Link>
+		<Link class="navbar-link" to="/">Home</Link>
+		<Link class="navbar-link" to="/about">About</Link>
 	</navbar>
 )
 

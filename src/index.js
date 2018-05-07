@@ -14,7 +14,9 @@ import HomePage from './atomic/pages/Home'
 import AboutPage from './atomic/pages/About'
 
 const state = {
-  header: 'yourapp',
+  header: 'alextanhongpin',
+  username: 'Alex',
+  footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
   // Register state for @hyperapp/router
   location: location.state
 }
@@ -26,13 +28,13 @@ const actions = {
 
 const view = (state, actions) => (
   <main class="main">
-    <Header header={state.header}/>
+    <Header header={state.header} username={state.username}/>
     <Navbar/>
 
     <Route path="/" render={HomePage}/>
     <Route path="/about" render={AboutPage}/>
 
-    <Footer/>
+    <Footer footer={state.footer}/>
   </main>
 )
 
