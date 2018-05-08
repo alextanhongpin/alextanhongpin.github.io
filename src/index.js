@@ -13,6 +13,7 @@ import Footer from './atomic/atoms/Footer'
 // Pages
 import HomePage from './atomic/pages/Home'
 import AboutPage from './atomic/pages/About'
+import PhotographyPage from './atomic/pages/Photography'
 
 // Utils
 import type from './utils/type'
@@ -39,8 +40,8 @@ const state = {
       label: 'About'
     },
     {
-      to: '/books',
-      label: 'Books'
+      to: '/photos',
+      label: 'Photo'
     }
   ]
 }
@@ -58,6 +59,7 @@ const view = (state, actions) => (
 
     <Route path='/' render={HomePage(state, actions)} />
     <Route path='/about' render={AboutPage} />
+    <Route path='/photos' render={PhotographyPage} />
 
     <Footer footer={state.footer} />
   </main>
