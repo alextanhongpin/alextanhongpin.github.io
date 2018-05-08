@@ -25,6 +25,7 @@ const state = {
   header: 'alextanhongpin',
   username: 'Alex Tan',
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
+  profileImg: './assets/img/profile.jpg',
   ...typewriterModule.state,
   // Register state for @hyperapp/router
   location: location.state,
@@ -52,7 +53,7 @@ const actions = {
 
 const view = (state, actions) => (
   <main class='main'>
-    <Header header={state.header} username={state.username} />
+    <Header header={state.header} username={state.username} profileImg={state.profileImg}/>
     <Navbar links={state.links} route={state.location.pathname}/>
 
     <Route path='/' render={HomePage(state, actions)} />
