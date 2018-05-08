@@ -135,3 +135,36 @@
 	}
 }
 /* END */
+
+
+@media (max-width: 640px) {
+	.photo-100,
+	.photo-200,
+	.photo-300,
+	.photo-400 {
+		grid-column: 2 / 3;
+		justify-self: center;
+	}
+
+	.photo-100 .photo-caption {
+		top: 85%;
+		left: 50%;
+	}
+	.photo-200 .photo-caption {
+		top: 85%;
+		left: 5%;
+	}
+	.photo-300 .photo-caption {
+		top: 80%;
+		left: 40%;
+	}
+	.photo-400 .photo-caption {
+		top: 85%;
+		left: 10%;
+	}
+
+	.photo-src {
+		width: 320px;
+		height: auto;
+	}
+}
