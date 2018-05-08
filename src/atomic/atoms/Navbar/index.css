@@ -21,4 +21,5 @@
 
 .navbar-link.is-selected {
 	font-weight: bold;
+	border-bottom: 3px solid var(--coral-red);
 }
