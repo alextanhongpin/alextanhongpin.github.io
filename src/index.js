@@ -27,7 +27,21 @@ const state = {
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
   ...typewriterModule.state,
   // Register state for @hyperapp/router
-  location: location.state
+  location: location.state,
+  links: [
+    {
+      to: '/',
+      label: 'Home'
+    },
+    {
+      to: '/about',
+      label: 'About'
+    },
+    {
+      to: '/books',
+      label: 'Books'
+    }
+  ]
 }
 
 const actions = {
@@ -39,7 +53,7 @@ const actions = {
 const view = (state, actions) => (
   <main class='main'>
     <Header header={state.header} username={state.username} />
-    <Navbar />
+    <Navbar links={state.links} route={state.location.pathname}/>
 
     <Route path='/' render={HomePage(state, actions)} />
     <Route path='/about' render={AboutPage} />

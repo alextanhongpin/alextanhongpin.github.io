@@ -1,14 +1,14 @@
 @import '../../../styles/theme.css';
 
 .caret {
-  height: 30px;
-  width: 5px;
+  height: var(--h1);
+  width: var(--h8);
   background: var(--coral-red);
   display: inline-block;
   animation: 1s blink step-end infinite;
   opacity: .5;
-  vertical-align: top;
-  margin: 0 3px;
+  vertical-align: middle;
+  margin: 0 var(--h8);
 }
 
 @keyframes blink{
@@ -19,3 +19,11 @@
     background: var(--coral-red);
   }
 }
+
+/* .chat-bubble {
+  background: #4488FF;
+  color: white;
+  padding: 0 var(--h5);
+  border-radius: var(--h5);
+  display: inline-block;
+} */

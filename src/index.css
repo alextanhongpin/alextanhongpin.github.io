@@ -62,4 +62,41 @@ body {
   margin: auto;
 }
 
+/* Apply Modular Scale (perfect fourth: 4 / 3) and Vertical Rhythm */
 
+body {
+  font-size: var(--h5);
+}
+h1 {
+  font-size: var(--h1);
+  line-height: calc(4 * var(--base-line-height));
+}
+
+h2 {
+  font-size: var(--h2);
+  line-height: calc(3 * var(--base-line-height));
+}
+
+h3 {
+  font-size: var(--h3);
+  line-height: calc(2 * var(--base-line-height));
+}
+
+h4 {
+  font-size: var(--h4);
+  line-height: calc(2 * var(--base-line-height));
+}
+
+h5 {
+  font-size: var(--h5);
+  line-height: var(--base-line-height);
+}
+
+h6 {
+  font-size: var(--h6);
+  line-height: var(--base-line-height);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}

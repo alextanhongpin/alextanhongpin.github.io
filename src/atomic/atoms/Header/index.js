@@ -8,7 +8,9 @@ const component = ({ header, username = 'john doe' }) => (
       <Link class='header-brand' to='/'>{header}</Link>
       <div class='header-photo-holder'>
         <div class='header-photo' />
-        <div class='header-username'>{username}</div>
+        <div class='header-username'>
+          <h6>{username}</h6>
+        </div>
       </div>
     </div>
   </header>

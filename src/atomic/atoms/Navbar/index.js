@@ -2,10 +2,15 @@ import { h } from 'hyperapp'
 import { Link } from '@hyperapp/router'
 import './index.css'
 
-const component = () => (
+const component = ({ links, route }) => (
   <navbar class='navbar'>
-    <Link class='navbar-link' to='/'>Home</Link>
-    <Link class='navbar-link' to='/about'>About</Link>
+    { 
+      links.map(link => (
+        <Link class={
+          `navbar-link ${link.to === route && "is-selected"}`
+        } to={link.to}>{link.label}</Link>
+      ))
+    }
   </navbar>
 )
 
