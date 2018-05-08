@@ -11,6 +11,12 @@ export default {
     }),
     updateSubheading: value => state => ({
       subheading: state.subheading + value
+    }),
+    resetHeading: value => state => ({
+      heading: ''
+    }),
+    resetSubheading: value => state => ({
+      subheading: ''
     })
   }
 }

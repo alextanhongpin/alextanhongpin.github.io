@@ -5,13 +5,16 @@
   width: var(--h8);
   background: var(--coral-red);
   display: inline-block;
-  animation: 1s blink step-end infinite;
   opacity: .5;
   vertical-align: middle;
   margin: 0 var(--h8);
 }
 
-@keyframes blink{
+.caret.is-active {
+  animation: 1s blink step-end infinite;
+}
+
+@keyframes blink {
   from, to {
     background: transparent;
   }
@@ -19,11 +22,3 @@
     background: var(--coral-red);
   }
 }
-
-/* .chat-bubble {
-  background: #4488FF;
-  color: white;
-  padding: 0 var(--h5);
-  border-radius: var(--h5);
-  display: inline-block;
-} */

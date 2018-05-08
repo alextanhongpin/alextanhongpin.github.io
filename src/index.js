@@ -15,10 +15,6 @@ import HomePage from './atomic/pages/Home'
 import AboutPage from './atomic/pages/About'
 import PhotographyPage from './atomic/pages/Photography'
 
-// Utils
-import type from './utils/type'
-import pause from './utils/pause'
-
 // Modules
 import typewriterModule from './store/typewriter'
 
@@ -54,8 +50,8 @@ const actions = {
 
 const view = (state, actions) => (
   <main class='main'>
-    <Header header={state.header} username={state.username} profileImg={state.profileImg}/>
-    <Navbar links={state.links} route={state.location.pathname}/>
+    <Header header={state.header} username={state.username} profileImg={state.profileImg} />
+    <Navbar links={state.links} route={state.location.pathname} />
 
     <Route path='/' render={HomePage(state, actions)} />
     <Route path='/about' render={AboutPage} />
@@ -69,15 +65,3 @@ const main = app(state, actions, view, document.body)
 
 // Register @hyperapp/router
 location.subscribe(main.location)
-
-async function startTyping (app, heading, subheading) {
-  await type(heading.length, 0, counter => app.updateHeading(heading[counter]))
-  await pause(250)
-  await type(subheading.length, 0, counter => app.updateSubheading(subheading[counter]))
-}
-
-startTyping(
-  main,
-  state.headingGhost.split(''),
-  state.subheadingGhost.split('')
-)

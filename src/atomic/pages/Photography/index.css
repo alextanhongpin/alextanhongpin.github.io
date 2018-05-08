@@ -1,5 +1,13 @@
 @import '../../../styles/theme.css';
 
+.photo-holder {
+	width: 100%;
+	max-width: var(--max-width);
+	display: grid;
+	grid-template-columns: repeat(3,minmax(calc(var(--h1) * 2), 1fr));
+	grid-template-rows: repeat(3, calc(var(--h1) * 6)) var(--h1) calc(var(--h1) * 6);
+}
+
 .photo-grid {
 	position: relative;
 	display: inline-block;
@@ -7,31 +15,123 @@
 
 .photo-caption {
 	position: absolute;
-	left: calc(100% + var(--h4));
-	top: 35%;
 	z-index: 1000;
 	font-weight: bold;
 	border-bottom: 2px solid black;
 }
 
 .photo-src {
-	filter: grayscale(1);
+	/* filter: grayscale(1); */
 	transition: .174s all ease-out;
 	border: var(--h8) solid white;
-	transform: rotateZ(0deg);
-	box-shadow: 0 var(--h8) var(--h4) rgba(0, 0, 0, .25);
-	animation: gentleRotate 0.174s 1s ease-out forwards;
 }
 
-@keyframes gentleRotate {
-	from {
-		transform: rotateZ(0deg);
-	}
+/* START */
+.photo-100 {
+	grid-column: 1 / 2;
+	grid-row: 1 / 2;
+}
+
+.photo-100 .photo-src {
+	opacity: 0;
+	transform: rotateZ(-6deg) translateY(-32px);
+	animation: rotate100 .5s .25s ease-out forwards;
+}
+
+.photo-100 .photo-caption {
+	/* This is a constant value */
+	left: 450px;
+	top: 35%;
+}
+
+@keyframes rotate100 {
 	to {
-		transform: rotateZ(-6deg);
+		opacity: 1;
+		transform: rotateZ(-9deg) translateY(0);
+		box-shadow: 0 var(--h8) var(--h4) rgba(0, 0, 0, .25);
 	}
 }
 
-.photo-src:hover {
-	filter: none;
+/* END */
+
+/* START */
+.photo-200 {
+	grid-column: 3 / 4;
+	grid-row: 2 / 3;
+ 	justify-self: flex-end;
 }
+
+.photo-200 .photo-src {
+	opacity: 0;
+	transform-origin: left top;
+	justify-self: flex-start;
+	transform: rotateZ(3deg) translateY(-32px);
+	animation: rotate200 .3s .5s ease-out forwards;
+}
+
+.photo-200 .photo-caption {
+	left: calc(-450px / 3);
+	top: 25%;
+}
+
+@keyframes rotate200 {
+	to {
+		opacity: 1;
+		transform: rotateZ(6deg) translateY(0);
+		box-shadow: 0 var(--h8) var(--h4) rgba(0, 0, 0, .25);
+	}
+}
+
+/* END */
+
+/* START */
+.photo-300 {
+	grid-column: 2 / 3;
+	grid-row: 3 / 4;
+}
+
+.photo-300 .photo-caption {
+	left: 50%;
+	top: 100%;
+}
+
+.photo-300 .photo-src {
+	opacity: 0;
+	transform: rotateZ(0) scale(0.95) translateY(-16px);
+	animation: rotate300 .4s .75s ease-out forwards;
+}
+
+@keyframes rotate300 {
+	to {
+		opacity: 1;
+		transform: rotateZ(-3deg) scale(0.9) translateY(0);
+		box-shadow: 0 var(--h8) var(--h4) rgba(0, 0, 0, .25);
+	}
+}
+/* END */
+
+/* START */
+.photo-400 {
+	grid-column: 1 / 2;
+	grid-row: 5 / 6;
+}
+
+.photo-400 .photo-src {
+	opacity: 0;
+	transform: rotateZ(6deg) translateX(-16px);
+	animation: rotate400 .4s 1s ease-out forwards;
+}
+
+.photo-400 .photo-caption {
+	left: 450px;
+	top: 45%;
+}
+
+@keyframes rotate400 {
+	to {
+		opacity: 1;
+		transform: rotateZ(9deg) translateX(0);
+		box-shadow: 0 var(--h8) var(--h4) rgba(0, 0, 0, .25);
+	}
+}
+/* END */
