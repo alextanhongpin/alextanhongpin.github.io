@@ -6,7 +6,7 @@
 
 .book {
   display: inline-block;
-  margin:  var(--base-line-height) var(--h5);
+  margin:  0 var(--h5) var(--base-line-height);
   font-weight: 500;
 }
 

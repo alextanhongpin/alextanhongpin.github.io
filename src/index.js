@@ -1,4 +1,4 @@
-import 'babel-polyfill'
+// import 'babel-polyfill'
 import { app, h } from 'hyperapp'
 import { Route, location } from '@hyperapp/router'
 
@@ -24,15 +24,11 @@ import bookModule from './store/book'
 import photographyModule from './store/photo'
 import guitarModule from './store/guitar'
 
-const state = {
+const state = Object.assign({}, {
   header: 'alextanhongpin',
   username: 'Alex Tan',
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
   profileImg: './assets/img/profile.jpg',
-  ...typewriterModule.state,
-  ...bookModule.state,
-  ...photographyModule.state,
-  ...guitarModule.state,
   // Register state for @hyperapp/router
   location: location.state,
   links: [
@@ -61,13 +57,16 @@ const state = {
       label: 'Guitar'
     }
   ]
-}
+},
+typewriterModule.state,
+bookModule.state,
+photographyModule.state,
+guitarModule.state)
 
-const actions = {
+const actions = Object.assign({}, {
   // Register actions for @hyperapp/router
-  location: location.actions,
-  ...typewriterModule.actions
-}
+  location: location.actions
+}, typewriterModule.actions)
 
 const view = (state, actions) => (
   <main class='main'>

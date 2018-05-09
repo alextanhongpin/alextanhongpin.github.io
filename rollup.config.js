@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import buble from 'rollup-plugin-buble'
 import commonjs from 'rollup-plugin-commonjs'
 import resolve from 'rollup-plugin-node-resolve'
@@ -11,6 +12,7 @@ import postcssImport from 'postcss-import'
 import postcssUrl from 'postcss-url'
 import postcssReporter from 'postcss-browser-reporter'
 import cssnano from 'cssnano'
+import regenerator from 'rollup-plugin-regenerator'
 
 // Added to compile JSX
 import babel from 'rollup-plugin-babel'
@@ -55,6 +57,7 @@ export default {
         cssnano({ autoprefixer: false })
       ]
     }),
+
     // This is required to compile JSX
     babel({
       babelrc: false,
@@ -70,11 +73,13 @@ export default {
         ['transform-react-jsx', { pragma: 'h' }]
       ]
     }),
+    regenerator(),
     resolve({
       jsnext: true
     }),
     commonjs(),
     buble({ jsx: 'h' }),
+    // Uglify supports only es5.
     prod && uglify(),
     dev && livereload('static'),
     dev &&
