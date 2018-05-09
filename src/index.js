@@ -11,12 +11,18 @@ import Navbar from './atomic/atoms/Navbar'
 import Footer from './atomic/atoms/Footer'
 
 // Pages
+import BookPage from './atomic/pages/Book'
 import HomePage from './atomic/pages/Home'
 import AboutPage from './atomic/pages/About'
 import PhotographyPage from './atomic/pages/Photography'
+import GuitarPage from './atomic/pages/Guitar'
+import ContactPage from './atomic/pages/Contact'
 
 // Modules
 import typewriterModule from './store/typewriter'
+import bookModule from './store/book'
+import photographyModule from './store/photo'
+import guitarModule from './store/guitar'
 
 const state = {
   header: 'alextanhongpin',
@@ -24,6 +30,9 @@ const state = {
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
   profileImg: './assets/img/profile.jpg',
   ...typewriterModule.state,
+  ...bookModule.state,
+  ...photographyModule.state,
+  ...guitarModule.state,
   // Register state for @hyperapp/router
   location: location.state,
   links: [
@@ -31,13 +40,25 @@ const state = {
       to: '/',
       label: 'Home'
     },
+    // {
+    //   to: '/about',
+    //   label: 'About'
+    // },
     {
-      to: '/about',
-      label: 'About'
+      to: '/contacts',
+      label: 'Contact'
     },
     {
       to: '/photos',
       label: 'Photo'
+    },
+    {
+      to: '/books',
+      label: 'Book'
+    },
+    {
+      to: '/songs',
+      label: 'Guitar'
     }
   ]
 }
@@ -56,6 +77,9 @@ const view = (state, actions) => (
     <Route path='/' render={HomePage(state, actions)} />
     <Route path='/about' render={AboutPage} />
     <Route path='/photos' render={PhotographyPage} />
+    <Route path='/books' render={BookPage(state, actions)} />
+    <Route path='/songs' render={GuitarPage(state, actions)} />
+    <Route path='/contacts' render={ContactPage(state, actions)} />
 
     <Footer footer={state.footer} />
   </main>

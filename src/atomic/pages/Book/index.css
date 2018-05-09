@@ -1,0 +1,17 @@
+@import '../../../styles/theme.css';
+
+.book-holder {
+  text-align: center;
+}
+
+.book {
+  display: inline-block;
+  margin:  var(--base-line-height) var(--h5);
+  font-weight: 500;
+}
+
+.book i {
+  font-weight: 400;
+  font-size: var(--h6);
+}
+

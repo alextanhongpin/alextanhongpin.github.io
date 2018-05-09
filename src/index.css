@@ -66,6 +66,7 @@ body {
 
 body {
   font-size: var(--h5);
+  line-height: var(--base-line-height);
 }
 h1 {
   font-size: var(--h1);
@@ -99,4 +100,14 @@ h6 {
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
+}
+
+.quote {
+  background: var(--gallery);
+  height: calc(2 * var(--base-line-height));
+  line-height: calc(2 * var(--base-line-height));
+  padding: 0 var(--h5);
+  font-style: italic;
+  color: var(--gray);
+  border-left: 5px solid rgba(0, 0, 0, .25);
 }
