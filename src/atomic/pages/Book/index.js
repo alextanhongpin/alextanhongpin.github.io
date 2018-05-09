@@ -1,16 +1,16 @@
 import { h } from 'hyperapp'
+import Br from '../../atoms/Break'
 import './index.css'
 
 const page = (state, actions) => props => (
   <div class='body'>
     <div class='body-column'>
-      <br />
       <h1>Books I read</h1>
-      <br />
+      <Br />
       <div class='quote'>
         you can't buy happiness but you can buy books ... and that's kind of the same thing
       </div>
-      <br />
+      <Br />
 
       <div class='book-holder'>
         {
@@ -19,9 +19,7 @@ const page = (state, actions) => props => (
         ))
       }
       </div>
-      <br />
-      <br />
-      <br />
+      <Br row={3} />
     </div>
   </div>
 )
