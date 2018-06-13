@@ -64,7 +64,7 @@ export default {
       presets: [
         ['@babel/preset-env', {
           targets: {
-            browser: 'current'
+            browsers: 'last 2 versions'
           },
           modules: false
         }]
