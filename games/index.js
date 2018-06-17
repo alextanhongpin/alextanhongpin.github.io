@@ -1336,10 +1336,7 @@ define("index", ["require", "exports", "core/game", "core/drawable", "utils/obse
         var asteroidFactory = new asteroid_2.AsteroidFactory();
         var o = new observer_1.Observer();
         handleMessage(o);
-        if (isTouchDevice()) {
-            document.getElementById('help').style.display = 'none';
-            handleTouch(o);
-        }
+        isTouchDevice() && handleTouch(o);
         var ship = shipFactory.build(o, width, height);
         var asteroids = Array(10).fill(null).map(function () {
             return asteroidFactory.build(o, width, height);
@@ -1374,32 +1371,35 @@ define("index", ["require", "exports", "core/game", "core/drawable", "utils/obse
             right: document.getElementById('right'),
             shoot: document.getElementById('shoot'),
             teleport: document.getElementById('teleport'),
-            weapon: document.getElementById('weapon')
+            weapon: document.getElementById('weapon'),
+            help: document.getElementById('help')
         };
         Object.values(View).forEach(function (el) {
             el.style.display = 'block';
         });
-        addTouchAndClickEventListener(View.up, function () {
+        View.help.style.display = 'none';
+        onTouch(View.up, function () {
             o.emit('TOUCH_UP');
         });
-        addTouchAndClickEventListener(View.left, function () {
+        onTouch(View.left, function () {
             o.emit('TOUCH_LEFT');
         });
-        addTouchAndClickEventListener(View.right, function () {
+        onTouch(View.right, function () {
             o.emit('TOUCH_RIGHT');
         });
-        addTouchAndClickEventListener(View.shoot, function () {
+        onTouch(View.shoot, function () {
             o.emit('TOUCH_SHOOT');
         });
-        addTouchAndClickEventListener(View.teleport, function () {
+        onTouch(View.teleport, function () {
             o.emit('TOUCH_TELEPORT');
         });
-        addTouchAndClickEventListener(View.weapon, function () {
+        onTouch(View.weapon, function () {
             o.emit('TOUCH_SWAP_WEAPON');
         });
     }
-    function addTouchAndClickEventListener(element, fn) {
-        element.addEventListener('touchstart', function (_evt) {
+    function onTouch(element, fn) {
+        element.addEventListener('touchstart', function (evt) {
+            evt.preventDefault();
             fn && fn();
         }, { passive: true });
     }
