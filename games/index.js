@@ -31,45 +31,17 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
-define("utils/keycode", ["require", "exports"], function (require, exports) {
+define("utils/id", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    var KeyCode;
-    (function (KeyCode) {
-        KeyCode[KeyCode["Enter"] = 13] = "Enter";
-        KeyCode[KeyCode["Left"] = 37] = "Left";
-        KeyCode[KeyCode["Up"] = 38] = "Up";
-        KeyCode[KeyCode["Right"] = 39] = "Right";
-        KeyCode[KeyCode["Down"] = 40] = "Down";
-        KeyCode[KeyCode["Space"] = 32] = "Space";
-        KeyCode[KeyCode["Shift"] = 16] = "Shift";
-        KeyCode[KeyCode["Pause"] = 80] = "Pause";
-    })(KeyCode || (KeyCode = {}));
-    exports.default = KeyCode;
+    var id = 0;
+    function gen() {
+        id++;
+        return id;
+    }
+    exports.default = gen;
 });
-define("utils/math2", ["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var Math2 = (function () {
-        function Math2() {
-        }
-        Math2.thetaToDegree = function (theta) {
-            return theta * Math.PI / 2;
-        };
-        Math2.degreeToTheta = function (degree) {
-            return degree * Math.PI / 180;
-        };
-        Math2.random = function (min, max) {
-            return Math.floor(Math.random() * max) + min;
-        };
-        Math2.angle = function (x1, y1, x2, y2) {
-            return Math.atan2(y2 - y1, x2 - x1);
-        };
-        return Math2;
-    }());
-    exports.default = Math2;
-});
-define("utils/Observer", ["require", "exports"], function (require, exports) {
+define("utils/observer", ["require", "exports"], function (require, exports) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Observer = (function () {
@@ -104,16 +76,6 @@ define("utils/Observer", ["require", "exports"], function (require, exports) {
     }
     exports.makeObserver = makeObserver;
 });
-define("utils/id", ["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    var id = 0;
-    function gen() {
-        id++;
-        return id;
-    }
-    exports.default = gen;
-});
 define("core/drawable", ["require", "exports", "utils/id"], function (require, exports, id_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
@@ -122,17 +84,17 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
     (function (Presentable) {
         Presentable[Presentable["Alien"] = 0] = "Alien";
         Presentable[Presentable["Asteroid"] = 1] = "Asteroid";
-        Presentable[Presentable["Eye"] = 2] = "Eye";
-        Presentable[Presentable["Ship"] = 3] = "Ship";
+        Presentable[Presentable["Circle"] = 2] = "Circle";
+        Presentable[Presentable["Eye"] = 3] = "Eye";
         Presentable[Presentable["HealthBar"] = 4] = "HealthBar";
-        Presentable[Presentable["Circle"] = 5] = "Circle";
-        Presentable[Presentable["Laser"] = 6] = "Laser";
+        Presentable[Presentable["Laser"] = 5] = "Laser";
+        Presentable[Presentable["Ship"] = 6] = "Ship";
     })(Presentable = exports.Presentable || (exports.Presentable = {}));
     var Boundary;
     (function (Boundary) {
-        Boundary[Boundary["Repeat"] = 0] = "Repeat";
-        Boundary[Boundary["Bounded"] = 1] = "Bounded";
-        Boundary[Boundary["None"] = 2] = "None";
+        Boundary[Boundary["Bounded"] = 0] = "Bounded";
+        Boundary[Boundary["None"] = 1] = "None";
+        Boundary[Boundary["Repeat"] = 2] = "Repeat";
     })(Boundary = exports.Boundary || (exports.Boundary = {}));
     function flatten(drawables) {
         return drawables.reduce(function (acc, d) {
@@ -140,6 +102,13 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
         }, []);
     }
     exports.flatten = flatten;
+    function reduce(drawables) {
+        return drawables.reduce(function (acc, m) {
+            acc[m.id] = m;
+            return acc;
+        }, {});
+    }
+    exports.reduce = reduce;
     var Drawable = (function () {
         function Drawable() {
             this.id = id_1.default();
@@ -161,6 +130,11 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
     function checkOutOfBounds(m, boundX, boundY) {
         return m.x > boundX || m.x < 0 || m.y > boundY || m.y < 0;
     }
+    exports.checkOutOfBounds = checkOutOfBounds;
+    function checkAngle(m1, m2) {
+        return Math.atan2(m2.y - m1.y, m2.x - m1.x);
+    }
+    exports.checkAngle = checkAngle;
     function checkCollision(m1, m2) {
         var deltaX = Math.pow(m1.x - m2.x, 2);
         var deltaY = Math.pow(m1.y - m2.y, 2);
@@ -192,12 +166,12 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
                     break;
                 case Boundary.Bounded:
                     if (checkOutOfBounds(m, boundX, boundY)) {
-                        o.emit('bullet:delete', m);
-                        o.emit("bullet:delete:" + m.id, m);
+                        o.emit('body:remove', m);
+                        o.emit("body:remove:" + m.id, m);
                     }
                     break;
             }
-            m.observer && m.observer.emit("update:" + m.id, m);
+            o.emit("update:" + m.id, m);
         };
         Engine.prototype.draw = function (ctx, m) {
             switch (m.type) {
@@ -223,6 +197,8 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
                 case Presentable.Laser:
                     drawLaser(ctx, m.x, m.y, m.theta, m.radius);
                     break;
+                default:
+                    throw new Error("drawError: " + m.type + " is not defined");
             }
         };
         return Engine;
@@ -334,14 +310,20 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
         return 'white';
     }
     function drawLaser(ctx, x, y, theta, radius) {
+        var thetaX = Math.cos(theta);
+        var thetaY = Math.sin(theta);
         ctx.save();
         ctx.translate(x, y);
         ctx.beginPath();
-        var thetaX = Math.cos(theta);
-        var thetaY = Math.sin(theta);
         ctx.moveTo(thetaX * radius, thetaY * radius);
         ctx.lineTo(thetaX * window.innerWidth, thetaY * window.innerWidth);
         ctx.lineWidth = 3;
+        ctx.strokeStyle = _rainbowGradient(ctx);
+        ctx.stroke();
+        ctx.closePath();
+        ctx.restore();
+    }
+    function _rainbowGradient(ctx) {
         var gradient = ctx.createLinearGradient(10, 0, 500, 0);
         gradient.addColorStop(0, 'red');
         gradient.addColorStop(1 / 6, 'orange');
@@ -350,11 +332,30 @@ define("core/drawable", ["require", "exports", "utils/id"], function (require, e
         gradient.addColorStop(4 / 6, 'blue');
         gradient.addColorStop(5 / 6, 'indigo');
         gradient.addColorStop(1, 'violet');
-        ctx.strokeStyle = gradient;
-        ctx.stroke();
-        ctx.closePath();
-        ctx.restore();
+        return gradient;
     }
+});
+define("utils/math2", ["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var Math2 = (function () {
+        function Math2() {
+        }
+        Math2.thetaToDegree = function (theta) {
+            return theta * Math.PI / 2;
+        };
+        Math2.degreeToTheta = function (degree) {
+            return degree * Math.PI / 180;
+        };
+        Math2.random = function (min, max) {
+            return Math.floor(Math.random() * max) + min;
+        };
+        Math2.angle = function (x1, y1, x2, y2) {
+            return Math.atan2(y2 - y1, x2 - x1);
+        };
+        return Math2;
+    }());
+    exports.default = Math2;
 });
 define("movable/bullet", ["require", "exports", "core/drawable"], function (require, exports, drawable_1) {
     "use strict";
@@ -403,10 +404,9 @@ define("movable/bullet", ["require", "exports", "core/drawable"], function (requ
     }
     exports.makeShipBullet = makeShipBullet;
 });
-define("movable/eye", ["require", "exports", "core/drawable", "utils/math2"], function (require, exports, drawable_2, math2_1) {
+define("movable/eye", ["require", "exports", "core/drawable"], function (require, exports, drawable_2) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    math2_1 = __importDefault(math2_1);
     var Eye = (function (_super) {
         __extends(Eye, _super);
         function Eye(o, parentId) {
@@ -415,23 +415,30 @@ define("movable/eye", ["require", "exports", "core/drawable", "utils/math2"], fu
             _this.type = drawable_2.Presentable.Eye;
             _this.observer = o;
             _this.parentId = parentId;
+            _this.events = {
+                UPDATE: "update:" + _this.parentId,
+                EYE: "eye:" + _this.parentId,
+                HEALTH: "health:" + _this.parentId,
+                REMOVE: 'body:remove'
+            };
             _this.setup();
             return _this;
         }
         Eye.prototype.setup = function () {
             var _this = this;
+            var _a = this.events, UPDATE = _a.UPDATE, EYE = _a.EYE, HEALTH = _a.HEALTH, REMOVE = _a.REMOVE;
             var o = this.observer;
-            o.on("update:" + this.parentId, function (m) {
+            o.on(UPDATE, function (m) {
                 _this.x = m.x;
                 _this.y = m.y;
                 _this.velocity = m.velocity;
             });
-            o.on("eye:" + this.parentId, function (m) {
-                _this.theta = math2_1.default.angle(_this.x, _this.y, m.x, m.y);
+            o.on(EYE, function (m) {
+                _this.theta = drawable_2.checkAngle(_this, m);
             });
-            o.on("health:" + this.parentId, function (hp) {
+            o.on(HEALTH, function (hp) {
                 if (!hp) {
-                    o.emit('body:remove', _this.id);
+                    o.emit(REMOVE, _this);
                 }
             });
         };
@@ -452,34 +459,38 @@ define("movable/healthbar", ["require", "exports", "core/drawable"], function (r
             var _this = _super.call(this) || this;
             _this.parentId = parentId;
             _this.type = drawable_3.Presentable.HealthBar;
-            _this.visibleTimeout = 0;
             _this.observer = o;
             _this.hp = hp;
             _this.maxHp = hp;
             _this.isVisible = false;
+            _this.timeout = 0;
+            _this.events = {
+                UPDATE: "update:" + _this.parentId,
+                HEALTH: "health:" + _this.parentId,
+                REMOVE: 'body:remove'
+            };
             _this.setup();
             return _this;
         }
         HealthBar.prototype.setup = function () {
             var _this = this;
+            var _a = this.events, UPDATE = _a.UPDATE, HEALTH = _a.HEALTH, REMOVE = _a.REMOVE;
             var o = this.observer;
-            o.on("update:" + this.parentId, function (m) {
+            o.on(UPDATE, function (m) {
                 _this.x = m.x;
                 _this.y = m.y;
                 _this.velocity = m.velocity;
                 _this.radius = m.radius;
             });
-            o.on("health:" + this.parentId, function (hp) {
+            o.on(HEALTH, function (hp) {
                 _this.isVisible = true;
-                if (_this.visibleTimeout) {
-                    window.clearTimeout(_this.visibleTimeout);
-                }
-                _this.visibleTimeout = window.setTimeout(function () {
+                _this.timeout && window.clearTimeout(_this.timeout);
+                _this.timeout = window.setTimeout(function () {
                     _this.isVisible = false;
                 }, 3000);
                 _this.hp = hp;
                 if (!_this.hp) {
-                    o.emit('body:remove', _this.id);
+                    o.emit(REMOVE, _this);
                 }
             });
         };
@@ -491,10 +502,10 @@ define("movable/healthbar", ["require", "exports", "core/drawable"], function (r
     }
     exports.makeHealthBar = makeHealthBar;
 });
-define("movable/effect", ["require", "exports", "core/drawable", "utils/math2"], function (require, exports, drawable_4, math2_2) {
+define("movable/effect", ["require", "exports", "core/drawable", "utils/math2"], function (require, exports, drawable_4, math2_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    math2_2 = __importDefault(math2_2);
+    math2_1 = __importDefault(math2_1);
     var Particle = (function (_super) {
         __extends(Particle, _super);
         function Particle(x, y, theta, velocity) {
@@ -513,9 +524,9 @@ define("movable/effect", ["require", "exports", "core/drawable", "utils/math2"],
     }(drawable_4.Drawable));
     exports.Particle = Particle;
     function makeParticles(count, posX, posY) {
-        var degree = 360 / count;
+        var radian = 2 * Math.PI / count;
         return Array(count).fill(null).map(function (_, i) {
-            var theta = math2_2.default.degreeToTheta(i * degree);
+            var theta = i * radian;
             var spread = 20;
             var x = posX + spread * Math.cos(theta);
             var y = posY + spread * Math.sin(theta);
@@ -542,91 +553,103 @@ define("movable/effect", ["require", "exports", "core/drawable", "utils/math2"],
     }(drawable_4.Drawable));
     exports.Spark = Spark;
     function makeSparks(count, posX, posY, startTheta) {
-        var degree = 180 / count;
-        var spread = math2_2.default.random(5, 10);
+        var degree = Math.PI / count;
+        var spread = math2_1.default.random(5, 10);
         return Array(count).fill(null).map(function (_, i) {
-            var theta = math2_2.default.degreeToTheta(i * degree - 90) + startTheta;
-            var x = posX + Math.cos(theta) * spread;
-            var y = posY + Math.sin(theta) * spread;
+            var theta = startTheta + (i * degree - Math.PI / 2);
+            var x = posX + spread * Math.cos(theta);
+            var y = posY + spread * Math.sin(theta);
             var velocity = 0.5;
             return new Particle(x, y, theta, velocity);
         });
     }
     exports.makeSparks = makeSparks;
 });
-define("movable/alien", ["require", "exports", "core/drawable", "utils/math2", "movable/bullet", "movable/eye", "movable/healthbar", "movable/effect"], function (require, exports, drawable_5, math2_3, bullet_1, eye_1, healthbar_1, effect_1) {
+define("movable/alien", ["require", "exports", "core/drawable", "utils/math2", "movable/bullet", "movable/eye", "movable/healthbar", "movable/effect"], function (require, exports, drawable_5, math2_2, bullet_1, eye_1, healthbar_1, effect_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    math2_3 = __importDefault(math2_3);
+    math2_2 = __importDefault(math2_2);
     var Alien = (function (_super) {
         __extends(Alien, _super);
-        function Alien(o, x, y, theta) {
+        function Alien(o, x, y, theta, boundX, boundY) {
             var _this = _super.call(this) || this;
             _this.type = drawable_5.Presentable.Alien;
-            _this.eyeTheta = 0;
+            _this.observer = o;
             _this.x = x;
             _this.y = y;
             _this.theta = theta;
-            _this.observer = o;
-            _this.particles = [];
-            _this.radius = 15;
             _this.velocity = 3;
-            _this.teleportTimeout = 0;
-            _this.shootTimeout = 0;
-            _this.flickerTimeout = 0;
             _this.alpha = 1;
             _this.alphaState = false;
+            _this.boundX = boundX;
+            _this.boundY = boundY;
+            _this.eyeTheta = 0;
+            _this.particles = [];
+            _this.radius = 15;
+            _this.timeouts = {};
+            _this.events = {
+                TRACK_EYE: "eye:" + _this.id,
+                UPDATE: "update:" + _this.id,
+                DAMAGE: "damage:" + _this.id,
+                REMOVE: 'body:remove',
+                HEALTH: "health:" + _this.id,
+                ADD: 'body:add'
+            };
             _this.setup();
             return _this;
         }
         Alien.prototype.setup = function () {
             var _this = this;
+            var _a = this.events, DAMAGE = _a.DAMAGE, TRACK_EYE = _a.TRACK_EYE, UPDATE = _a.UPDATE;
             var o = this.observer;
-            this.teleportTimeout = window.setInterval(function () {
+            this.timeouts['teleport'] && window.clearTimeout(this.timeouts['teleport']);
+            this.timeouts['teleport'] = window.setInterval(function () {
                 _this.teleport();
-                _this.shootTimeout = window.setTimeout(function () {
-                    _this.shoot();
-                }, 500);
-                if (_this.shootTimeout) {
-                    window.clearTimeout(_this.shootTimeout);
-                }
-                _this.shootTimeout = window.setTimeout(function () {
-                    _this.shoot();
-                }, 1500);
+                _this.shootProgram(500);
+                _this.shootProgram(1500);
             }, 3000);
-            o.on("update:" + this.id, function () {
+            o.on(UPDATE, function () {
                 _this.updateTeleport();
                 _this.updateFlicker();
             });
-            o.on("eye:" + this.id, function (m) {
-                _this.eyeTheta = math2_3.default.angle(_this.x, _this.y, m.x, m.y);
+            o.on(TRACK_EYE, function (m) {
+                _this.eyeTheta = drawable_5.checkAngle(_this, m);
             });
-            o.on("damage:" + this.id, function (m) {
+            o.on(DAMAGE, function (m) {
                 if (m instanceof bullet_1.Bullet) {
-                    o.emit('bullet:delete', m);
+                    o.emit('body:remove', m);
                 }
-                _this.flicker();
+                _this.flicker(1000);
                 _this.updateHp(m);
             });
         };
-        Alien.prototype.unmount = function () {
+        Alien.prototype.shootProgram = function (duration) {
+            var _this = this;
+            this.timeouts['shoot'] && window.clearTimeout(this.timeouts['shoot']);
+            this.timeouts['shoot'] = window.setTimeout(function () {
+                _this.shoot();
+            }, duration);
+        };
+        Alien.prototype.destroy = function () {
+            var _this = this;
+            var _a = this.events, DAMAGE = _a.DAMAGE, REMOVE = _a.REMOVE;
             var o = this.observer;
-            o.emit('body:remove', this.id);
-            o.emit("particles:delete", this.particles);
-            o.off("damage:" + this.id);
-            window.clearTimeout(this.teleportTimeout);
-            window.clearTimeout(this.shootTimeout);
+            o.emit.apply(o, __spread([REMOVE, this], this.particles));
+            o.off(DAMAGE);
+            Object.keys(this.timeouts)
+                .forEach(function (k) { return window.clearTimeout(_this.timeouts[k]); });
             this.particles = [];
         };
         Alien.prototype.updateTeleport = function () {
             var _this = this;
-            var o = this.observer;
             if (!this.particles.length) {
                 return;
             }
+            var REMOVE = this.events.REMOVE;
+            var o = this.observer;
             this.particles.forEach(function (p) {
                 if (p.radius <= 0) {
-                    o.emit("particles:delete", _this.particles);
+                    o.emit.apply(o, __spread([REMOVE], _this.particles));
                     _this.particles = [];
                 }
                 else {
@@ -636,34 +659,35 @@ define("movable/alien", ["require", "exports", "core/drawable", "utils/math2", "
             });
         };
         Alien.prototype.updateHp = function (m) {
-            var o = this.observer;
+            var HEALTH = this.events.HEALTH;
             this.hp -= m.damage;
             this.hp = Math.max(0, this.hp);
-            o.emit("health:" + this.id, this.hp);
+            this.observer.emit(HEALTH, this.hp);
             if (!this.hp) {
-                this.unmount();
+                this.destroy();
             }
         };
         Alien.prototype.shoot = function () {
-            this.observer.emit('bullet:add', bullet_1.makeAlienBullet(this.x, this.y, this.eyeTheta));
+            var ADD = this.events.ADD;
+            this.observer.emit(ADD, bullet_1.makeAlienBullet(this.x, this.y, this.eyeTheta));
         };
         Alien.prototype.teleport = function () {
+            var _a;
+            var ADD = this.events.ADD;
             if (!this.particles.length) {
                 this.particles = effect_1.makeParticles(12, this.x, this.y);
-                this.observer.emit('particles:add', this.particles);
-                this.x = math2_3.default.random(0, window.innerWidth);
-                this.y = math2_3.default.random(0, window.innerHeight);
+                (_a = this.observer).emit.apply(_a, __spread([ADD], this.particles));
+                this.x = math2_2.default.random(0, this.boundX);
+                this.y = math2_2.default.random(0, this.boundY);
             }
         };
-        Alien.prototype.flicker = function () {
+        Alien.prototype.flicker = function (duration) {
             var _this = this;
             this.isFlickering = true;
-            if (this.flickerTimeout) {
-                window.clearTimeout(this.flickerTimeout);
-            }
-            this.flickerTimeout = window.setTimeout(function () {
+            this.timeouts['flicker'] && window.clearTimeout(this.timeouts['flicker']);
+            this.timeouts['flicker'] = window.setTimeout(function () {
                 _this.isFlickering = false;
-            }, 1000);
+            }, duration);
         };
         Alien.prototype.updateFlicker = function () {
             if (this.isFlickering) {
@@ -693,10 +717,10 @@ define("movable/alien", ["require", "exports", "core/drawable", "utils/math2", "
         function AlienFactory() {
         }
         AlienFactory.prototype.makeAlien = function (o, boundX, boundY) {
-            var x = math2_3.default.random(0, boundX);
-            var y = math2_3.default.random(0, boundY);
-            var theta = math2_3.default.random(0, Math.PI * 2);
-            return new Alien(o, x, y, theta);
+            var x = math2_2.default.random(0, boundX);
+            var y = math2_2.default.random(0, boundY);
+            var theta = math2_2.default.random(0, Math.PI * 2);
+            return new Alien(o, x, y, theta, boundX, boundY);
         };
         AlienFactory.prototype.build = function (o, boundX, boundY) {
             var alien = this.makeAlien(o, boundX, boundY);
@@ -708,30 +732,134 @@ define("movable/alien", ["require", "exports", "core/drawable", "utils/math2", "
     }());
     exports.AlienFactory = AlienFactory;
 });
-define("movable/laser", ["require", "exports", "core/drawable"], function (require, exports, drawable_6) {
+define("movable/asteroid", ["require", "exports", "core/drawable", "utils/math2", "movable/effect", "movable/bullet", "movable/healthbar"], function (require, exports, drawable_6, math2_3, effect_2, bullet_2, healthbar_2) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    math2_3 = __importDefault(math2_3);
+    var Asteroid = (function (_super) {
+        __extends(Asteroid, _super);
+        function Asteroid(o, x, y, theta, velocity, radius, hp) {
+            var _this = _super.call(this) || this;
+            _this.type = drawable_6.Presentable.Asteroid;
+            _this.particles = [];
+            _this.observer = o;
+            _this.x = x;
+            _this.y = y;
+            _this.theta = theta;
+            _this.velocity = velocity;
+            _this.radius = radius;
+            _this.hp = hp;
+            _this.damage = Math.floor(radius / 2);
+            _this.events = {
+                UPDATE: "update:" + _this.id,
+                DAMAGE: "damage:" + _this.id,
+                REMOVE: 'body:remove',
+                ADD: 'body:add',
+                HEALTH: "health:" + _this.id
+            };
+            _this.setup();
+            return _this;
+        }
+        Asteroid.prototype.setup = function () {
+            var _this = this;
+            var _a = this.events, UPDATE = _a.UPDATE, DAMAGE = _a.DAMAGE, REMOVE = _a.REMOVE;
+            var o = this.observer;
+            o.on(UPDATE, function () {
+                _this.updateParticles();
+            });
+            o.on(DAMAGE, function (m) {
+                if (m instanceof bullet_2.Bullet) {
+                    o.emit(REMOVE, m);
+                    _this.collisionSpark(m);
+                }
+                _this.updateHp(m);
+            });
+        };
+        Asteroid.prototype.updateParticles = function () {
+            var _this = this;
+            var REMOVE = this.events.REMOVE;
+            if (!this.particles.length) {
+                return;
+            }
+            this.particles.forEach(function (p) {
+                var _a;
+                if (p.radius <= 0) {
+                    (_a = _this.observer).emit.apply(_a, __spread([REMOVE], _this.particles));
+                    _this.particles = [];
+                }
+                else {
+                    p.radius -= 0.1;
+                    p.radius = Math.max(0, p.radius);
+                }
+            });
+        };
+        Asteroid.prototype.updateHp = function (m) {
+            var _a = this.events, HEALTH = _a.HEALTH, DAMAGE = _a.DAMAGE, REMOVE = _a.REMOVE;
+            var o = this.observer;
+            this.hp -= m.damage;
+            this.hp = Math.max(0, this.hp);
+            o.emit(HEALTH, this.hp);
+            if (!this.hp) {
+                o.emit.apply(o, __spread([REMOVE, this], this.particles));
+                o.off(DAMAGE);
+            }
+        };
+        Asteroid.prototype.collisionSpark = function (m) {
+            var _a;
+            var ADD = this.events.ADD;
+            if (!this.particles.length) {
+                this.particles = effect_2.makeSparks(6, m.x, m.y, drawable_6.checkAngle(this, m));
+                (_a = this.observer).emit.apply(_a, __spread([ADD], this.particles));
+            }
+        };
+        return Asteroid;
+    }(drawable_6.Drawable));
+    exports.Asteroid = Asteroid;
+    var AsteroidFactory = (function () {
+        function AsteroidFactory() {
+        }
+        AsteroidFactory.prototype.makeAsteroid = function (o, boundX, boundY) {
+            var x = math2_3.default.random(0, boundX);
+            var y = math2_3.default.random(0, boundY);
+            var theta = math2_3.default.random(0, Math.PI * 2);
+            var velocity = math2_3.default.random(3, 10) / 10;
+            var radius = math2_3.default.random(20, 30);
+            var hp = math2_3.default.random(60, 80);
+            return new Asteroid(o, x, y, theta, velocity, radius, hp);
+        };
+        AsteroidFactory.prototype.build = function (o, boundX, boundY) {
+            var asteroid = this.makeAsteroid(o, boundX, boundY);
+            var healthBar = healthbar_2.makeHealthBar(o, asteroid.id, asteroid.hp);
+            return [asteroid, healthBar];
+        };
+        return AsteroidFactory;
+    }());
+    exports.AsteroidFactory = AsteroidFactory;
+});
+define("movable/laser", ["require", "exports", "core/drawable"], function (require, exports, drawable_7) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     var Laser = (function (_super) {
         __extends(Laser, _super);
         function Laser(o, parentId, x, y, theta, radius) {
             var _this = _super.call(this) || this;
-            _this.type = drawable_6.Presentable.Laser;
-            _this.boundary = drawable_6.Boundary.None;
+            _this.type = drawable_7.Presentable.Laser;
+            _this.boundary = drawable_7.Boundary.None;
             _this.x = x;
             _this.y = y;
             _this.theta = theta;
             _this.radius = radius;
-            _this.observer = o;
-            _this.observer.on("update:" + parentId, function (m) {
+            _this.damage = 1;
+            var UPDATE = "update:" + parentId;
+            o.on(UPDATE, function (m) {
                 _this.x = m.x;
                 _this.y = m.y;
                 _this.theta = m.theta;
             });
-            _this.damage = 1;
             return _this;
         }
         return Laser;
-    }(drawable_6.Drawable));
+    }(drawable_7.Drawable));
     exports.Laser = Laser;
     function makeLaser(o, parentId, x, y, theta, radius) {
         if (radius === void 0) { radius = 5; }
@@ -739,37 +867,70 @@ define("movable/laser", ["require", "exports", "core/drawable"], function (requi
     }
     exports.makeLaser = makeLaser;
 });
-define("movable/ship", ["require", "exports", "utils/math2", "utils/keycode", "core/drawable", "movable/effect", "movable/bullet", "movable/laser", "movable/healthbar"], function (require, exports, math2_4, keycode_1, drawable_7, effect_2, bullet_2, laser_1, healthbar_2) {
+define("utils/keycode", ["require", "exports"], function (require, exports) {
+    "use strict";
+    Object.defineProperty(exports, "__esModule", { value: true });
+    var KeyCode;
+    (function (KeyCode) {
+        KeyCode[KeyCode["Enter"] = 13] = "Enter";
+        KeyCode[KeyCode["Left"] = 37] = "Left";
+        KeyCode[KeyCode["Up"] = 38] = "Up";
+        KeyCode[KeyCode["Right"] = 39] = "Right";
+        KeyCode[KeyCode["Down"] = 40] = "Down";
+        KeyCode[KeyCode["Space"] = 32] = "Space";
+        KeyCode[KeyCode["Shift"] = 16] = "Shift";
+        KeyCode[KeyCode["Pause"] = 80] = "Pause";
+    })(KeyCode || (KeyCode = {}));
+    exports.default = KeyCode;
+});
+define("movable/ship", ["require", "exports", "utils/math2", "utils/keycode", "core/drawable", "movable/effect", "movable/bullet", "movable/laser", "movable/healthbar"], function (require, exports, math2_4, keycode_1, drawable_8, effect_3, bullet_3, laser_1, healthbar_3) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     math2_4 = __importDefault(math2_4);
     keycode_1 = __importDefault(keycode_1);
+    var WeaponType;
+    (function (WeaponType) {
+        WeaponType[WeaponType["Bullet"] = 0] = "Bullet";
+        WeaponType[WeaponType["Laser"] = 1] = "Laser";
+    })(WeaponType || (WeaponType = {}));
     var Ship = (function (_super) {
         __extends(Ship, _super);
-        function Ship(o, x, y) {
+        function Ship(o, x, y, boundX, boundY) {
             var _this = _super.call(this) || this;
-            _this.type = drawable_7.Presentable.Ship;
+            _this.boundX = boundX;
+            _this.boundY = boundY;
+            _this.type = drawable_8.Presentable.Ship;
             _this.observer = o;
             _this.x = x;
             _this.y = y;
             _this.friction = 0.95;
-            _this.velocity = 5;
+            _this.minVelocity = 1;
+            _this.maxVelocity = 8;
+            _this.velocity = _this.minVelocity;
             _this.theta = 0;
             _this.radius = 15;
-            _this.bullets = 0;
-            _this.weapons = 0;
-            _this.lasers = 0;
-            _this.particles = [];
             _this.alpha = 1;
             _this.alphaState = false;
-            _this.flickerTimeout = 0;
+            _this.bullets = 0;
             _this.invisibilityMode = false;
-            _this.invisibilityTimeout = 0;
+            _this.rotation = math2_4.default.degreeToTheta(10);
+            _this.weapons = WeaponType.Bullet;
+            _this.lasers = 0;
+            _this.particles = [];
+            _this.timeouts = {};
+            _this.events = {
+                UPDATE: "update:" + _this.id,
+                DAMAGE: "damage:" + _this.id,
+                HEALTH: "health:" + _this.id,
+                REMOVE: 'body:remove',
+                ADD: 'body:add',
+                MESSAGE: 'message',
+            };
             _this.setup();
             return _this;
         }
         Ship.prototype.bindEvents = function (evt) {
-            evt.keyCode === keycode_1.default.Up && this.moveForward();
+            evt.keyCode === keycode_1.default.Up && this.accelerate();
             evt.keyCode === keycode_1.default.Left && this.rotateLeft();
             evt.keyCode === keycode_1.default.Right && this.rotateRight();
             evt.keyCode === keycode_1.default.Shift && this.teleport();
@@ -778,43 +939,61 @@ define("movable/ship", ["require", "exports", "utils/math2", "utils/keycode", "c
         };
         Ship.prototype.setup = function () {
             var _this = this;
+            var _a = this.events, UPDATE = _a.UPDATE, DAMAGE = _a.DAMAGE, REMOVE = _a.REMOVE;
+            var o = this.observer;
             this.clickedHandler = this.bindEvents.bind(this);
             document.addEventListener('keydown', this.clickedHandler, false);
-            var o = this.observer;
-            o.on("update:" + this.id, function () {
+            o.on(UPDATE, function () {
                 _this.updateTeleport();
                 _this.updateFlicker();
+                if (_this.velocity < _this.minVelocity) {
+                    _this.velocity = Math.max(_this.minVelocity, _this.velocity);
+                }
             });
-            o.on("damage:" + this.id, function (m) {
-                if (m instanceof bullet_2.Bullet) {
-                    o.emit('bullet:delete', m);
+            o.on(DAMAGE, function (m) {
+                if (m instanceof bullet_3.Bullet) {
+                    o.emit(REMOVE, m);
                 }
                 if (_this.invisibilityMode)
                     return;
-                _this.enterInvisiblityMode();
-                _this.flicker();
+                _this.enterInvisiblityMode(1000);
+                _this.flicker(1000);
                 _this.updateHp(m);
             });
+            o.on('TOUCH_UP', function () {
+                _this.accelerate();
+            });
+            o.on('TOUCH_LEFT', function () {
+                _this.rotateLeft();
+            });
+            o.on('TOUCH_RIGHT', function () {
+                _this.rotateRight();
+            });
+            o.on('TOUCH_TELEPORT', function () {
+                _this.teleport();
+            });
+            o.on('TOUCH_SHOOT', function () {
+                _this.shoot();
+            });
+            o.on('TOUCH_SWAP_WEAPON', function () {
+                _this.switchWeapons();
+            });
         };
-        Ship.prototype.enterInvisiblityMode = function () {
+        Ship.prototype.enterInvisiblityMode = function (duration) {
             var _this = this;
             this.invisibilityMode = true;
-            if (this.invisibilityTimeout) {
-                window.clearTimeout(this.invisibilityTimeout);
-            }
-            this.invisibilityTimeout = window.setTimeout(function () {
+            this.timeouts['invisibility'] && window.clearTimeout(this.timeouts['invisibility']);
+            this.timeouts['invisibility'] = window.setTimeout(function () {
                 _this.invisibilityMode = false;
-            }, 1000);
+            }, duration);
         };
-        Ship.prototype.flicker = function () {
+        Ship.prototype.flicker = function (duration) {
             var _this = this;
             this.isFlickering = true;
-            if (this.flickerTimeout) {
-                window.clearTimeout(this.flickerTimeout);
-            }
-            this.flickerTimeout = window.setTimeout(function () {
+            this.timeouts['flicker'] && window.clearTimeout(this.timeouts['flicker']);
+            this.timeouts['flicker'] = window.setTimeout(function () {
                 _this.isFlickering = false;
-            }, 1000);
+            }, duration);
         };
         Ship.prototype.updateFlicker = function () {
             if (this.isFlickering) {
@@ -838,20 +1017,21 @@ define("movable/ship", ["require", "exports", "utils/math2", "utils/keycode", "c
             }
         };
         Ship.prototype.updateHp = function (m) {
+            var _a = this.events, HEALTH = _a.HEALTH, MESSAGE = _a.MESSAGE;
             var o = this.observer;
             this.hp -= m.damage;
             this.hp = Math.max(0, this.hp);
-            o.emit("health:" + this.id, this.hp);
+            o.emit(HEALTH, this.hp);
             if (!this.hp) {
                 this.unmount();
-                o.emit('message', 'game over, you failed the universe');
+                o.emit(MESSAGE, 'game over, you failed the universe');
             }
         };
         Ship.prototype.unmount = function () {
+            var _a = this.events, REMOVE = _a.REMOVE, DAMAGE = _a.DAMAGE;
             var o = this.observer;
-            o.emit('body:remove', this.id);
-            o.emit("particles:delete", this.particles);
-            o.off("damage:" + this.id);
+            o.emit.apply(o, __spread([REMOVE, this], this.particles));
+            o.off(DAMAGE);
             this.particles = [];
             document.removeEventListener('keydown', this.clickedHandler, false);
         };
@@ -859,23 +1039,25 @@ define("movable/ship", ["require", "exports", "utils/math2", "utils/keycode", "c
             this.weapons++;
             this.weapons = this.weapons % 2;
         };
-        Ship.prototype.moveForward = function () {
-            this.velocity = 5;
+        Ship.prototype.accelerate = function () {
+            this.velocity = this.maxVelocity;
         };
         Ship.prototype.rotateLeft = function () {
-            this.theta -= math2_4.default.degreeToTheta(10);
+            this.theta -= this.rotation;
         };
         Ship.prototype.rotateRight = function () {
-            this.theta += math2_4.default.degreeToTheta(10);
+            this.theta += this.rotation;
         };
         Ship.prototype.updateTeleport = function () {
             var _this = this;
+            var REMOVE = this.events.REMOVE;
             if (!this.particles.length) {
                 return;
             }
             this.particles.forEach(function (p) {
+                var _a;
                 if (p.radius <= 0) {
-                    _this.observer.emit("particles:delete", _this.particles);
+                    (_a = _this.observer).emit.apply(_a, __spread([REMOVE], _this.particles));
                     _this.particles = [];
                 }
                 else {
@@ -885,151 +1067,81 @@ define("movable/ship", ["require", "exports", "utils/math2", "utils/keycode", "c
             });
         };
         Ship.prototype.teleport = function () {
+            var _a;
+            var ADD = this.events.ADD;
             if (!this.particles.length) {
-                this.particles = effect_2.makeParticles(12, this.x, this.y);
-                this.observer.emit('particles:add', this.particles);
-                this.x = math2_4.default.random(0, window.innerWidth);
-                this.y = math2_4.default.random(0, window.innerHeight);
+                this.particles = effect_3.makeParticles(12, this.x, this.y);
+                (_a = this.observer).emit.apply(_a, __spread([ADD], this.particles));
+                this.x = math2_4.default.random(0, this.boundX);
+                this.y = math2_4.default.random(0, this.boundY);
             }
         };
         Ship.prototype.shoot = function () {
-            var _this = this;
-            if (this.weapons === 0) {
-                if (this.bullets < 10) {
-                    var bullet_3 = bullet_2.makeShipBullet(this.x, this.y, this.theta);
-                    this.observer.emit('bullet:add', bullet_3);
-                    this.bullets++;
-                    this.observer.on("bullet:delete:" + bullet_3.id, function (_m) {
-                        _this.bullets--;
-                        _this.observer.off("bullet:delete:" + bullet_3.id);
-                    });
-                }
+            switch (this.weapons) {
+                case WeaponType.Bullet:
+                    this._shootBullet();
+                    break;
+                case WeaponType.Laser:
+                    this._shootLaser(1000);
+                    break;
             }
-            else if (this.weapons === 1) {
-                if (this.lasers < 1) {
-                    var laser_2 = laser_1.makeLaser(this.observer, this.id, this.x, this.y, this.theta, this.radius);
-                    this.observer.emit('bullet:add', laser_2);
-                    this.lasers++;
-                    this.observer.on("bullet:delete:" + laser_2.id, function (_m) {
-                        _this.observer.off("bullet:delete:" + laser_2.id);
-                    });
-                    window.setTimeout(function () {
-                        _this.observer.emit("bullet:delete", laser_2);
-                        _this.lasers--;
-                    }, 1000);
-                }
+        };
+        Ship.prototype._shootBullet = function () {
+            var _this = this;
+            var ADD = this.events.ADD;
+            var o = this.observer;
+            if (this.bullets < 10) {
+                var bullet = bullet_3.makeShipBullet(this.x, this.y, this.theta);
+                var REMOVE_BULLET_1 = "body:remove:" + bullet.id;
+                o.emit(ADD, bullet);
+                this.bullets++;
+                o.on(REMOVE_BULLET_1, function (_m) {
+                    _this.bullets--;
+                    o.off(REMOVE_BULLET_1);
+                });
+            }
+        };
+        Ship.prototype._shootLaser = function (duration) {
+            var _this = this;
+            var _a = this.events, ADD = _a.ADD, REMOVE = _a.REMOVE;
+            var o = this.observer;
+            if (this.lasers < 1) {
+                var laser_2 = laser_1.makeLaser(o, this.id, this.x, this.y, this.theta, this.radius);
+                var REMOVE_LASER_1 = "body:remove:" + laser_2.id;
+                o.emit(ADD, laser_2);
+                this.lasers++;
+                o.on(REMOVE_LASER_1, function (_m) {
+                    _this.lasers--;
+                    o.off(REMOVE_LASER_1);
+                });
+                window.setTimeout(function () {
+                    o.emit(REMOVE, laser_2);
+                }, duration);
             }
         };
         return Ship;
-    }(drawable_7.Drawable));
+    }(drawable_8.Drawable));
     exports.Ship = Ship;
     var ShipFactory = (function () {
         function ShipFactory() {
         }
-        ShipFactory.prototype.makeShip = function (o, x, y) {
-            return new Ship(o, x, y);
+        ShipFactory.prototype.makeShip = function (o, boundX, boundY) {
+            return new Ship(o, boundX / 2, boundY / 2, boundX, boundY);
         };
         ShipFactory.prototype.build = function (o, boundX, boundY) {
             var ship = this.makeShip(o, boundX / 2, boundY / 2);
-            var healthBar = healthbar_2.makeHealthBar(o, ship.id, 100);
+            var healthBar = healthbar_3.makeHealthBar(o, ship.id, 100);
             return [ship, healthBar];
         };
         return ShipFactory;
     }());
     exports.ShipFactory = ShipFactory;
 });
-define("movable/asteroid", ["require", "exports", "core/drawable", "utils/math2", "movable/effect", "movable/bullet", "movable/healthbar"], function (require, exports, drawable_8, math2_5, effect_3, bullet_4, healthbar_3) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    math2_5 = __importDefault(math2_5);
-    var Asteroid = (function (_super) {
-        __extends(Asteroid, _super);
-        function Asteroid(o, x, y, theta, velocity, radius, hp) {
-            var _this = _super.call(this) || this;
-            _this.type = drawable_8.Presentable.Asteroid;
-            _this.particles = [];
-            _this.observer = o;
-            _this.x = x;
-            _this.y = y;
-            _this.theta = theta;
-            _this.velocity = velocity;
-            _this.radius = radius;
-            _this.hp = hp;
-            _this.damage = radius / 2;
-            _this.setup();
-            return _this;
-        }
-        Asteroid.prototype.setup = function () {
-            var _this = this;
-            this.observer.on("update:" + this.id, function () {
-                if (!_this.particles.length) {
-                    return;
-                }
-                _this.particles.forEach(function (p) {
-                    if (p.radius <= 0) {
-                        _this.observer.emit("particles:delete", _this.particles);
-                        _this.particles = [];
-                    }
-                    else {
-                        p.radius -= 0.1;
-                        p.radius = Math.max(0, p.radius);
-                    }
-                });
-            });
-            this.observer.on("damage:" + this.id, function (m) {
-                if (m instanceof bullet_4.Bullet) {
-                    _this.observer.emit('bullet:delete', m);
-                    _this.collisionSpark(_this.x, _this.y, m.x, m.y);
-                }
-                _this.updateHp(m);
-            });
-        };
-        Asteroid.prototype.updateHp = function (m) {
-            var o = this.observer;
-            this.hp -= m.damage;
-            this.hp = Math.max(0, this.hp);
-            o.emit("health:" + this.id, this.hp);
-            if (!this.hp) {
-                o.emit('body:remove', this.id);
-                o.emit("particles:delete", this.particles);
-                o.off("damage:" + this.id);
-            }
-        };
-        Asteroid.prototype.collisionSpark = function (x1, y1, x2, y2) {
-            if (!this.particles.length) {
-                this.particles = effect_3.makeSparks(6, x2, y2, math2_5.default.angle(x1, y1, x2, y2));
-                this.observer.emit('particles:add', this.particles);
-            }
-        };
-        return Asteroid;
-    }(drawable_8.Drawable));
-    exports.Asteroid = Asteroid;
-    var AsteroidFactory = (function () {
-        function AsteroidFactory() {
-        }
-        AsteroidFactory.prototype.makeAsteroid = function (o, boundX, boundY) {
-            var x = math2_5.default.random(0, boundX);
-            var y = math2_5.default.random(0, boundY);
-            var theta = math2_5.default.random(0, Math.PI * 2);
-            var velocity = math2_5.default.random(3, 10) / 10;
-            var radius = math2_5.default.random(20, 30);
-            var hp = math2_5.default.random(60, 80);
-            return new Asteroid(o, x, y, theta, velocity, radius, hp);
-        };
-        AsteroidFactory.prototype.build = function (o, boundX, boundY) {
-            var asteroid = this.makeAsteroid(o, boundX, boundY);
-            var healthBar = healthbar_3.makeHealthBar(o, asteroid.id, asteroid.hp);
-            return [asteroid, healthBar];
-        };
-        return AsteroidFactory;
-    }());
-    exports.AsteroidFactory = AsteroidFactory;
-});
-define("core/game", ["require", "exports", "utils/keycode", "utils/math2", "utils/Observer", "core/drawable", "movable/alien", "movable/ship", "movable/asteroid", "movable/bullet", "movable/laser"], function (require, exports, keycode_2, math2_6, Observer_1, drawable_9, alien_1, ship_1, asteroid_1, bullet_5, laser_3) {
+define("core/game", ["require", "exports", "core/drawable", "movable/alien", "movable/bullet", "movable/asteroid", "movable/laser", "movable/ship", "utils/keycode", "utils/math2", "utils/observer"], function (require, exports, drawable_9, alien_1, bullet_4, asteroid_1, laser_3, ship_1, keycode_2, math2_5, Observer_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     keycode_2 = __importDefault(keycode_2);
-    math2_6 = __importDefault(math2_6);
+    math2_5 = __importDefault(math2_5);
     var messages = {
         alienAttack: [
             'oopps, that must hurt real bad',
@@ -1061,44 +1173,56 @@ define("core/game", ["require", "exports", "utils/keycode", "utils/math2", "util
             this.canvas = canvas;
             this.ctx = this.canvas.getContext('2d');
             this.engine = new drawable_9.Engine();
+            this.events = {
+                ADD: 'body:add',
+                REMOVE: 'body:remove',
+                MESSAGE: 'message'
+            };
+            this.bindEvents();
         }
-        Game.prototype.setup = function () {
+        Game.prototype.bindEvents = function () {
             var _this = this;
-            if (this.isSetup) {
-                return this;
-            }
             document.addEventListener('keydown', function (evt) {
                 if (evt.keyCode === keycode_2.default.Pause) {
                     _this.pause();
                 }
             });
+        };
+        Game.prototype._setup = function () {
+            var _this = this;
+            var _a = this.events, ADD = _a.ADD, REMOVE = _a.REMOVE;
             var o = this.observer;
-            o.on('bullet:add', function (m) {
-                _this.drawables[m.id] = m;
-            });
-            o.on('bullet:delete', function (m) {
-                if (_this.drawables[m.id]) {
-                    delete _this.drawables[m.id];
-                    o.emit("bullet:delete:" + m.id, true);
+            o.on(ADD, function () {
+                var drawables = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    drawables[_i] = arguments[_i];
                 }
-                else {
-                    o.emit("bullet:delete:" + m.id, false);
-                }
-            });
-            o.on('particles:add', function (metas) {
-                metas.forEach(function (m) {
-                    _this.drawables[m.id] = m;
+                drawables.forEach(function (d) {
+                    _this.drawables[d.id] = d;
                 });
             });
-            o.on('particles:delete', function (metas) {
-                metas.forEach(function (m) {
-                    delete _this.drawables[m.id];
+            o.on(REMOVE, function () {
+                var drawables = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    drawables[_i] = arguments[_i];
+                }
+                drawables.forEach(function (d) {
+                    var REMOVE_ID = "body:remove:" + d.id;
+                    if (_this.drawables[d.id]) {
+                        delete _this.drawables[d.id];
+                        o.emit(REMOVE_ID, true);
+                    }
+                    else {
+                        o.emit(REMOVE_ID, false);
+                    }
                 });
             });
-            o.on('body:remove', function (id) {
-                delete _this.drawables[id];
-            });
-            this.isSetup = true;
+        };
+        Game.prototype.setup = function () {
+            if (!this.isSetup) {
+                this._setup();
+                this.isSetup = true;
+            }
             return this;
         };
         Game.prototype.setDrawables = function () {
@@ -1106,10 +1230,7 @@ define("core/game", ["require", "exports", "utils/keycode", "utils/math2", "util
             for (var _i = 0; _i < arguments.length; _i++) {
                 drawables[_i] = arguments[_i];
             }
-            this.drawables = drawables.reduce(function (acc, m) {
-                acc[m.id] = m;
-                return acc;
-            }, {});
+            this.drawables = drawable_9.reduce(drawables);
             return this;
         };
         Game.prototype.setObserver = function (observer) {
@@ -1130,58 +1251,75 @@ define("core/game", ["require", "exports", "utils/keycode", "utils/math2", "util
             return this;
         };
         Game.prototype.draw = function () {
-            var _this = this;
-            var o = this.observer;
             this.ctx.save();
             this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            this._draw();
+            this.requestId = window.requestAnimationFrame(this.draw.bind(this));
+        };
+        Game.prototype._draw = function () {
+            var _this = this;
+            var MESSAGE = this.events.MESSAGE;
+            var _a = this, o = _a.observer, e = _a.engine, ctx = _a.ctx;
+            var _b = this.canvas, width = _b.width, height = _b.height;
             var drawables = Object.entries(this.drawables);
+            if (drawables.length === 1 && drawables[0] instanceof ship_1.Ship) {
+                o.emit(MESSAGE, 'you saved the earth, again');
+            }
             drawables.forEach(function (_a) {
-                var _b = __read(_a, 2), _id = _b[0], m1 = _b[1];
-                _this.engine.draw(_this.ctx, m1);
-                _this.engine.update(m1, window.innerWidth, window.innerHeight, _this.observer);
+                var _b = __read(_a, 2), id1 = _b[0], m1 = _b[1];
+                e.draw(ctx, m1);
+                e.update(m1, width, height, o);
                 drawables.forEach(function (_a) {
-                    var _b = __read(_a, 2), __id = _b[0], m2 = _b[1];
-                    if (m1 instanceof ship_1.Ship && m2 instanceof alien_1.Alien) {
-                        m1.observer.emit("eye:" + m2.id, m1);
+                    var _b = __read(_a, 2), id2 = _b[0], m2 = _b[1];
+                    if (id1 === id2) {
+                        return;
                     }
-                    if (m1 instanceof bullet_5.ShipBullet && m2 instanceof asteroid_1.Asteroid) {
-                        if (drawable_9.checkCollision(m1, m2)) {
-                            m2.observer.emit("damage:" + m2.id, m1);
-                            o.emit('message', messages.attackAsteroid[math2_6.default.random(0, messages.attackAsteroid.length)]);
-                        }
-                    }
-                    if (m1 instanceof bullet_5.ShipBullet && m2 instanceof alien_1.Alien) {
-                        if (drawable_9.checkCollision(m1, m2)) {
-                            m2.observer.emit("damage:" + m2.id, m1);
-                            o.emit('message', messages.attackAlien[math2_6.default.random(0, messages.attackAlien.length)]);
-                        }
-                    }
-                    if (m1 instanceof bullet_5.AlienBullet && m2 instanceof ship_1.Ship) {
-                        if (drawable_9.checkCollision(m1, m2)) {
-                            m2.observer.emit("damage:" + m2.id, m1);
-                            o.emit('message', messages.alienAttack[math2_6.default.random(0, messages.alienAttack.length)]);
-                        }
-                    }
-                    if (m1 instanceof asteroid_1.Asteroid && m2 instanceof ship_1.Ship) {
-                        if (drawable_9.checkCollision(m1, m2)) {
-                            m2.observer.emit("damage:" + m2.id, m1);
-                            o.emit('message', messages.asteroidCollide[math2_6.default.random(0, messages.asteroidCollide.length)]);
-                        }
-                    }
-                    if (m1 instanceof laser_3.Laser && (m2 instanceof asteroid_1.Asteroid || m2 instanceof alien_1.Alien)) {
-                        if (drawable_9.checkLaserCollision(m1, m2)) {
-                            m2.observer.emit("damage:" + m2.id, m1);
-                        }
-                    }
+                    _this._checkCollision(o, m1, m2);
                 });
             });
-            this.requestId = window.requestAnimationFrame(this.draw.bind(this));
+        };
+        Game.prototype._checkCollision = function (o, m1, m2) {
+            var MESSAGE = this.events.MESSAGE;
+            var DAMAGE = "damage:" + m2.id;
+            var TRACK_EYE = "eye:" + m2.id;
+            if (m1 instanceof ship_1.Ship && m2 instanceof alien_1.Alien) {
+                o.emit(TRACK_EYE, m1);
+            }
+            if (m1 instanceof bullet_4.ShipBullet && m2 instanceof asteroid_1.Asteroid) {
+                if (drawable_9.checkCollision(m1, m2)) {
+                    o.emit(DAMAGE, m1);
+                    o.emit(MESSAGE, messages.attackAsteroid[math2_5.default.random(0, messages.attackAsteroid.length)]);
+                }
+            }
+            if (m1 instanceof bullet_4.ShipBullet && m2 instanceof alien_1.Alien) {
+                if (drawable_9.checkCollision(m1, m2)) {
+                    o.emit(DAMAGE, m1);
+                    o.emit(MESSAGE, messages.attackAlien[math2_5.default.random(0, messages.attackAlien.length)]);
+                }
+            }
+            if (m1 instanceof bullet_4.AlienBullet && m2 instanceof ship_1.Ship) {
+                if (drawable_9.checkCollision(m1, m2)) {
+                    o.emit(DAMAGE, m1);
+                    o.emit(MESSAGE, messages.alienAttack[math2_5.default.random(0, messages.alienAttack.length)]);
+                }
+            }
+            if (m1 instanceof asteroid_1.Asteroid && m2 instanceof ship_1.Ship) {
+                if (drawable_9.checkCollision(m1, m2)) {
+                    o.emit(DAMAGE, m1);
+                    o.emit(MESSAGE, messages.asteroidCollide[math2_5.default.random(0, messages.asteroidCollide.length)]);
+                }
+            }
+            if (m1 instanceof laser_3.Laser && (m2 instanceof asteroid_1.Asteroid || m2 instanceof alien_1.Alien)) {
+                if (drawable_9.checkLaserCollision(m1, m2)) {
+                    o.emit(DAMAGE, m1);
+                }
+            }
         };
         return Game;
     }());
     exports.default = Game;
 });
-define("index", ["require", "exports", "core/game", "core/drawable", "utils/Observer", "movable/alien", "movable/ship", "movable/asteroid"], function (require, exports, game_1, drawable_10, observer_1, alien_2, ship_2, asteroid_2) {
+define("index", ["require", "exports", "core/game", "core/drawable", "utils/observer", "movable/alien", "movable/ship", "movable/asteroid"], function (require, exports, game_1, drawable_10, observer_1, alien_2, ship_2, asteroid_2) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
     game_1 = __importDefault(game_1);
@@ -1190,27 +1328,18 @@ define("index", ["require", "exports", "core/game", "core/drawable", "utils/Obse
         var _a;
         var width = window.innerWidth;
         var height = window.innerHeight;
-        var InfoView = document.getElementById('info');
-        var messageTimeout;
-        var o = new observer_1.Observer();
-        o.on('message', function (msg) {
-            if (InfoView.innerHTML !== '') {
-                return;
-            }
-            InfoView.innerHTML = msg;
-            if (messageTimeout) {
-                window.clearTimeout(messageTimeout);
-            }
-            messageTimeout = window.setTimeout(function () {
-                InfoView.innerHTML = '';
-            }, 3000);
-        });
         var canvas = document.getElementById('canvas');
         canvas.width = width;
         canvas.height = height;
         var alienFactory = new alien_2.AlienFactory();
         var shipFactory = new ship_2.ShipFactory();
         var asteroidFactory = new asteroid_2.AsteroidFactory();
+        var o = new observer_1.Observer();
+        handleMessage(o);
+        if (isTouchDevice()) {
+            document.getElementById('help').style.display = 'none';
+            handleTouch(o);
+        }
         var ship = shipFactory.build(o, width, height);
         var asteroids = Array(10).fill(null).map(function () {
             return asteroidFactory.build(o, width, height);
@@ -1223,16 +1352,66 @@ define("index", ["require", "exports", "core/game", "core/drawable", "utils/Obse
             .setObserver(o)).setDrawables.apply(_a, __spread(ship, drawable_10.flatten(asteroids), drawable_10.flatten(aliens))).setup()
             .start();
     })();
-});
-define("utils/mixin", ["require", "exports"], function (require, exports) {
-    "use strict";
-    Object.defineProperty(exports, "__esModule", { value: true });
-    function applyMixins(derivedCtor, baseCtors) {
-        baseCtors.forEach(function (baseCtor) {
-            Object.getOwnPropertyNames(baseCtor.prototype).forEach(function (name) {
-                derivedCtor.prototype[name] = baseCtor.prototype[name];
-            });
+    function handleMessage(o) {
+        var messageView = document.getElementById('message');
+        var messageTimeout;
+        var MESSAGE = 'message';
+        o.on(MESSAGE, function (msg) {
+            if (messageView.innerHTML !== '') {
+                return;
+            }
+            messageView.innerHTML = msg;
+            messageTimeout && window.clearTimeout(messageTimeout);
+            messageTimeout = window.setTimeout(function () {
+                messageView.innerHTML = '';
+            }, 3000);
         });
     }
-    exports.applyMixins = applyMixins;
+    function handleTouch(o) {
+        var View = {
+            up: document.getElementById('up'),
+            left: document.getElementById('left'),
+            right: document.getElementById('right'),
+            shoot: document.getElementById('shoot'),
+            teleport: document.getElementById('teleport'),
+            weapon: document.getElementById('weapon')
+        };
+        Object.values(View).forEach(function (el) {
+            el.style.display = 'block';
+        });
+        addTouchAndClickEventListener(View.up, function () {
+            o.emit('TOUCH_UP');
+        });
+        addTouchAndClickEventListener(View.left, function () {
+            o.emit('TOUCH_LEFT');
+        });
+        addTouchAndClickEventListener(View.right, function () {
+            o.emit('TOUCH_RIGHT');
+        });
+        addTouchAndClickEventListener(View.shoot, function () {
+            o.emit('TOUCH_SHOOT');
+        });
+        addTouchAndClickEventListener(View.teleport, function () {
+            o.emit('TOUCH_TELEPORT');
+        });
+        addTouchAndClickEventListener(View.weapon, function () {
+            o.emit('TOUCH_SWAP_WEAPON');
+        });
+    }
+    function addTouchAndClickEventListener(element, fn) {
+        element.addEventListener('touchstart', function (_evt) {
+            fn && fn();
+        }, { passive: true });
+    }
+    function isTouchDevice() {
+        var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+        var mq = function (query) {
+            return window.matchMedia(query).matches;
+        };
+        if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+            return true;
+        }
+        var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+        return mq(query);
+    }
 });
