@@ -36,10 +36,6 @@ const state = Object.assign({}, {
       to: '/',
       label: 'Home'
     },
-    // {
-    //   to: '/about',
-    //   label: 'About'
-    // },
     {
       to: '/contacts',
       label: 'Contact'
@@ -75,7 +71,7 @@ const view = (state, actions) => (
 
     <Route path='/' render={HomePage(state, actions)} />
     <Route path='/about' render={AboutPage} />
-    <Route path='/photos' render={PhotographyPage} />
+    <Route parent path='/photos' render={PhotographyPage(state, actions)} />
     <Route path='/books' render={BookPage(state, actions)} />
     <Route path='/songs' render={GuitarPage(state, actions)} />
     <Route path='/contacts' render={ContactPage(state, actions)} />
