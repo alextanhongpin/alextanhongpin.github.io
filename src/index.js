@@ -28,7 +28,7 @@ const state = Object.assign({}, {
   header: 'alextanhongpin',
   username: 'Alex Tan',
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
-  profileImg: './assets/img/profile.jpg',
+  profileImg: '/assets/img/profile.jpg',
   // Register state for @hyperapp/router
   location: location.state,
   links: [
@@ -61,8 +61,10 @@ guitarModule.state)
 
 const actions = Object.assign({}, {
   // Register actions for @hyperapp/router
-  location: location.actions
-}, typewriterModule.actions)
+  location: location.actions,
+  ...typewriterModule.actions,
+  ...photographyModule.actions
+})
 
 const view = (state, actions) => (
   <main class='main'>

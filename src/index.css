@@ -69,32 +69,32 @@ body, p {
   line-height: calc(1 * var(--base-line-height));
 }
 
-h1 {
+h1, .h1 {
   font-size: var(--h1);
   line-height: calc(4 * var(--base-line-height));
 }
 
-h2 {
+h2, .h2 {
   font-size: var(--h2);
   line-height: calc(4 * var(--base-line-height));
 }
 
-h3 {
+h3, .h3 {
   font-size: var(--h3);
   line-height: calc(2 * var(--base-line-height));
 }
 
-h4 {
+h4, .h4 {
   font-size: var(--h4);
   line-height: calc(2 * var(--base-line-height));
 }
 
-h5 {
+h5, .h5 {
   font-size: var(--h5);
   line-height: calc(1 * var(--base-line-height));
 }
 
-h6 {
+h6, .h6 {
   font-size: var(--h6);
   line-height: calc(1 * var(--base-line-height));
 }
