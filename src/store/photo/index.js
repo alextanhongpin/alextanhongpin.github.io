@@ -1,3 +1,7 @@
+import singaporeNdp from './singapore-national-day-parade'
+import singaporeRandom from './singapore-random'
+import singaporeClarkeQuay from './singapore-clarke-quay'
+import klLife from './kl-life'
 
 export default {
   state: {
@@ -149,6 +153,38 @@ export default {
           { name: 'DSCF2776.jpg', iso: 320, shutterSpeed: '1/64', 'dof': 1.4 },
           { name: 'DSCF2777.jpg', iso: 500, shutterSpeed: '1/64', 'dof': 1.4 },
           { name: 'DSCF2778.jpg', iso: 400, shutterSpeed: '1/64', 'dof': 1.4 }],
+        cameraModel: 'Fujifilm XE-1',
+        lensModel: '35 mm f/1.4'
+      },
+      'singapore-ndp-2018': {
+        heading: 'National Day Parade Singapore',
+        subheading: '9 August 2018, I was there',
+        folderPath: '/assets/img/photography/08-ndp-singapore/',
+        images: singaporeNdp,
+        cameraModel: 'Fujifilm XE-1',
+        lensModel: '35 mm f/1.4'
+      },
+      'kl-life': {
+        heading: 'KL Tech Life',
+        subheading: 'Google I/O, Magic and buffet....',
+        folderPath: '/assets/img/photography/11-kl-life/',
+        images: klLife,
+        cameraModel: 'Fujifilm XE-1',
+        lensModel: '35 mm f/1.4'
+      },
+      'singapore-random': {
+        heading: 'Around Singapore',
+        subheading: 'Chinatown, Downtown, etc',
+        folderPath: '/assets/img/photography/09-singapore-chinatown/',
+        images: singaporeRandom,
+        cameraModel: 'Fujifilm XE-1',
+        lensModel: '35 mm f/1.4'
+      },
+      'singapore-clarke-quay': {
+        heading: 'Clarke Quay Singapore',
+        subheading: 'evening walk here',
+        folderPath: '/assets/img/photography/10-singapore-clarke-quay/',
+        images: singaporeClarkeQuay,
         cameraModel: 'Fujifilm XE-1',
         lensModel: '35 mm f/1.4'
       }

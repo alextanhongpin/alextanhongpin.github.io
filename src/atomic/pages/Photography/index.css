@@ -28,13 +28,16 @@
 	z-index: 1000;
 	text-shadow: 1px 1px 1px white;
 }
-
 .photo-src {
 	transition: .174s all ease-out;
 	border: var(--h8) solid white;
 
 	/* Hardcode for odd rules */
 	grid-column: 1 / 2;
+
+
+	max-width: 480px;
+	width: 100%;
 }
 
 .photo-grid:nth-child(even) .photo-src {
@@ -48,6 +51,7 @@
 	opacity: 0;
 	transform: rotateZ(-6deg) translateY(-32px);
 	animation: rotate100 .5s .25s ease-out forwards;
+	height: auto;
 }
 
 @keyframes rotate100 {
@@ -199,9 +203,9 @@
 	justify-content: center;
 	align-content: center;
 }
-.lightbox img {
-	width: 100%;
-	height: auto;
+.lightbox-preview {
+	width: 100vw;
+	height: 100vh;
 }
 .lightbox-close {
 	cursor: pointer;

@@ -25,9 +25,9 @@ const Album = (state, actions) => ({ match }) => {
             </div>
             <caption class='img-caption h6'>
               <span><b>{cameraModel}</b> with <i>{lensModel}</i></span>
-              <span>{it.dof}</span>
-              <span>{it.shutterSpeed}</span>
-              <span>{it.iso}</span>
+              <span>{it.dof.includes('f/') ? it.dof : 'f/' + it.dof}</span>
+              <span>{it.shutterSpeed.includes('sec') ? it.shutterSpeed : it.shutterSpeed + ' sec'}</span>
+              <span>ISO {it.iso}</span>
             </caption>
           </div>
         ))
@@ -49,6 +49,11 @@ const MainSection = ({ match }) => (
       <img class='photo-src' src='/assets/img/photography/02-malaysia/DSCF2336_small.jpg' />
     </Link>
 
+    <Link to='/photos/kl-life' class='photo-grid photo-500'>
+      <div class='photo-caption'>KL Life</div>
+      <img class='photo-src' src='/assets/img/photography/11-kl-life/DSCF3511.jpg' />
+    </Link>
+
     <Link to='/photos/danboard' class='photo-grid photo-300'>
       <div class='photo-caption'>Danboard</div>
       <img class='photo-src' src='/assets/img/photography/06-danboard/IMG_4735_edited_small.jpg' />
@@ -59,17 +64,34 @@ const MainSection = ({ match }) => (
       <img class='photo-src' src='/assets/img/photography/07-preiser_figure/06_small.jpg' />
     </Link>
 
-    <Link to='/photos/berlin' class='photo-grid photo-500'>
+    <Link to='/photos/berlin' class='photo-grid photo-300'>
       <div class='photo-caption'>Berlin</div>
       <img class='photo-src' src='/assets/img/photography/05-berlin_trip/DSCF2626_small.jpeg' />
     </Link>
+
+    <Link to='/photos/singapore-ndp-2018' class='photo-grid photo-500'>
+      <div class='photo-caption'>NDP Singapore, 2018</div>
+      <img class='photo-src' src='/assets/img/photography/08-ndp-singapore/DSCF3973.jpg' />
+    </Link>
+
+    <Link to='/photos/singapore-clarke-quay' class='photo-grid photo-400'>
+      <div class='photo-caption'>Clarke Quay, Singapore</div>
+      <img class='photo-src' src='/assets/img/photography/10-singapore-clarke-quay/DSCF3677.jpg' />
+    </Link>
+
+    <Link to='/photos/singapore-clarke-quay' class='photo-grid photo-500'>
+      <div class='photo-caption'>Singapore Life</div>
+      <img class='photo-src' src='/assets/img/photography/09-singapore-chinatown/DSCF3734.jpg' />
+    </Link>
+
   </div>
 )
 
 const Lightbox = (state, actions) => () => (
   <div class='lightbox'>
     <div class='lightbox-close' onclick={() => actions.hideLightbox()}>&times;</div>
-    <img src={state.lightbox.src} />
+    <div class='lightbox-preview' style={{background: `url(${state.lightbox.src}) center center no-repeat / contain`}} />
+    {/* <img src={state.lightbox.src} /> */}
   </div>
 )
 
