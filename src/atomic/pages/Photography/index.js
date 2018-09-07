@@ -4,7 +4,7 @@ import './index.css'
 
 const Album = (state, actions) => ({ match }) => {
   let album = state.photos[match.params.album]
-  let {images, folderPath, cameraModel, lensModel, heading, subheading} = album
+  let { images, folderPath, cameraModel, lensModel, heading, subheading } = album
   return (<div>
     <div>
       <Link to='/photos'>Back to Albums</Link>
@@ -39,58 +39,74 @@ const Album = (state, actions) => ({ match }) => {
 // Name must be CamelCase
 const MainSection = ({ match }) => (
   <div class='photo-holder'>
-    <Link to='/photos/christmas-market' class='photo-grid photo-100'>
-      <div class='photo-caption'>Christmas Market 2015</div>
-      <img class='photo-src' src='/assets/img/photography/01-christmas_market/DSCF2052_small.jpg' />
+    <Link
+      to='/photos/christmas-market'
+      data-title='Christmas Market 2015'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/01-christmas_market/DSCF2052_small.jpg' />
     </Link>
 
-    <Link to='/photos/malaysia' class='photo-grid photo-200'>
-      <div class='photo-caption'>Kuala Lumpur</div>
-      <img class='photo-src' src='/assets/img/photography/02-malaysia/DSCF2336_small.jpg' />
+    <Link
+      to='/photos/malaysia'
+      data-title='Kuala Lumpur'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/02-malaysia/DSCF2336_small.jpg' />
     </Link>
 
-    <Link to='/photos/kl-life' class='photo-grid photo-500'>
-      <div class='photo-caption'>KL Life</div>
-      <img class='photo-src' src='/assets/img/photography/11-kl-life/DSCF3511.jpg' />
+    <Link
+      to='/photos/kl-life'
+      data-title='KL Life'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/11-kl-life/DSCF3511.jpg' />
     </Link>
 
-    <Link to='/photos/danboard' class='photo-grid photo-300'>
-      <div class='photo-caption'>Danboard</div>
-      <img class='photo-src' src='/assets/img/photography/06-danboard/IMG_4735_edited_small.jpg' />
+    <Link
+      to='/photos/danboard'
+      data-title='Danboard'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/06-danboard/IMG_4735_edited_small.jpg' />
     </Link>
 
-    <Link to='/photos/preiser-figure' class='photo-grid photo-400'>
-      <div class='photo-caption'>Preiser Figure</div>
-      <img class='photo-src' src='/assets/img/photography/07-preiser_figure/06_small.jpg' />
+    <Link
+      to='/photos/preiser-figure'
+      data-title='Preiser Figure'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/07-preiser_figure/06_small.jpg' />
     </Link>
 
-    <Link to='/photos/berlin' class='photo-grid photo-300'>
-      <div class='photo-caption'>Berlin</div>
-      <img class='photo-src' src='/assets/img/photography/05-berlin_trip/DSCF2626_small.jpeg' />
+    <Link to='/photos/berlin'
+      data-title='Berlin'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/05-berlin_trip/DSCF2626_small.jpeg' />
     </Link>
 
-    <Link to='/photos/singapore-ndp-2018' class='photo-grid photo-500'>
-      <div class='photo-caption'>NDP Singapore, 2018</div>
-      <img class='photo-src' src='/assets/img/photography/08-ndp-singapore/DSCF3973.jpg' />
+    <Link
+      to='/photos/singapore-ndp-2018'
+      data-title='NDP Singapore, 2018'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/08-ndp-singapore/DSCF3973.jpg' />
     </Link>
 
-    <Link to='/photos/singapore-clarke-quay' class='photo-grid photo-400'>
-      <div class='photo-caption'>Clarke Quay, Singapore</div>
-      <img class='photo-src' src='/assets/img/photography/10-singapore-clarke-quay/DSCF3677.jpg' />
+    <Link
+      to='/photos/singapore-clarke-quay'
+      data-title='Clarke Quay, Singapore'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/10-singapore-clarke-quay/DSCF3677.jpg' />
     </Link>
 
-    <Link to='/photos/singapore-clarke-quay' class='photo-grid photo-500'>
-      <div class='photo-caption'>Singapore Life</div>
-      <img class='photo-src' src='/assets/img/photography/09-singapore-chinatown/DSCF3734.jpg' />
+    <Link
+      to='/photos/singapore-clarke-quay'
+      data-title='Singapore Life'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/09-singapore-chinatown/DSCF3734.jpg' />
     </Link>
-
   </div>
 )
 
 const Lightbox = (state, actions) => () => (
   <div class='lightbox'>
     <div class='lightbox-close' onclick={() => actions.hideLightbox()}>&times;</div>
-    <div class='lightbox-preview' style={{background: `url(${state.lightbox.src}) center center no-repeat / contain`}} />
+    <div class='lightbox-preview' style={{ background: `url(${state.lightbox.src}) center center no-repeat / contain` }} />
     {/* <img src={state.lightbox.src} /> */}
   </div>
 )
@@ -101,9 +117,9 @@ const page = (state, actions) => ({ match }) => (
       <br />
       <br />
       <br />
-      { state.lightbox.show && Lightbox(state, actions)}
+      {state.lightbox.show && Lightbox(state, actions)}
       {/* The default page to show when the user visits /photos */}
-      { match.isExact && <MainSection match={match} /> }
+      {match.isExact && <MainSection match={match} />}
 
       {/* If a subpath exist, e.g. photos/night-market, show them instead */}
       <Route parent path={`${match && match.path}/:album`} render={Album(state, actions)} />
