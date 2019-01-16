@@ -112,7 +112,7 @@ const MainSection = ({ match }) => (
       to='/photos/bali'
       data-title='Bali, Indonesia'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/13-bali/DSCF4233.jpg' />
+      <img class='photo-album' src='/assets/img/photography/13-bali/DSCF4233.JPG' />
     </Link>
   </div>
 )
