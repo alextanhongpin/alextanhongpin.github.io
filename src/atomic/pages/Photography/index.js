@@ -100,6 +100,20 @@ const MainSection = ({ match }) => (
       class='photo-album-link'>
       <img class='photo-album' src='/assets/img/photography/09-singapore-chinatown/DSCF3734.jpg' />
     </Link>
+
+    <Link
+      to='/photos/singapore-life'
+      data-title='Singapore Life'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/12-singapore-life/DSCF3993.JPG' />
+    </Link>
+
+    <Link
+      to='/photos/bali'
+      data-title='Bali, Indonesia'
+      class='photo-album-link'>
+      <img class='photo-album' src='/assets/img/photography/13-bali/DSCF4233.jpg' />
+    </Link>
   </div>
 )
 

@@ -2,6 +2,8 @@ import singaporeNdp from './singapore-national-day-parade'
 import singaporeRandom from './singapore-random'
 import singaporeClarkeQuay from './singapore-clarke-quay'
 import klLife from './kl-life'
+import bali from './bali'
+import singaporeLife from './singapore-life'
 
 export default {
   state: {
@@ -185,6 +187,22 @@ export default {
         subheading: 'evening walk here',
         folderPath: '/assets/img/photography/10-singapore-clarke-quay/',
         images: singaporeClarkeQuay,
+        cameraModel: 'Fujifilm XE-1',
+        lensModel: '35 mm f/1.4'
+      },
+      'singapore-life': {
+        heading: 'Singapore Life',
+        subheading: 'Random walk in the city',
+        folderPath: '/assets/img/photography/12-singapore-life/',
+        images: singaporeLife,
+        cameraModel: 'Fujifilm XE-1',
+        lensModel: '35 mm f/1.4'
+      },
+      'bali': {
+        heading: 'Bali, Indonesia',
+        subheading: 'A day in paradise',
+        folderPath: '/assets/img/photography/13-bali/',
+        images: bali,
         cameraModel: 'Fujifilm XE-1',
         lensModel: '35 mm f/1.4'
       }
