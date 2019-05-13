@@ -10,47 +10,47 @@ const page = (state, actions) => props => (
 
       <section class='col-10'>
         <h3>Digital Piano</h3>
-        <iframe src='/programming/p00_piano.html' />
+        <iframe class='iframe' src='/programming/p00_piano.html' />
       </section>
 
       <section class='col-10'>
         <h3>Calculator</h3>
-        <iframe src='/programming/p01_calculator.html' />
+        <iframe class='iframe' src='/programming/p01_calculator.html' />
       </section>
 
       <section class='col-10'>
         <h3>Analog Clock</h3>
-        <iframe src='/programming/p02_clock.html' />
+        <iframe class='iframe' src='/programming/p02_clock.html' />
       </section>
 
       <section class='col-10'>
         <h3>Binary Clock</h3>
-        <iframe src='/programming/p03_binary%20clock.html' />
+        <iframe class='iframe' src='/programming/p03_binary%20clock.html' />
       </section>
 
       <section class='col-10'>
         <h3>Malaysia Flag</h3>
-        <iframe src='/programming/p06_flag_of_malaysia.html' />
+        <iframe class='iframe' src='/programming/p06_flag_of_malaysia.html' />
       </section>
 
       <section class='col-10'>
         <h3>Image Magnifier</h3>
-        <iframe src='/programming/p05_magnifier%20macro.html' />
+        <iframe class='iframe' src='/programming/p05_magnifier%20macro.html' />
       </section>
 
       <section class='col-10'>
         <h3>Brownian Movement</h3>
-        <iframe src='/programming/p07_box2d%20bouncing%20ball.html' />
+        <iframe class='iframe' src='/programming/p07_box2d%20bouncing%20ball.html' />
       </section>
 
       <section class='col-10'>
         <h3>Matrix</h3>
-        <iframe src='/programming/p08_matrix.html' />
+        <iframe class='iframe' src='/programming/p08_matrix.html' />
       </section>
 
       <section class='col-10'>
         <h3>3D Cube</h3>
-        <iframe src='/programming/p13_cube3d.html' />
+        <iframe class='iframe' src='/programming/p13_cube3d.html' />
       </section>
     </div>
   </div>

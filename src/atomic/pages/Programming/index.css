@@ -4,7 +4,7 @@
     max-width: 800px;
 }
 
-iframe {
+.iframe {
     width: 100%;
     min-height: 640px;
     border: none;
