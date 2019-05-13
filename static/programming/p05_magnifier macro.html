@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>macro magnifier</title>
+</head>
+
+
+<style type="text/css" rel="stylesheet">
+
+
+  body{
+    background-color: #fff;
+  }
+  
+  div#macro{
+    position: fixed;
+    background-image: url(img/macro.jpg);
+    height: 250px; width: 400px;
+    background-size: contain;
+    box-shadow: 10px 10px 10px #444444;
+    top: 50%; left: 50%;
+    margin-top: -125px; margin-left: -200px;
+  }
+  
+  div#zoom{
+    position: relative;
+    background-image: url(img/macro.jpg);
+    background-color: #dddddd; 
+    background-position: -100px -100px;
+    background-repeat: no-repeat;
+    height: 200px; width: 200px;
+    border-radius: 50%; opacity: 0;
+    border: 5px solid #ffffff;
+    box-shadow: 2px 2px 5px #444444, -2px -2px 4px #444444, inset 4px 4px 5px #222222;
+  }
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+  
+
+<script>$(document).ready(function(){
+  
+  var mouse = null;
+  var $zoom = $('div#zoom');
+  var $macro = $('div#macro');
+  var image = new Image();
+  var oriX = null,
+      oriY = null,
+      resizedX = $macro.width(),
+      resizedY = $macro.height();
+  image.src = 'img/macro.jpg';
+  image.onload = function(){
+    oriX = image.width;
+    oriY = image.height;
+  }
+
+
+  
+  document.onmousemove = function(event){
+    mouse = {
+      x: event.pageX,
+      y: event.pageY,
+      offsetX: event.pageX - 105,
+      offsetY: event.pageY -105,
+      corrX: event.pageX - $macro.position().left + resizedX/2,
+      corrY: event.pageY - $macro.position().top + resizedY/2
+    }
+   
+    if(mouse.corrX>0 && mouse.corrX<resizedX && mouse.corrY > 0 && mouse.corrY<resizedY){
+      var x = -( mouse.corrX / resizedX)*oriX + resizedX/4;
+      var y = -( mouse.corrY / resizedY)*oriY +resizedY/4;
+      $('#debug2').text( 'x ' +x + ' y ' +y);
+      var bp = x + 'px ' + y + 'px';
+    
+      $zoom.css('opacity','1').css('background-position',bp);
+      $zoom.css('top',mouse.offsetY).css('left',mouse.offsetX);
+    }else{
+      $zoom.css('opacity','0');
+    }
+    
+  }
+  
+  
+  document.getElementById('zoom').style.cursor = 'none';
+
+});</script>
+
+<body>
+  <div id='macro'></div>
+  <div id='zoom'></div>
+</body>
+</html>

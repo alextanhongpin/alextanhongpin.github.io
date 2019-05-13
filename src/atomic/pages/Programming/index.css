@@ -1,0 +1,11 @@
+@import '../../../styles/theme.css';
+
+.col-10 {
+    max-width: 800px;
+}
+
+iframe {
+    width: 100%;
+    min-height: 640px;
+    border: none;
+}

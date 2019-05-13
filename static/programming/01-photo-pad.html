@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">    
+    <title>Photo Pad</title>
+<style>
+
+    *{
+        padding: 0;
+        margin: 0;
+        font-family: monospace;
+    }
+    ul{
+        position: relative;
+        float: left;
+    }
+    li{
+        list-style-type: none;
+        transition: 0.25s all;
+    }
+    
+    li:hover{
+        background: #ddd;
+    }
+
+ 
+    #histogram {
+        float: left;
+        width: 100%;
+        height: 100px;
+        position: relative;
+        background: #222;
+    }
+
+    
+    #container{
+        position: relative;
+        float: left;
+        width: 600px;
+        border: 1px solid #222;
+    }
+    #canvas{
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+</head>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+
+<body>
+
+    <div id='app'>
+        
+        <input type="file" id="fileInput">
+        <ul class='col-2'>
+            <h2>PHOTOSTYLE</h2>
+            <li id='invert'>Invert</li>
+            <li id='grayscale'>Grayscale</li>
+            <li id='sepia'>Sepia</li>
+            <li id='random'>Random</li>
+            <li id='contrast'>Contrast</li>
+            <li id='threshold'>Threshold</li>
+            <li id='meanThreshold'>Mean Threshold</li>
+            <li id='reset'>Reset</li>
+            <li id='save'>Save</li>
+            <canvas id='histogram'>Sorry your browser does not support Canvas API.</canvas>
+        </ul>
+        <header>File Info.</header>
+        <div id="container">
+       <canvas id='canvas'>Sorry your browser does not support Canvas API.</canvas>
+        </div>
+        
+        
+    </div>
+</body>
+
+    
+<script>$(document).ready(function(){
+	
+	'use strict';
+     
+    
+  
+    
+    
+    function PhotoStyle(){
+    
+        this.name = 'photoStyle';
+        this.description = 'a simple photo editing app using canvas API';
+        this.author = 'alextanhongpin';
+        this.date = '07-08-2014';
+       
+
+        //provide fallback for all used methods later
+        var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+        
+        var histogram = document.getElementById('histogram');
+        var histogramCtx = histogram.getContext('2d');
+			
+        var fileInput = $('input[type=file]').eq(0);
+        var $img = $('<img>');
+        
+        
+        if (window.File && window.FileReader){
+            
+            fileInput.change(function(e){
+                var file = fileInput[0].files[0];
+                var type = /image.*/;
+                
+                $('header').text(file.name + ' ' + file.size + ' bytes ' + file.type);
+                
+                if (file.type.match(type)){
+                    
+                    var reader = new FileReader();
+                        reader.onload = function(e){
+                            loadImg(reader.result);
+                    }
+                    var dataUrl = reader.readAsDataURL(file);
+                }else{
+                    alert('The file type ' + file.type + ' is not supported. Please select a .JPEG or a .PNG file.');
+                    fileInput.val('');
+                }
+                
+            });
+            
+        }else{
+            alert('The File API is not supported in this browser');
+        }
+        
+        var mX, mY, nX, nY;
+        var r,g,b;
+            r = 0.30;
+            g = 0.59;
+            b = 0.11;g
+        var detect = false;
+        function locateMouse(event){
+            var rect = canvas.getBoundingClientRect();
+            mX = event.clientX - rect.left;
+            mY = event.clientY - rect.top;
+        }
+        
+        $('#canvas').mousedown(function(event){
+            locateMouse(event);
+            nX = mX;
+            nY = mY;
+            detect = true;
+            console.log(nX + ' ' + detect);
+      
+    
+            $(this).mousemove(function(event){
+                if(detect == true){
+                    locateMouse(event);
+                    if( mX - nX < 200 && mX - nX > 0 ){
+                         r = (mX - nX)/200;
+                        console.log( r+ ' ' + detect);
+                    }
+                }
+             });
+        
+            
+        }).mouseup(function(event){
+           detect = false;
+            console.log(nX + ' ' + detect); 
+            
+        });               
+        
+        
+        
+        
+
+        function loadImg(src){
+            $img.attr('src', src);
+            $img[0].onload = function(){
+            
+                canvas.width = this.width;
+                canvas.height = this.height;
+                context.drawImage(this, 0 ,0);
+                colorHist(context, canvas);
+           }
+            
+            $('li').click(function(){
+
+                switch($(this).attr('id')){
+                    case 'invert': toInvert(context, canvas); break;
+                    case 'grayscale': toGrayscale(context, canvas); break;
+                    case 'sepia': toSepia(context, canvas); break;
+                    case 'contrast': toContrast(context, canvas); break;
+                    case 'threshold': toBinary(context, canvas); break;
+                    case 'meanThreshold': toMeanThreshold(context, canvas); break;
+                    case 'reset': reset(); break;
+                    case 'save': save(); break;
+                    case 'random': toRandom(context, canvas); break;
+                    default: ; break;
+                }
+
+            });
+                
+                
+             
+        }
+            
+        
+
+        
+
+        function Hist(data){
+            
+            var hX = histogram.width;
+            var hY = histogram.height;
+            
+            histogramCtx.clearRect(0, 0, hX, hY);
+            //create color channel: r = red, g = green, b = blue, a = alpha
+            var R = [];
+            var G = [];
+            var B = [];
+            var A = [];
+            
+            for(var i = 0; i < 255; i++){
+                R.push(0);
+                G.push(0);
+                B.push(0);
+                A.push(0);
+            }
+            
+            //push the data to the histogram
+            for(var i = 0; i < data.length; i += 4){
+                R[data[i+0]]+=1;
+                G[data[i+1]]+=1;
+                B[data[i+2]]+=1;
+                A[data[i+2]]+=1;
+            }
+            
+            //sort value to get the max value
+            var sortR = R.sort(function(a,b){return b-a});
+            var sortG = G.sort(function(a,b){return b-a});
+            var sortB = B.sort(function(a,b){return b-a});
+            
+            for(var i = 0; i < 255; i++){
+                
+                histogramCtx.beginPath();
+                histogramCtx.lineWidth = Math.floor(1/255 * hX);
+                histogramCtx.moveTo(Math.floor(i/255 * hX), hY);
+                histogramCtx.lineTo(Math.floor(i/255 * hX), hY - B[i]/sortB[0] * hY);
+                histogramCtx.strokeStyle = '#44f';
+                histogramCtx.stroke();
+                histogramCtx.closePath();
+                
+                histogramCtx.beginPath();
+                histogramCtx.moveTo(Math.floor(i/255 * hX),hY);
+                histogramCtx.lineTo(Math.floor(i/255 * hX), hY - R[i]/sortR[0] * hY);
+                histogramCtx.strokeStyle = '#f44';
+                histogramCtx.stroke();
+                histogramCtx.closePath();
+                
+                histogramCtx.beginPath();
+                histogramCtx.moveTo(Math.floor(i/255 * hX),hY);
+                histogramCtx.lineTo(Math.floor(i/255 * hX),hY - G[i]/sortG[0] * hY);
+                histogramCtx.strokeStyle = '#4f4';
+                histogramCtx.stroke();
+                histogramCtx.closePath();
+                
+            }
+        }
+        
+        function colorHist(context, canvas){
+            var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+            var data = imgData.data;
+            Hist(data);
+            context.putImageData(imgData,0,0);   
+        }
+        
+        
+        function toGrayscale(context, canvas){
+            var imgData = context.getImageData(0,0, canvas.width, canvas.height);
+            var data = imgData.data;
+            
+            
+            
+            
+            
+            
+               
+            
+            for(var i = 0; i < data.length; i += 4){
+                var gray = data[i + 0] * r + data[i + 1] * g + data[i + 2] * b;
+                
+                data[i + 0] = Math.min(255, gray);
+                data[i + 1] = Math.min(255, gray);
+                data[i + 2] = Math.min(255, gray);
+                
+            }
+            Hist(data);
+            //context.putImageData(imgData, 0, 0);
+                context.putImageData(imgData, 0, 0);
+                
+        }
+        
+        
+        function toInvert(context, canvas){
+            var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+            var data = imgData.data;
+          
+            for(var i = 0; i < data.length; i += 4){
+                data[i + 0] = 255 - data[i + 0];
+                data[i + 1] = 255 - data[i + 1];
+                data[i + 2] = 255 - data[i + 2];
+            }
+            Hist(data);
+            context.putImageData(imgData,0,0);   
+        }
+        
+        function toBinary(context, canvas){
+        
+            var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+            var data = imgData.data;
+            var threshold = 128;
+                    
+            for(var i = 0; i < data.length; i += 4){
+                var gray = data[i + 0] * 0.30 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+
+                ( gray < threshold ) ? data[i + 0] = 0 : data[i + 0] = 255;
+                ( gray < threshold ) ? data[i + 1] = 0 : data[i + 1] = 255;
+                ( gray < threshold ) ? data[i + 2] = 0 : data[i + 2] = 255;
+                
+            }
+            Hist(data);
+            context.putImageData(imgData,0,0);   
+        }
+        
+        function toMeanThreshold(context, canvas){
+            var imgData = context.getImageData(0, 0, canvas.width, canvas.height);
+            var data = imgData.data;
+            var threshold = 128;
+            var totalThresh = 0;
+            
+            for(var i = 0; i < data.length; i += 4){
+                var gray = data[i + 0] * 0.30 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+                totalThresh += gray;            
+            }
+            var meanThresh = totalThresh / data.length;
+            for(var i = 0; i < data.length; i += 4){
+                var gray = data[i + 0] * 0.30 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+                ( gray < meanThresh ) ? data[i + 0] = 0 : data[i + 0] = 255;
+                ( gray < meanThresh ) ? data[i + 1] = 0 : data[i + 1] = 255;
+                ( gray < meanThresh ) ? data[i + 2] = 0 : data[i + 2] = 255;
+            
+            }
+            Hist(data);
+            context.putImageData(imgData,0,0);   
+        }
+        
+        
+
+        function toContrast(context,canvas){
+
+            var imgData = context.getImageData(0,0, canvas.width, canvas.height);
+            var data = imgData.data;
+            
+            var intensity = 20;
+            var depth = Math.round(Math.random() * 10);
+            
+            for(var i = 0; i < data.length; i += 4){
+                
+                data[i + 0] = Math.min(255, data[i + 0] + intensity - depth);
+                data[i + 1] = Math.min(255, data[i + 1] + intensity * depth / 10);
+                data[i + 2] = Math.min(255, data[i + 2] + intensity * depth / 2);
+            }
+            Hist(data);
+            context.putImageData(imgData,0,0);
+        }
+        
+
+        function toSepia(context,canvas,depth, intensity){
+            depth = depth || 20;
+            intensity = intensity|| 10;
+
+            var imgData = context.getImageData(0,0, canvas.width, canvas.height);
+            var data = imgData.data;
+            for(var i = 0; i < data.length; i += 4){
+                var gray = data[i + 0] * 0.3 + data[i + 1] * 0.59 + data[i + 2] * 0.11;
+
+                data[i + 0] = Math.min(255, gray + depth * 2);
+                data[i + 1] = Math.min(255, gray + depth);
+                data[i + 2] = Math.max(0, gray - intensity);
+                data[i + 3] = 0.75 * 255;
+            }
+            
+            Hist(data);
+            context.putImageData(imgData,0,0);
+        }
+        
+        function toRandom(context,canvas){
+
+            var imgData = context.getImageData(0,0, canvas.width, canvas.height);
+            var data = imgData.data;
+            for(var i = 0; i < data.length; i += 4){
+                
+                data[i + 0] = Math.min(255, data[i + 0] * Math.sin( i * 180 / Math.PI) * 1.5);
+                data[i + 1] = Math.min(255, data[i + 1] * Math.sin( i * 180 / Math.PI) * 1.0);
+                data[i + 2] = Math.max(0, data[i + 2] * Math.round(Math.random() * 10)/20);
+                
+            }
+            context.putImageData(imgData,0,0);
+        }
+        
+
+        function reset(){
+            context.clearRect(0,0,canvas.width, canvas.height);
+            fileInput.val('');
+            $('header').text('File Info.');
+        }
+
+        function save(){
+            var dataUrl = canvas.toDataURL();
+            if(dataUrl == 'data:,'){
+                alert('no data available');  
+            }else{
+                window.open(dataUrl);
+            }
+        }
+    
+    }
+	/*
+	_strategy
+	
+	modal
+	_canvas
+	_choose image
+	_load image
+	__select filters
+	__apply filters
+	__reset image
+	__close image
+	
+	view
+	_status
+	_load image
+	_save image
+	_img display (before and after)
+	_list of available filters: black and white, sepia, etc.
+	_end with beautiful animations
+	
+    _add individual scroll tools to change the data dynamically
+    _change rgb value
+    _increase contrast
+    _increase/decrease brightness
+    _threshold to binary image
+    _get mean threshold
+    _get otsu's threshold
+    _blur, sharpen
+    _gaussian filter
+    _dilation
+    _erosion
+    _watershed transformation
+    
+    
+	checkError/cross compatibilities
+	
+	frameworks
+	_file reader
+	_canvas
+	
+	*/
+	var photoStyle = new PhotoStyle();
+
+});</script>
+
+
+
+</html>

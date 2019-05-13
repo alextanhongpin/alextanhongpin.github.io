@@ -17,6 +17,7 @@ import AboutPage from './atomic/pages/About'
 import PhotographyPage from './atomic/pages/Photography'
 import GuitarPage from './atomic/pages/Guitar'
 import ContactPage from './atomic/pages/Contact'
+import ProgrammingPage from './atomic/pages/Programming'
 
 // Modules
 import typewriterModule from './store/typewriter'
@@ -51,6 +52,10 @@ const state = Object.assign({}, {
     {
       to: '/songs',
       label: 'Guitar'
+    },
+    {
+      to: '/codes',
+      label: 'Code'
     }
   ]
 },
@@ -77,6 +82,7 @@ const view = (state, actions) => (
     <Route path='/books' render={BookPage(state, actions)} />
     <Route path='/songs' render={GuitarPage(state, actions)} />
     <Route path='/contacts' render={ContactPage(state, actions)} />
+    <Route path='/codes' render={ProgrammingPage(state, actions)} />
 
     <Footer footer={state.footer} />
   </main>
