@@ -1,92 +1,76 @@
-import 'babel-polyfill'
-import buble from 'rollup-plugin-buble'
-import commonjs from 'rollup-plugin-commonjs'
-import resolve from 'rollup-plugin-node-resolve'
-import uglify from 'rollup-plugin-uglify'
-import serve from 'rollup-plugin-serve'
+import svelte from 'rollup-plugin-svelte'
+import resolve from '@rollup/plugin-node-resolve'
+import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
-import postcss from 'rollup-plugin-postcss'
-import nested from 'postcss-nested'
-import postcssnext from 'postcss-cssnext'
-import postcssImport from 'postcss-import'
-import postcssUrl from 'postcss-url'
-import postcssReporter from 'postcss-browser-reporter'
-import cssnano from 'cssnano'
-import regenerator from 'rollup-plugin-regenerator'
+import { terser } from 'rollup-plugin-terser'
+import css from "rollup-plugin-css-only";
 
-// Added to compile JSX
-import babel from 'rollup-plugin-babel'
-
-const prod = !process.env.ROLLUP_WATCH
-const dev = !!process.env.ROLLUP_WATCH
+const production = !process.env.ROLLUP_WATCH
 
 export default {
-  input: 'src/index.js',
+  input: 'src/main.js',
   output: {
-    file: 'static/index.js',
-    sourcemap: dev ? 'inline' : false,
+    sourcemap: true,
     format: 'iife',
-    intro:
-      !dev &&
-      `
-      history.replaceState(null, null, sessionStorage.redirect)
-      delete sessionStorage.redirect
-      if ('serviceWorker' in navigator) navigator.serviceWorker.register('/sw.js')
-    `
+    name: 'app',
+    file: 'public/build/bundle.js'
   },
   plugins: [
-    postcss({
-      extract: true,
-      modules: true,
-      minimize: true,
-      plugins: [
-        postcssImport({
-          path: ['./src/styles']
-        }),
-        nested(),
-        postcssnext({
-          features: {
-            rem: {
-              html: false
-            }
-          }
-        }),
-        postcssUrl(),
-        postcssReporter(),
-        // Disable autoprefixer, because it is already included in cssnext
-        cssnano({ autoprefixer: false })
-      ]
+    css({ output: "public/build/index.css" }),
+    svelte({
+      // enable run-time checks when not in production
+      dev: !production,
+      // Emit CSS as "files" for other plugins to process
+      emitCss: true,
+      // we'll extract any component CSS out into
+      // a separate file - better for performance
+      css: css => {
+        css.write('public/build/bundle.css')
+      },
+
     }),
 
-    // This is required to compile JSX
-    babel({
-      babelrc: false,
-      presets: [
-        ['@babel/preset-env', {
-          targets: {
-            browsers: 'last 2 versions'
-          },
-          modules: false
-        }]
-      ],
-      plugins: [
-        ['transform-react-jsx', { pragma: 'h' }]
-      ]
-    }),
-    regenerator(),
+    // If you have external dependencies installed from
+    // npm, you'll most likely need these plugins. In
+    // some cases you'll need additional configuration -
+    // consult the documentation for details:
+    // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
-      jsnext: true
+      browser: true,
+      dedupe: ['svelte']
     }),
     commonjs(),
-    buble({ jsx: 'h' }),
-    // Uglify supports only es5.
-    prod && uglify(),
-    dev && livereload('static'),
-    dev &&
-      serve({
-        contentBase: ['static'],
-        historyApiFallback: true,
-        port: 8080
-      })
-  ]
+
+    // In dev mode, call `npm run start` once
+    // the bundle has been generated
+    !production && serve(),
+
+    // Watch the `public` directory and refresh the
+    // browser on changes when not in production
+    !production && livereload('public'),
+
+    // If we're building for production (npm run build
+    // instead of npm run dev), minify
+    production && terser()
+  ],
+  watch: {
+    clearScreen: false
+  }
+}
+
+function serve () {
+  let started = false
+
+  return {
+    writeBundle () {
+      if (!started) {
+        started = true
+
+        require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+          stdio: ['ignore', 'inherit', 'inherit'],
+          shell: true
+        })
+      }
+    }
+  }
 }

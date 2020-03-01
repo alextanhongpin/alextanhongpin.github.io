@@ -1,6 +1,0 @@
-@import '../../../styles/theme.css';
-
-.guitar-holder {
-  display: grid;
-  grid-row-gap: var(--base-line-height);
-}
