@@ -21,7 +21,7 @@
       <div class='guitar-holder'>
 	      {#each songs as song}
 		  <div class='guitar'>
-		    <iframe width='100%' height='166' scrolling='no' frameborder='no' allow='autoplay' src={song} />
+		    <iframe width='100%' height='166' scrolling='no' frameborder='no' allow='autoplay' src={song} title=''/>
 		  </div>
 	      {/each}
       </div>
