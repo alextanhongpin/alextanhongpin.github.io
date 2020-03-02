@@ -49,7 +49,7 @@
 		route = ['/photos', params.album].filter(Boolean).join('/')
 		page = Photography
 	})
-	/* router('/*', () => page = Error) */
+  // router('/*', () => page = Error)
 	router.start()
 </script>
 
