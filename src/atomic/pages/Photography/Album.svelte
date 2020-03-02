@@ -24,6 +24,7 @@
 
 			  >
               <img
+                alt={it.name}
                 src={folderPath + it.name}
                 on:click={() => actions.showLightbox(folderPath + it.name)}
               />

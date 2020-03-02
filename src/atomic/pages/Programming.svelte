@@ -5,32 +5,32 @@
 
       <section class='col-10'>
         <h3>Digital Piano</h3>
-        <iframe class='iframe' src='/programming/p00_piano.html' />
+        <iframe class='iframe' src='/programming/p00_piano.html' title='piano'/>
       </section>
 
       <section class='col-10'>
         <h3>Calculator</h3>
-        <iframe class='iframe' src='/programming/p01_calculator.html' />
+        <iframe class='iframe' src='/programming/p01_calculator.html' title='calculator'/>
       </section>
 
       <section class='col-10'>
         <h3>Analog Clock</h3>
-        <iframe class='iframe' src='/programming/p02_clock.html' />
+        <iframe class='iframe' src='/programming/p02_clock.html' title='clock'/>
       </section>
 
       <section class='col-10'>
         <h3>Binary Clock</h3>
-        <iframe class='iframe' src='/programming/p03_binary%20clock.html' />
+        <iframe class='iframe' src='/programming/p03_binary%20clock.html' title='binary clock'/>
       </section>
 
       <section class='col-10'>
         <h3>Malaysia Flag</h3>
-        <iframe class='iframe' src='/programming/p06_flag_of_malaysia.html' />
+        <iframe class='iframe' src='/programming/p06_flag_of_malaysia.html' title='flag of Malaysia'/>
       </section>
 
       <section class='col-10'>
         <h3>Image Magnifier</h3>
-        <iframe class='iframe' src='/programming/p05_magnifier%20macro.html' />
+        <iframe class='iframe' src='/programming/p05_magnifier%20macro.html' title='magnifier'/>
       </section>
 
       <section class='col-10'>
@@ -38,22 +38,23 @@
         <iframe
           class='iframe'
           src='/programming/p07_box2d%20bouncing%20ball.html'
+          title='bouncing ball'
         />
       </section>
 
       <section class='col-10'>
         <h3>Matrix</h3>
-        <iframe class='iframe' src='/programming/p08_matrix.html' />
+        <iframe class='iframe' src='/programming/p08_matrix.html' title='matrix'/>
       </section>
 
       <section class='col-10'>
         <h3>3D Cube</h3>
-        <iframe class='iframe' src='/programming/p13_cube3d.html' />
+        <iframe class='iframe' src='/programming/p13_cube3d.html' title='cube 3d'/>
       </section>
 
       <section class='col-10'>
         <h3>Unbeatable Tic Tac Toc</h3>
-        <iframe class='iframe' src='/programming/p14_tictactoe.html' />
+        <iframe class='iframe' src='/programming/p14_tictactoe.html' title='tic tac toe'/>
       </section>
 
       <section class='col-10'>
