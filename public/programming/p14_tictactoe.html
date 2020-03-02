@@ -239,6 +239,9 @@
                 const resetState = () => {
                     board = makeBoard()
                     round = 0
+                    $cells.forEach(($cell, i) => {
+                        $cell.innerText = ''
+                    })
                 }
 
                 const updateMessage = board => {

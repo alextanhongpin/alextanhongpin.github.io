@@ -30,7 +30,6 @@
     </div>
   </div>
 
-export default page
 <style>
 .guitar-holder {
   display: grid;
