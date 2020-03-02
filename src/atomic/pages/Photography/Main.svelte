@@ -3,76 +3,76 @@
       href='/photos/christmas-market'
       data-title='Christmas Market 2015'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/01-christmas_market/DSCF2052_small.jpg' />
+      <img class='photo-album' src='/assets/img/photography/01-christmas_market/DSCF2052_small.jpg' alt='christmas market'/>
     </a>
 
     <a
       href='/photos/malaysia'
       data-title='Kuala Lumpur'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/02-malaysia/DSCF2336_small.jpg' />
+      <img class='photo-album' src='/assets/img/photography/02-malaysia/DSCF2336_small.jpg' alt='malaysia'/>
     </a>
 
     <a
       href='/photos/kl-life'
       data-title='KL Life'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/11-kl-life/DSCF3511.jpg' />
+      <img class='photo-album' src='/assets/img/photography/11-kl-life/DSCF3511.jpg' alt='kl-life'/>
     </a>
 
     <a
       href='/photos/danboard'
       data-title='Danboard'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/06-danboard/IMG_4735_edited_small.jpg' />
+      <img class='photo-album' src='/assets/img/photography/06-danboard/IMG_4735_edited_small.jpg' alt='danboard'/>
     </a>
 
     <a
       href='/photos/preiser-figure'
       data-title='Preiser Figure'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/07-preiser_figure/06_small.jpg' />
+      <img class='photo-album' src='/assets/img/photography/07-preiser_figure/06_small.jpg' alt='preiser'/>
     </a>
 
     <a href='/photos/berlin'
       data-title='Berlin'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/05-berlin_trip/DSCF2626_small.jpeg' />
+      <img class='photo-album' src='/assets/img/photography/05-berlin_trip/DSCF2626_small.jpeg' alt='berlin'/>
     </a>
 
     <a
       href='/photos/singapore-ndp-2018'
       data-title='NDP Singapore, 2018'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/08-ndp-singapore/DSCF3973.jpg' />
+      <img class='photo-album' src='/assets/img/photography/08-ndp-singapore/DSCF3973.jpg' alt='ndp singapore'/>
     </a>
 
     <a
       href='/photos/singapore-clarke-quay'
       data-title='Clarke Quay, Singapore'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/10-singapore-clarke-quay/DSCF3677.jpg' />
+      <img class='photo-album' src='/assets/img/photography/10-singapore-clarke-quay/DSCF3677.jpg' alt='clarke quay, singapore'/>
     </a>
 
     <a
       href='/photos/singapore-clarke-quay'
       data-title='Singapore Life'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/09-singapore-chinatown/DSCF3734.jpg' />
+      <img class='photo-album' src='/assets/img/photography/09-singapore-chinatown/DSCF3734.jpg' alt='singapore life'/>
     </a>
 
     <a
       href='/photos/singapore-life'
       data-title='Singapore Life'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/12-singapore-life/DSCF3993.JPG' />
+      <img class='photo-album' src='/assets/img/photography/12-singapore-life/DSCF3993.JPG' alt='singapore life'/>
     </a>
 
     <a
       href='/photos/bali'
       data-title='Bali, Indonesia'
       class='photo-album-link'>
-      <img class='photo-album' src='/assets/img/photography/13-bali/DSCF4233.JPG' />
+      <img class='photo-album' src='/assets/img/photography/13-bali/DSCF4233.JPG' alt='bali, indonesia'/>
     </a>
   </div>
 <style>
