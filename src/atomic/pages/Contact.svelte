@@ -1,6 +1,6 @@
   <div class='body'>
     <div class='body-column'>
-      <h1>Contact Me</h1>
+      <h1 class='h1'>Contact Me</h1>
       <p>I am a Developer based in Malaysia. I do Frontend, Backend and DevOps related stuff. To understand more about what I am doing at present, follow me on Github.</p>
       <p>Please email me to request for my resume.</p>
       <br />

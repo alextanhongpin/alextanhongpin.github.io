@@ -1,4 +1,4 @@
-export const state = {
+export default {
   header: 'alextanhongpin',
   username: 'Alex Tan',
   footer: `Copyright © ${new Date().getFullYear()} alextanhongpin`,
@@ -30,5 +30,3 @@ export const state = {
     }
   ]
 }
-
-export default { state }

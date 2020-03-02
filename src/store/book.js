@@ -1,4 +1,4 @@
-export const state = {
+export default {
   books: [
     { title: 'Emotional Intelligence', author: 'Daniel Goleman' },
     { title: 'The Gift of Fear', author: 'Gavin de Becker' },
@@ -56,8 +56,4 @@ export const state = {
       author: 'Clive Thompson'
     }
   ]
-}
-
-export default {
-  state
 }

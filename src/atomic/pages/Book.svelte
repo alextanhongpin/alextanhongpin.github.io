@@ -1,11 +1,11 @@
 <script>
-	import { state } from '../../store/book'
+	import state from '../../store/book'
 	const { books } = state
 </script>
 
   <div class='body'>
     <div class='body-column'>
-      <h1>Books I read</h1>
+      <h1 class='h1'>Books I read</h1>
       <br />
 
       <div class='quote'>

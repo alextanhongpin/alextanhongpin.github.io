@@ -1,10 +1,13 @@
-
 <script>
 	import photo from '../../../store/photo'
 	export let src = ''
 	export let show = false
+  const { actions } = photo
 	const style = `background: url(${src}) center center / contain` 
-
+  $: {
+    if (show) document.body.classList.add('is-overflow')
+    else document.body.classList.remove('is-overflow')
+  }
 </script>
 
 {#if show}
@@ -14,10 +17,9 @@
 	  >&times;</div>
     <div class='lightbox-preview' {style}/>
   </div>
-	{/if}
+{/if}
+
 <style>
-
-
 .lightbox {
     position: fixed;
     z-index: 1000;
@@ -53,5 +55,10 @@
 
 .lightbox-close:hover {
     opacity: 1;
+}
+
+/* Prevent generating unique class names. */
+:global(.is-overflow) {
+    overflow: hidden;
 }
 </style>

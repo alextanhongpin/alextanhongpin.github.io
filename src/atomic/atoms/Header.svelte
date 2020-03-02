@@ -4,10 +4,9 @@
 	export let profileImg;
 </script>
 
-
 <header class='header'>
 	<div class='header-column'>
-	<div class='header-brand'>{header}</div>
+	<a class='header-brand' href='/'>{header}</a>
 	<div class='header-photo-holder'>
 	<div class='header-photo'
 		style='background: url({profileImg}) no-repeat center center / cover;'

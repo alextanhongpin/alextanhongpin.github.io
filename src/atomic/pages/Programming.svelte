@@ -1,6 +1,6 @@
   <div class='body'>
     <div class='body-column'>
-      <h1>Programming</h1>
+      <h1 class='h1'>Programming</h1>
       <p>Joy is when you write code for yourself - alextanhongpin</p>
 
       <section class='col-10'>

@@ -1,8 +1,8 @@
 <script>
-export let footer = 'Copyright © 2018 yourapp'
-  </script>
+  export let footer = 'Copyright © 2018 yourapp'
+</script>
 
-  <footer class='footer'>{footer}</footer>
+<footer class='footer'>{footer}</footer>
 
 <style>
 .footer {

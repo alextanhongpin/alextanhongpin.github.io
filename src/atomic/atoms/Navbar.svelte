@@ -2,12 +2,12 @@
 	export let links = []
 	export let route = '/'
 
-	/* class=`navbar-link ${link.to === route && 'is-selected'}` */
+console.log(route)
 </script>
 
   <navbar class='navbar'>
   {#each links as link (link.label)}
-	  <a href={link.to} class='navbar-link' class:is-selected={link.to === route}>
+	  <a href={link.to} class='navbar-link' class:is-selected={link.to === route ? true : link.to !== '/' && route.startsWith(link.to)}>
         {link.label}
       </a>
   {/each}

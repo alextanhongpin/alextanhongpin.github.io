@@ -1,11 +1,11 @@
 <script>
-	import { state } from '../../store/guitar'
+	import state from '../../store/guitar'
 	const { songs } = state
 </script>
 
   <div class='body'>
     <div class='body-column'>
-      <h1>Songs I play</h1>
+      <h1 class='h1'>Songs I play</h1>
 
       <p>
         I don't play guitar as much as I do anymore. These are some of the fingerstyle guitar solos that I recorded using <i>Zoom H1</i>. Enjoy!

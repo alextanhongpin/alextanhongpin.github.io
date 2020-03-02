@@ -16,9 +16,8 @@
 	import Photography from './atomic/pages/Photography.svelte'
 
 	// State.
-	import { app, typewriter } from './store'
-
-	const { links, footer, header, username, profileImg  } = app.state
+	import { app } from './store'
+	const { links, footer, header, username, profileImg  } = app 
 
 	// Routing.
 	let page
@@ -26,7 +25,6 @@
 	let route
 
 	router('/', () => {
-		typewriter.actions.clear()
 		route = '/'
 		page = Home
 	})
@@ -48,8 +46,7 @@
 	})
 	router('/photos/:album?', (ctx, next) => {
 		params = ctx.params
-		/* next() */
-		route = `/photos/${params.album}`
+		route = ['/photos', params.album].filter(Boolean).join('/')
 		page = Photography
 	})
 	/* router('/*', () => page = Error) */
@@ -57,8 +54,8 @@
 </script>
 
 <main>
-	<Header {header} {username} {profileImg}/>
 	<Navbar {links} route={route}/>
+	<Header {header} {username} {profileImg}/>
 	<svelte:component this={page} params={params} />
 	<Footer {footer}/>
 </main>
