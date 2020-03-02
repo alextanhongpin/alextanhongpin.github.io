@@ -1,10 +1,15 @@
 
 <script>
-	import photo from '../../../store/photo'
+	import state from '../../../store/photo'
 	export let params 
-	const { state, actions } = photo
-	const { photos } = state 
+	const { photos, lightbox } = state 
 	let { images, folderPath, cameraModel, lensModel, heading, subheading } = photos[params.album] 
+
+  function showLightbox(src) {
+    lightbox.src.set(src)
+    lightbox.show.set(true)
+  }
+
 </script>
 
   <div>
@@ -18,15 +23,12 @@
     <div class='img-holder'>
 	    {#each images as it}
 
-		    <div class='img'
-			    >
-		  <div class='img-placeholder'
-
-			  >
+		    <div class='img'>
+		  <div class='img-placeholder'>
               <img
                 alt={it.name}
                 src={folderPath + it.name}
-                on:click={() => actions.showLightbox(folderPath + it.name)}
+                on:click={() => showLightbox(folderPath + it.name)}
               />
             </div>
             <caption class='img-caption h6'>

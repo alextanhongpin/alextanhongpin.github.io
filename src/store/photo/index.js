@@ -7,7 +7,7 @@ import singaporeLife from './singapore-life'
 
 import { writable } from 'svelte/store'
 
-const state = {
+export default {
   lightbox: {
     show: writable(false),
     src: writable('/assets/img/photography/01-christmas_market/DSCF2043.jpg')
@@ -405,20 +405,6 @@ const state = {
       images: bali,
       cameraModel: 'Fujifilm XE-1',
       lensModel: '35 mm f/1.4'
-    }
-  }
-}
-
-export default {
-  state,
-  actions: {
-    showLightbox (value) {
-      state.lightbox.show.set(true)
-      state.lightbox.src.set(value)
-    },
-    hideLightbox () {
-      state.lightbox.show.set(false)
-      state.lightbox.src.set('')
     }
   }
 }

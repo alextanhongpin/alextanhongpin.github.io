@@ -1,9 +1,15 @@
 <script>
-	import photo from '../../../store/photo'
+	import state from '../../../store/photo'
 	export let src = ''
 	export let show = false
-  const { actions } = photo
-	const style = `background: url(${src}) center center / contain` 
+  const { lightbox } = state
+	$: style = `background: url(${src}) no-repeat center center / contain` 
+
+  function hideLightbox() {
+    lightbox.show.set(false)
+    lightbox.src.set('')
+  }
+
   $: {
     if (show) document.body.classList.add('is-overflow')
     else document.body.classList.remove('is-overflow')
@@ -13,7 +19,7 @@
 {#if show}
   <div class='lightbox'>
 	  <div class='lightbox-close'
-  on:click={() => actions.hideLightbox()}
+      on:click={() => hideLightbox()}
 	  >&times;</div>
     <div class='lightbox-preview' {style}/>
   </div>

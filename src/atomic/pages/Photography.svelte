@@ -3,8 +3,8 @@
 	import Album from './Photography/Album.svelte'
 	import Lightbox from './Photography/Lightbox.svelte'
 
-	import photo from '../../store/photo'
-	const { show, src } = photo.state.lightbox
+	import state from '../../store/photo'
+	const { show, src } = state.lightbox
 	export let params
 	$: isMain = params.album === undefined || params.album === '' 
 </script>
