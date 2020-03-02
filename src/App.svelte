@@ -13,6 +13,7 @@
 	import Home from './atomic/pages/Home.svelte'
 	import Guitar from './atomic/pages/Guitar.svelte'
 	import Programming from './atomic/pages/Programming.svelte'
+	import Photography from './atomic/pages/Photography.svelte'
 
 	// State.
 	import { app, typewriter } from './store'
@@ -21,7 +22,7 @@
 
 	// Routing.
 	let page
-	let params
+	let params = {}
 	let route
 
 	router('/', () => {
@@ -45,6 +46,13 @@
 		route = '/codes'
 		page = Programming
 	})
+	router('/photos/:album?', (ctx, next) => {
+		params = ctx.params
+		/* next() */
+		route = `/photos/${params.album}`
+		page = Photography
+	})
+	/* router('/*', () => page = Error) */
 	router.start()
 </script>
 
