@@ -3,7 +3,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import livereload from 'rollup-plugin-livereload'
 import { terser } from 'rollup-plugin-terser'
-import css from "rollup-plugin-css-only";
+import css from 'rollup-plugin-css-only'
 
 const production = !process.env.ROLLUP_WATCH
 
@@ -13,10 +13,10 @@ export default {
     sourcemap: true,
     format: 'iife',
     name: 'app',
-    file: 'public/build/bundle.js'
+    file: 'public/build/bundle.js',
   },
   plugins: [
-    css({ output: "public/build/index.css" }),
+    css({ output: 'public/build/index.css' }),
     svelte({
       // enable run-time checks when not in production
       dev: !production,
@@ -27,7 +27,6 @@ export default {
       css: css => {
         css.write('public/build/bundle.css')
       },
-
     }),
 
     // If you have external dependencies installed from
@@ -37,7 +36,7 @@ export default {
     // https://github.com/rollup/plugins/tree/master/packages/commonjs
     resolve({
       browser: true,
-      dedupe: ['svelte']
+      dedupe: ['svelte'],
     }),
     commonjs(),
 
@@ -51,26 +50,26 @@ export default {
 
     // If we're building for production (npm run build
     // instead of npm run dev), minify
-    production && terser()
+    production && terser(),
   ],
   watch: {
-    clearScreen: false
-  }
+    clearScreen: false,
+  },
 }
 
-function serve () {
+function serve() {
   let started = false
 
   return {
-    writeBundle () {
+    writeBundle() {
       if (!started) {
         started = true
 
         require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
           stdio: ['ignore', 'inherit', 'inherit'],
-          shell: true
+          shell: true,
         })
       }
-    }
+    },
   }
 }

@@ -1,26 +1,26 @@
 <script>
-	import Main from './Photography/Main.svelte'
-	import Album from './Photography/Album.svelte'
-	import Lightbox from './Photography/Lightbox.svelte'
+  import Main from './Photography/Main.svelte'
+  import Album from './Photography/Album.svelte'
+  import Lightbox from './Photography/Lightbox.svelte'
 
-	import state from '../../store/photo'
-	const { show, src } = state.lightbox
-	export let params
-	$: isMain = params.album === undefined || params.album === '' 
+  import state from '../../store/photo'
+  const { show, src } = state.lightbox
+  export let params
+  $: isMain = params.album === undefined || params.album === ''
 </script>
 
-<div class='body'>
-  <div class='body-column'>
+<div class="body">
+  <div class="body-column">
     <br />
     <br />
     <br />
 
-    <Lightbox src={$src} show={$show}/>
+    <Lightbox src={$src} show={$show} />
 
     {#if isMain}
-      <Main/>
+      <Main />
     {:else}
-      <Album {params}/>
+      <Album {params} />
     {/if}
 
     <br />

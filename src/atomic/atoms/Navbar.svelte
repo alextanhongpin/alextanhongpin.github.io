@@ -1,20 +1,10 @@
 <script>
-	export let links = []
-	export let route = '/'
-
-console.log(route)
+  export let links = []
+  export let route = '/'
 </script>
 
-  <navbar class='navbar'>
-  {#each links as link (link.label)}
-	  <a href={link.to} class='navbar-link' class:is-selected={link.to === route ? true : link.to !== '/' && route.startsWith(link.to)}>
-        {link.label}
-      </a>
-  {/each}
-  </navbar>
-
 <style>
-.navbar {
+  .navbar {
     background: var(--gallery);
     display: block;
     height: var(--navbar-height);
@@ -25,17 +15,28 @@ console.log(route)
     /* Hardcoded to allow only five columns */
     grid-template-columns: repeat(6, max-content);
     justify-content: flex-end;
-    box-shadow: inset 0 -5px 15px rgba(0, 0, 0, .05);
-}
+    box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.05);
+  }
 
-.navbar-link {
+  .navbar-link {
     display: inline-block;
     text-decoration: none;
     color: inherit;
-}
+  }
 
-.navbar-link.is-selected {
+  .navbar-link.is-selected {
     font-weight: bold;
     border-bottom: 3px solid var(--coral-red);
-}
+  }
 </style>
+
+<navbar class="navbar">
+  {#each links as link (link.label)}
+    <a
+      href={link.to}
+      class="navbar-link"
+      class:is-selected={link.to === route ? true : link.to !== '/' && route.startsWith(link.to)}>
+      {link.label}
+    </a>
+  {/each}
+</navbar>

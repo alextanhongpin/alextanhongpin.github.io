@@ -6,27 +6,27 @@ export default {
   links: [
     {
       to: '/',
-      label: 'Home'
+      label: 'Home',
     },
     {
       to: '/contacts',
-      label: 'Contact'
+      label: 'Contact',
     },
     {
       to: '/photos',
-      label: 'Photo'
+      label: 'Photo',
     },
     {
       to: '/books',
-      label: 'Book'
+      label: 'Book',
     },
     {
       to: '/songs',
-      label: 'Guitar'
+      label: 'Guitar',
     },
     {
       to: '/codes',
-      label: 'Code'
-    }
-  ]
+      label: 'Code',
+    },
+  ],
 }

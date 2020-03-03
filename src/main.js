@@ -4,7 +4,7 @@ import 'normalize.css'
 import './App.css'
 
 const app = new App({
-  target: document.body
+  target: document.body,
 })
 
 export default app

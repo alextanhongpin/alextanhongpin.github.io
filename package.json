@@ -9,14 +9,17 @@
         "build": "rollup -c",
         "dev": "rollup -c -w",
         "start": "sirv public --single",
-        "deploy": "./node_modules/.bin/gh-pages -d public --branch master"
+        "deploy": "./node_modules/.bin/gh-pages -d public --branch master",
+        "format": "prettier --write --plugin-search-dir=. src/**/**.svelte"
     },
     "devDependencies": {
         "@rollup/plugin-commonjs": "^11.0.0",
         "@rollup/plugin-node-resolve": "^7.0.0",
         "eslint": "^6.8.0",
+        "eslint-plugin-svelte3": "^2.7.3",
         "gh-pages": "^2.2.0",
         "prettier": "^1.19.1",
+        "prettier-plugin-svelte": "^0.7.0",
         "prettier-standard": "^16.1.0",
         "rollup": "^1.20.0",
         "rollup-plugin-css-only": "^2.0.0",

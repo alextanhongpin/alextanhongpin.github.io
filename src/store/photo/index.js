@@ -10,7 +10,7 @@ import { writable } from 'svelte/store'
 export default {
   lightbox: {
     show: writable(false),
-    src: writable('/assets/img/photography/01-christmas_market/DSCF2043.jpg')
+    src: writable('/assets/img/photography/01-christmas_market/DSCF2043.jpg'),
   },
   photos: {
     'christmas-market': {
@@ -22,85 +22,85 @@ export default {
           name: '043.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/220 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '046.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/480 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '050.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/160 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '052.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/450 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '054.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/52 sec',
-          iso: '320'
+          iso: '320',
         },
 
         {
           name: '055.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/56 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '057.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/70 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '058.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/52 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '059.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/70 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '078.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/52 sec',
-          iso: '2500'
+          iso: '2500',
         },
 
         {
           name: '088.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/52 sec',
-          iso: '2500'
+          iso: '2500',
         },
         {
           name: '095.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/52 sec',
-          iso: '3200'
+          iso: '3200',
         },
         {
           name: '104.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/52 sec',
-          iso: '2000'
-        }
+          iso: '2000',
+        },
       ],
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     malaysia: {
       heading: 'Malaysia',
@@ -111,116 +111,116 @@ export default {
           name: '336.jpg',
           dof: 'f/3.2',
           shutterSpeed: '1/3000 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '342.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/4000 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '346.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/300 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '348.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/90 sec',
-          iso: '400'
+          iso: '400',
         },
         {
           name: '351.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/160 sec',
-          iso: '100'
+          iso: '100',
         },
 
         {
           name: '353.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/56 sec',
-          iso: '100'
+          iso: '100',
         },
         {
           name: '363.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/1900 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '366.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/3500 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '368.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/180 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '370.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/2200 sec',
-          iso: '800'
+          iso: '800',
         },
 
         {
           name: '373.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/2400 sec',
-          iso: '400'
+          iso: '400',
         },
         {
           name: '379.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/1400 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '381.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/90 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '415.jpg',
           dof: 'f/13',
           shutterSpeed: '1/2400 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '423.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/550 sec',
-          iso: '800'
+          iso: '800',
         },
 
         {
           name: '424.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/1100 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '425.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/1000 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '426.jpg',
           dof: 'f/1.4',
           shutterSpeed: '1/900 sec',
-          iso: '200'
-        }
+          iso: '200',
+        },
       ],
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     danboard: {
       heading: 'Danboard shots',
@@ -231,54 +231,54 @@ export default {
           name: '4735.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/50 sec',
-          iso: '1600'
+          iso: '1600',
         },
         {
           name: '2630.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/20 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '2641.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/20 sec',
-          iso: '800'
+          iso: '800',
         },
         {
           name: '3166.jpg',
           dof: 'f/5',
           shutterSpeed: '1/60 sec',
-          iso: '200'
+          iso: '200',
         },
 
         {
           name: '3171.jpg',
           dof: 'f/3.5',
           shutterSpeed: '1/125 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '3174.jpg',
           dof: 'f/5',
           shutterSpeed: '1/125 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '3175.jpg',
           dof: 'f/5',
           shutterSpeed: '1/80 sec',
-          iso: '200'
+          iso: '200',
         },
         {
           name: '3619.jpg',
           dof: 'f/3.5',
           shutterSpeed: '1/60 sec',
-          iso: '100'
-        }
+          iso: '100',
+        },
       ],
       cameraModel: 'Canon EOS 600D',
-      lensModel: '100mm f/2.8 Macro'
+      lensModel: '100mm f/2.8 Macro',
     },
     'preiser-figure': {
       heading: 'Preiser Figures',
@@ -295,16 +295,16 @@ export default {
           name: '06.jpg',
           dof: 'f/2.8',
           shutterSpeed: '1/30 sec',
-          iso: '400'
+          iso: '400',
         },
         { name: '07.jpg', dof: 'f/4', shutterSpeed: '1/30 sec', iso: '100' },
         { name: '08.jpg', dof: 'f/2.8', shutterSpeed: '1/4 sec', iso: '100' },
         { name: '09.jpg', dof: 'f/11', shutterSpeed: '2 sec', iso: '400' },
-        { name: '10.jpg', dof: 'f/2.8', shutterSpeed: '1/5 sec', iso: '100' }
+        { name: '10.jpg', dof: 'f/2.8', shutterSpeed: '1/5 sec', iso: '100' },
       ],
 
       cameraModel: 'Canon EOS 600D',
-      lensModel: '100mm f/2.8 Macro' // 'Canon EF 100mm f/2.8 USM Macro Lens'
+      lensModel: '100mm f/2.8 Macro', // 'Canon EF 100mm f/2.8 USM Macro Lens'
     },
     berlin: {
       heading: 'Berlin Trip',
@@ -353,10 +353,10 @@ export default {
         { name: 'DSCF2775.jpg', iso: 320, shutterSpeed: '1/64', dof: 1.4 },
         { name: 'DSCF2776.jpg', iso: 320, shutterSpeed: '1/64', dof: 1.4 },
         { name: 'DSCF2777.jpg', iso: 500, shutterSpeed: '1/64', dof: 1.4 },
-        { name: 'DSCF2778.jpg', iso: 400, shutterSpeed: '1/64', dof: 1.4 }
+        { name: 'DSCF2778.jpg', iso: 400, shutterSpeed: '1/64', dof: 1.4 },
       ],
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     'singapore-ndp-2018': {
       heading: 'National Day Parade Singapore',
@@ -364,7 +364,7 @@ export default {
       folderPath: '/assets/img/photography/08-ndp-singapore/',
       images: singaporeNdp,
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     'kl-life': {
       heading: 'KL Tech Life',
@@ -372,7 +372,7 @@ export default {
       folderPath: '/assets/img/photography/11-kl-life/',
       images: klLife,
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     'singapore-random': {
       heading: 'Around Singapore',
@@ -380,7 +380,7 @@ export default {
       folderPath: '/assets/img/photography/09-singapore-chinatown/',
       images: singaporeRandom,
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     'singapore-clarke-quay': {
       heading: 'Clarke Quay Singapore',
@@ -388,7 +388,7 @@ export default {
       folderPath: '/assets/img/photography/10-singapore-clarke-quay/',
       images: singaporeClarkeQuay,
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     'singapore-life': {
       heading: 'Singapore Life',
@@ -396,7 +396,7 @@ export default {
       folderPath: '/assets/img/photography/12-singapore-life/',
       images: singaporeLife,
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
+      lensModel: '35 mm f/1.4',
     },
     bali: {
       heading: 'Bali, Indonesia',
@@ -404,7 +404,7 @@ export default {
       folderPath: '/assets/img/photography/13-bali/',
       images: bali,
       cameraModel: 'Fujifilm XE-1',
-      lensModel: '35 mm f/1.4'
-    }
-  }
+      lensModel: '35 mm f/1.4',
+    },
+  },
 }

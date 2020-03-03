@@ -1,6 +1,6 @@
 import pause from './pause'
 
-async function type (max, counter = 0, callback) {
+async function type(max, counter = 0, callback) {
   if (counter < max) {
     callback && callback(counter)
     await pause()

@@ -12,15 +12,18 @@ const newdata = data.map(img => {
     shutterSpeed: img.image.properties['exif:ShutterSpeedValue'],
     iso: parseInt(img.image.properties['exif:ISOSpeedRatings'], 10),
     width: img.image.pageGeometry.width,
-    height: img.image.pageGeometry.height
+    height: img.image.pageGeometry.height,
   }
 })
 
-function toNumber (str, decimal) {
+function toNumber(str, decimal) {
   let [num, den] = str.split('/').map(Number)
   return (num / den).toFixed(decimal)
 }
 
 console.log(newdata.slice(0, 5))
 
-fs.writeFileSync(pathToFile.replace('data.json', 'out.json'), JSON.stringify(newdata))
+fs.writeFileSync(
+  pathToFile.replace('data.json', 'out.json'),
+  JSON.stringify(newdata)
+)

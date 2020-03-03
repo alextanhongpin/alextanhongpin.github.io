@@ -4,5 +4,5 @@ export default {
   heading: writable(''),
   headingGhost: 'Hi, I am Alex.',
   subheading: writable(''),
-  subheadingGhost: 'This is my journey as a Developer.'
+  subheadingGhost: 'This is my journey as a Developer.',
 }

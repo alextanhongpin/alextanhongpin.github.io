@@ -1,3 +1,3 @@
-  <div class='body'>
-    <div class='body-column'>About Page</div>
-  </div>
+<div class="body">
+  <div class="body-column">About Page</div>
+</div>
