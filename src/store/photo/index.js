@@ -10,6 +10,7 @@ import { writable } from 'svelte/store'
 export default {
   lightbox: {
     show: writable(false),
+    showThumbnail: writable(true),
     src: writable('/assets/img/photography/01-christmas_market/DSCF2043.jpg'),
   },
   photos: {

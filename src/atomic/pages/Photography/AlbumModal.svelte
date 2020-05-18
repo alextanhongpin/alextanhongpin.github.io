@@ -1,5 +1,8 @@
 <script>
+  import { fade } from 'svelte/transition'
   import { onMount } from 'svelte'
+  import state from '../../../store/photo'
+  const { showThumbnail } = state.lightbox
 
   export let images = []
   export let folderPath
@@ -7,36 +10,24 @@
   export let src
 
   let container
+
+  let timeout
+  const handleMousemove = () => {
+    showThumbnail.set(true)
+    timeout && window.clearTimeout(timeout)
+    timeout = window.setTimeout(() => {
+      showThumbnail.set(false)
+    }, 1500)
+  }
+
   onMount(() => {
-    if (typeof IntersectionObserver !== 'undefined') {
-      const observer = new IntersectionObserver(
-        entries => {
-          const intersecting = entries[0].isIntersecting
-          if (!intersecting) {
-            src.set(entries[0].target.alt)
-          }
-        },
-        {
-          threshold: 1,
-          rootMargin: '0px 0px 0px 100%',
-        }
-      )
-      container
-        .querySelectorAll('.img-modal')
-        .forEach($el => observer.observe($el))
-      return () => {
-        container
-          .querySelectorAll('.img-modal')
-          .forEach($el => observer.unobserve($el))
-      }
-    }
+    handleMousemove()
   })
 </script>
 
 <style>
   /* Modal. */
   .img-modal-holder {
-    background: rgba(0, 0, 0, 0.4);
     display: grid;
     position: fixed;
     bottom: 0;
@@ -52,6 +43,10 @@
     grid-row-gap: 8px;
     align-items: center;
     padding: 0 8px;
+    background: none;
+  }
+  .img-modal-holder.visible {
+    background: rgba(0, 0, 0, 0.4);
   }
   .img-modal:focus,
   .img-modal:active,
@@ -70,14 +65,20 @@
   }
 </style>
 
-
-<div class="img-modal-holder" bind:this={container}>
-  {#each images as it}
-    <img
-      src={folderPath + it.name}
-      alt={folderPath + it.name}
-      class="img-modal"
-      class:is-selected={folderPath + it.name === $src}
-      on:click={() => onClick(folderPath + it.name)} />
-  {/each}
+<div
+  class="img-modal-holder"
+  class:visible={$showThumbnail}
+  bind:this={container}
+  on:mousemove={handleMousemove}>
+  {#if $showThumbnail}
+    {#each images as it}
+      <img
+        src={folderPath + it.name}
+        alt={folderPath + it.name}
+        class="img-modal"
+        class:is-selected={folderPath + it.name === $src}
+        on:click={() => onClick(folderPath + it.name)}
+        transition:fade />
+    {/each}
+  {/if}
 </div>
