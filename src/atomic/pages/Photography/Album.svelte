@@ -1,5 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
   import state from '../../../store/photo'
   import AlbumModal from './AlbumModal.svelte'
 
@@ -89,7 +88,9 @@
               with
               <i>{lensModel}</i>
             </span>
-            <span>{it.dof.includes('f/') ? it.dof : 'f/' + it.dof}</span>
+            <span>
+              {it.dof.toString().includes('f/') ? it.dof : 'f/' + it.dof}
+            </span>
             <span>
               {it.shutterSpeed.includes('sec') ? it.shutterSpeed : it.shutterSpeed + ' sec'}
             </span>
