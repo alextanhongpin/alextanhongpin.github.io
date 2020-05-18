@@ -14,12 +14,13 @@
   import Guitar from './atomic/pages/Guitar.svelte'
   import Programming from './atomic/pages/Programming.svelte'
   import Photography from './atomic/pages/Photography.svelte'
+  import Project from './atomic/pages/Project.svelte'
 
   // State.
   import { app } from './store'
   const { links, footer, header, username, profileImg } = app
 
-  const noop = args => args
+  const noop = (args) => args
   let path = ''
   let page = Home
   let params = {}
@@ -44,9 +45,14 @@
     path = '/codes'
     page = Programming
   })
-  router('/photos/:album?', ctx => {
+  router('/photos/:album?', (ctx) => {
     page = Photography
     path = ['/photos', ctx.params.album].filter(Boolean).join('/')
+    params = ctx.params
+  })
+  router('/projects', (ctx) => {
+    page = Project
+    path = '/projects'
     params = ctx.params
   })
   // router('/*', () => page = Error)

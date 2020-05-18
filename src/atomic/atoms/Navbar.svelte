@@ -10,10 +10,10 @@
     height: var(--navbar-height);
     line-height: var(--navbar-height);
     display: grid;
-    grid-column-gap: 16px;
+    grid-column-gap: 1rem;
     font-size: var(--h6);
     /* Hardcoded to allow only five columns */
-    grid-template-columns: repeat(6, max-content);
+    grid-template-columns: repeat(7, max-content);
     justify-content: flex-end;
     box-shadow: inset 0 -5px 15px rgba(0, 0, 0, 0.05);
   }

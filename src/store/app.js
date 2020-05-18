@@ -28,5 +28,9 @@ export default {
       to: '/codes',
       label: 'Code',
     },
+    {
+      to: '/projects',
+      label: 'Project',
+    },
   ],
 }
