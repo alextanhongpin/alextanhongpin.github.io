@@ -3,3 +3,4 @@ static/index.js
 yarn.lock
 .DS_Store
 public/build/**
+tags
