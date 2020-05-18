@@ -93,18 +93,21 @@ p {
 
 h1,
 .h1 {
+    font-family: "Avenir Black", Arial, Helvetica, sans-serif;
     font-size: var(--h1);
     line-height: calc(4 * var(--base-line-height));
 }
 
 h2,
 .h2 {
+    font-family: "Avenir Black", Arial, Helvetica, sans-serif;
     font-size: var(--h2);
     line-height: calc(4 * var(--base-line-height));
 }
 
 h3,
 .h3 {
+    font-family: "Avenir Black", Arial, Helvetica, sans-serif;
     font-size: var(--h3);
     line-height: calc(2 * var(--base-line-height));
 }
