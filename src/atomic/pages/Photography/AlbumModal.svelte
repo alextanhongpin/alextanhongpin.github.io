@@ -2,7 +2,7 @@
   import { fade } from 'svelte/transition'
   import { onMount } from 'svelte'
   import state from '../../../store/photo'
-  const { showThumbnail } = state.lightbox
+  const { show, showThumbnail } = state.lightbox
 
   export let images = []
   export let folderPath
@@ -12,16 +12,53 @@
   let container
 
   let timeout
-  const handleMousemove = () => {
+  const setVisible = () => {
     showThumbnail.set(true)
+    timeout && window.clearTimeout(timeout)
+  }
+  const handleMouseEnter = () => {
+    setVisible()
+  }
+  const handleMouseLeave = () => {
     timeout && window.clearTimeout(timeout)
     timeout = window.setTimeout(() => {
       showThumbnail.set(false)
-    }, 1500)
+    }, 1000)
+  }
+  const handleKeyDown = (evt) => {
+    switch (evt.keyCode) {
+      case 37: {
+        evt.preventDefault()
+        setVisible()
+        const index = images.findIndex(function (it) {
+          return folderPath + it.name === $src
+        })
+        container.scrollLeft =
+          (container.scrollWidth / images.length) * (index - 1) -
+          window.innerWidth / 2
+        onClick(folderPath + images[Math.max(index - 1, 0)].name)
+        return
+      }
+      case 39: {
+        evt.preventDefault()
+        setVisible()
+        const index = images.findIndex(function (it) {
+          return folderPath + it.name === $src
+        })
+        container.scrollLeft =
+          (container.scrollWidth / images.length) * (index + 1) -
+          window.innerWidth / 2
+        onClick(
+          folderPath + images[Math.min(index + 1, images.length - 1)].name
+        )
+        return
+      }
+      default:
+    }
   }
 
   onMount(() => {
-    handleMousemove()
+    handleMouseLeave()
   })
 </script>
 
@@ -65,20 +102,24 @@
   }
 </style>
 
-<div
-  class="img-modal-holder"
-  class:visible={$showThumbnail}
-  bind:this={container}
-  on:mousemove={handleMousemove}>
-  {#if $showThumbnail}
-    {#each images as it}
-      <img
-        src={folderPath + it.name}
-        alt={folderPath + it.name}
-        class="img-modal"
-        class:is-selected={folderPath + it.name === $src}
-        on:click={() => onClick(folderPath + it.name)}
-        transition:fade />
-    {/each}
-  {/if}
-</div>
+<svelte:window on:keydown={handleKeyDown} />
+{#if $show}
+  <div
+    class="img-modal-holder"
+    class:visible={$showThumbnail}
+    bind:this={container}
+    on:mouseleave={handleMouseLeave}
+    on:mouseenter={handleMouseEnter}>
+    {#if $showThumbnail}
+      {#each images as it}
+        <img
+          src={folderPath + it.name}
+          alt={folderPath + it.name}
+          class="img-modal"
+          class:is-selected={folderPath + it.name === $src}
+          on:click={() => onClick(folderPath + it.name)}
+          transition:fade />
+      {/each}
+    {/if}
+  </div>
+{/if}
