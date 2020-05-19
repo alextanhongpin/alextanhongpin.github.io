@@ -7,7 +7,7 @@
   import Footer from './atomic/atoms/Footer.svelte'
 
   // Pages.
-  import About from './atomic/pages/About.svelte'
+  // import About from './atomic/pages/About.svelte'
   import Book from './atomic/pages/Book.svelte'
   import Contact from './atomic/pages/Contact.svelte'
   import Home from './atomic/pages/Home.svelte'
@@ -20,39 +20,38 @@
   import { app } from './store'
   const { links, footer, header, username, profileImg } = app
 
-  const noop = (args) => args
   let path = ''
   let page = Home
   let params = {}
 
-  router('/', () => {
-    path = '/'
+  router('/', (ctx) => {
+    path = ctx.state.path
     page = Home
   })
-  router('/books', () => {
-    path = '/books'
+  router('/books', (ctx) => {
+    path = ctx.state.path
     page = Book
   })
-  router('/contacts', () => {
-    path = '/contacts'
+  router('/contacts', (ctx) => {
+    path = ctx.state.path
     page = Contact
   })
-  router('/songs', () => {
-    path = '/songs'
+  router('/songs', (ctx) => {
+    path = ctx.state.path
     page = Guitar
   })
-  router('/codes', () => {
-    path = '/codes'
+  router('/codes', (ctx) => {
+    path = ctx.state.path
     page = Programming
   })
   router('/photos/:album?', (ctx) => {
     page = Photography
-    path = ['/photos', ctx.params.album].filter(Boolean).join('/')
+    path = ctx.state.path
     params = ctx.params
   })
   router('/projects', (ctx) => {
     page = Project
-    path = '/projects'
+    path = ctx.state.path
     params = ctx.params
   })
   // router('/*', () => page = Error)

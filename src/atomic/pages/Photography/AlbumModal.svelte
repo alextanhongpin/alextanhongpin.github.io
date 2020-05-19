@@ -10,55 +10,50 @@
   export let src
 
   let container
-
   let timeout
-  const setVisible = () => {
+
+  $: index = images.findIndex((it) => folderPath + it.name === $src)
+
+  const setShowThumbnail = () => {
     showThumbnail.set(true)
     timeout && window.clearTimeout(timeout)
   }
-  const handleMouseEnter = () => {
-    setVisible()
-  }
-  const handleMouseLeave = () => {
+
+  const setHideThumbnail = () => {
     timeout && window.clearTimeout(timeout)
     timeout = window.setTimeout(() => {
       showThumbnail.set(false)
     }, 1000)
   }
+
+  const handleMouseEnter = () => setShowThumbnail()
+  const handleMouseLeave = () => setHideThumbnail()
+
   const handleKeyDown = (evt) => {
     switch (evt.keyCode) {
-      case 37: {
-        evt.preventDefault()
-        setVisible()
-        const index = images.findIndex(function (it) {
-          return folderPath + it.name === $src
-        })
-        container.scrollLeft =
-          (container.scrollWidth / images.length) * (index - 1) -
-          window.innerWidth / 2
-        onClick(folderPath + images[Math.max(index - 1, 0)].name)
-        return
-      }
+      case 37:
       case 39: {
         evt.preventDefault()
-        setVisible()
-        const index = images.findIndex(function (it) {
-          return folderPath + it.name === $src
-        })
+        setShowThumbnail()
+
+        let i = index + evt.keyCode - 38
+        if (i < 0) i = 0
+        if (i > images.length - 1) i = images.length - 1
+
         container.scrollLeft =
-          (container.scrollWidth / images.length) * (index + 1) -
-          window.innerWidth / 2
-        onClick(
-          folderPath + images[Math.min(index + 1, images.length - 1)].name
-        )
-        return
+          (container.scrollWidth / images.length) * i - window.innerWidth / 2
+
+        onClick(folderPath + images[i].name)
+        setHideThumbnail()
+        return false
       }
       default:
+        return true
     }
   }
 
   onMount(() => {
-    handleMouseLeave()
+    setHideThumbnail()
   })
 </script>
 

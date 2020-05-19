@@ -16,11 +16,11 @@
   })
 
   function updateHeading(next) {
-    heading.update(prev => prev + next)
+    heading.update((prev) => prev + next)
   }
 
   function updateSubheading(next) {
-    subheading.update(prev => prev + next)
+    subheading.update((prev) => prev + next)
   }
 
   function clear() {
@@ -30,9 +30,9 @@
 
   // This functionality will be invoked only once
   async function startTyping(heading, subheading) {
-    await type(heading.length, 0, counter => updateHeading(heading[counter]))
+    await type(heading.length, 0, (counter) => updateHeading(heading[counter]))
     await pause(250)
-    await type(subheading.length, 0, counter =>
+    await type(subheading.length, 0, (counter) =>
       updateSubheading(subheading[counter])
     )
   }
