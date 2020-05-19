@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher, onDestroy } from 'svelte'
+  import { createEventDispatcher, onDestroy, onMount } from 'svelte'
 
   const dispatch = createEventDispatcher()
   const close = () => dispatch('close')
@@ -33,9 +33,14 @@
 
   if (previously_focused) {
     onDestroy(() => {
+      document.body.classList.remove('is-overflow')
       previously_focused.focus()
     })
   }
+  onMount(() => {
+    document.body.classList.add('is-overflow')
+    modal.scrollTo(0, 0)
+  })
 </script>
 
 <style>
@@ -70,18 +75,23 @@
     border-top: none;
     border-color: #ddd;
   }
+
+  /* Prevent generating unique class names. */
+  :global(.is-overflow) {
+    overflow: hidden;
+  }
 </style>
 
 <svelte:window on:keydown={handle_keydown} />
 
-<div class="modal-background" on:click={close} />
+<div class="modal-background" on:click={close}>
+  <div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
+    <slot name="header" />
+    <hr class="hr" />
+    <slot />
+    <hr class="hr" />
 
-<div class="modal" role="dialog" aria-modal="true" bind:this={modal}>
-  <slot name="header" />
-  <hr class="hr" />
-  <slot />
-  <hr class="hr" />
-
-  <!-- svelte-ignore a11y-autofocus -->
-  <button autofocus on:click={close}>Close</button>
+    <!-- svelte-ignore a11y-autofocus -->
+    <button autofocus on:click={close}>Close</button>
+  </div>
 </div>

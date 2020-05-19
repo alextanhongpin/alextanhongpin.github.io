@@ -42,7 +42,8 @@
         <a
           href="/assets/img/project/new-website.png"
           target="_blank"
-          rel="noreferrer noopener">
+          rel="noreferrer noopener"
+          on:click|stopPropagation={() => (showModal = false)}>
           <img
             src="/assets/img/project/new-website.png"
             width="100%"
