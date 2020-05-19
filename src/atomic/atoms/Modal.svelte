@@ -66,6 +66,13 @@
     border-radius: 0.2em;
     background: white;
   }
+  @media (max-width: 640px) {
+    .modal {
+      width: calc(100vw - 1em);
+      max-height: calc(100vh - 1em);
+      padding: 2rem;
+    }
+  }
 
   button {
     display: block;
