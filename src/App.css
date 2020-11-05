@@ -1,133 +1,135 @@
 html {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 img {
-    box-sizing: content-box;
+  box-sizing: content-box;
 }
 
 :root {
-    /* Colors */
-    --coral-red: #FF4444;
-    --gallery: #EEEEEE;
-    --gray: #888888;
+  /* Colors */
+  --coral-red: #ff4444;
+  --gallery: #eeeeee;
+  --gray: #888888;
 
-    /* Dimensions */
-    --header-height: 4.209rem;
-    --navbar-height: 3.157rem;
-    --footer-height: 3.157rem;
+  /* Dimensions */
+  --header-height: 4.209rem;
+  --navbar-height: 3.157rem;
+  --footer-height: 3.157rem;
 
-    --brand-height: 35px;
-    --max-width: 960px;
+  --brand-height: 35px;
+  --max-width: 960px;
 
-    /* Vertical Rhythm */
-    --base-line-height: 1.5rem;
-    --h1: 3.157rem;
-    --h2: 2.369rem;
-    --h3: 1.777rem;
-    --h4: 1.333rem;
-    --h5: 1rem;
-    --h6: 0.75rem;
-    --h7: 0.563rem;
-    --h8: 0.422rem;
+  /* Vertical Rhythm */
+  --base-line-height: 1.5rem;
+  --h1: 3.157rem;
+  --h2: 2.369rem;
+  --h3: 1.777rem;
+  --h4: 1.333rem;
+  --h5: 1rem;
+  --h6: 0.75rem;
+  --h7: 0.563rem;
+  --h8: 0.422rem;
 }
 
 body {
-    font-family: "Avenir", Arial, Helvetica, sans-serif;
+  font-family: 'Avenir', Arial, Helvetica, sans-serif;
 }
 
 .main {
-    display: grid;
-    grid-template-areas:
-        "navbar"
-        "header"
-        "body"
-        "footer";
-    grid-template-rows:
-        var(--navbar-height) var(--header-height) 1fr var(--footer-height);
-    min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+    'navbar'
+    'header'
+    'body'
+    'footer';
+  grid-template-rows: var(--navbar-height) var(--header-height) 1fr var(
+      --footer-height
+    );
+  min-height: 100vh;
 }
 
 .header {
-    grid-area: header;
+  grid-area: header;
 }
 
 .navbar {
-    grid-area: navbar;
+  grid-area: navbar;
 }
 
 .body {
-    grid-area: body;
+  grid-area: body;
 }
 
 .footer {
-    grid-area: footer;
+  grid-area: footer;
 }
 
 .header,
 .navbar,
 .body,
 .footer {
-    padding: 0 16px;
+  padding: 0 16px;
 }
 
 .body-column {
-    max-width: var(--max-width);
-    width: 100%;
-    margin: auto;
+  max-width: var(--max-width);
+  width: 100%;
+  margin: auto;
 }
 
 /* Apply Modular Scale (perfect fourth: 4 / 3) and Vertical Rhythm */
 
 body,
 p {
-    font-size: var(--h5);
-    line-height: calc(1 * var(--base-line-height));
+  font-size: var(--h5);
+  line-height: calc(1 * var(--base-line-height));
 }
 
 h1,
 .h1 {
-    font-family: "Avenir Black", Arial, Helvetica, sans-serif;
-    font-size: var(--h1);
-    line-height: calc(4 * var(--base-line-height));
+  font-family: 'Avenir Black', Arial, Helvetica, sans-serif;
+  font-size: var(--h1);
+  line-height: calc(4 * var(--base-line-height));
 }
 
 h2,
 .h2 {
-    font-family: "Avenir Black", Arial, Helvetica, sans-serif;
-    font-size: var(--h2);
-    line-height: calc(4 * var(--base-line-height));
+  font-family: 'Avenir Black', Arial, Helvetica, sans-serif;
+  font-size: var(--h2);
+  line-height: calc(4 * var(--base-line-height));
 }
 
 h3,
 .h3 {
-    font-family: "Avenir Black", Arial, Helvetica, sans-serif;
-    font-size: var(--h3);
-    line-height: calc(2 * var(--base-line-height));
+  font-family: 'Avenir Black', Arial, Helvetica, sans-serif;
+  font-size: var(--h3);
+  line-height: calc(2 * var(--base-line-height));
 }
 
 h4,
 .h4 {
-    font-size: var(--h4);
-    line-height: calc(2 * var(--base-line-height));
+  font-size: var(--h4);
+  line-height: calc(2 * var(--base-line-height));
 }
 
 h5,
 .h5 {
-    font-size: var(--h5);
-    line-height: calc(1 * var(--base-line-height));
+  font-size: var(--h5);
+  line-height: calc(1 * var(--base-line-height));
 }
 
 h6,
 .h6 {
-    font-size: var(--h6);
-    line-height: calc(1 * var(--base-line-height));
+  font-size: var(--h6);
+  line-height: calc(1 * var(--base-line-height));
 }
 
 h1,
@@ -136,15 +138,15 @@ h3,
 h4,
 h5,
 h6 {
-    margin: 0;
+  margin: 0;
 }
 
 .quote {
-    background: var(--gallery);
-    min-height: calc(2 * var(--base-line-height));
-    line-height: calc(2 * var(--base-line-height));
-    padding: 0 var(--h5);
-    font-style: italic;
-    color: var(--gray);
-    border-left: 5px solid rgba(0, 0, 0, .25);
+  background: var(--gallery);
+  min-height: calc(2 * var(--base-line-height));
+  line-height: calc(2 * var(--base-line-height));
+  padding: 0 var(--h5);
+  font-style: italic;
+  color: var(--gray);
+  border-left: 5px solid rgba(0, 0, 0, 0.25);
 }
