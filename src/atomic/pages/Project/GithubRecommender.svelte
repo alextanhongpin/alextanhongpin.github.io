@@ -171,11 +171,13 @@
     href='/assets/img/project/github_recommender_v3.png'
     target='_blank'
     rel='noreferrer noopener'
+    alt='Github Recommender'
   >
     <img
       src='/assets/img/project/github_recommender_v3.png'
       width='100%'
       height='auto'
+    alt='Github Recommender'
     />
   </a>
 </div>

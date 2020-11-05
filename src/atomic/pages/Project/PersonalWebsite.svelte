@@ -84,7 +84,11 @@
     href="/assets/img/project/old-website.png"
     target="_blank"
     rel="noopener noreferrer">
-    <img src="/assets/img/project/old-website.png" width="100%" height="auto" />
+    <img
+      src="/assets/img/project/old-website.png"
+      width="100%"
+      height="auto"
+      alt="Old Website" />
   </a>
   <p>After:</p>
 
@@ -92,7 +96,11 @@
     href="/assets/img/project/new-website.png"
     target="_blank"
     rel="noopener noreferrer">
-    <img src="/assets/img/project/new-website.png" width="100%" height="auto" />
+    <img
+      src="/assets/img/project/new-website.png"
+      width="100%"
+      height="auto"
+      alt="New Website" />
   </a>
 
   <p>It keeps getting better and better. 😄</p>

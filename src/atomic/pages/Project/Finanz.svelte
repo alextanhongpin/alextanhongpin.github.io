@@ -82,7 +82,7 @@
     <img
       src="/assets/img/project/finanz_alt_home.png"
       width="100%"
-      height="auto" />
+      height="auto" alt='Home Page'/>
   </a>
   <a
     href="/assets/img/project/finanz_alt_create.png"
@@ -91,7 +91,7 @@
     <img
       src="/assets/img/project/finanz_alt_create.png"
       width="100%"
-      height="auto" />
+      height="auto" alt='Create'/>
   </a>
   <p>😊 I probably will rewrite it again in the near future.</p>
 </div>
