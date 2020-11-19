@@ -1,20 +1,110 @@
 <script>
 </script>
 
+<style>
+  figure {
+    margin: 0 0 4rem 0;
+    text-align: center;
+  }
+  figure img {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+</style>
+
 <div class="block">
   <h2 id="ask-and-answer">Ask & Answer</h2>
-  <i>Last updated: 5 November 2020</i>
+  <i>Last updated: 19 November 2020</i>
   <br />
 
   <a
-    href="/assets/img/project/finanz.png"
+    href="/assets/img/project/ask_and_answer_old.png"
     target="_blank"
     rel="noreferrer noopener">
-    <img
-      src="/assets/img/project/ask_and_answer.png"
-      width="100%"
-      height="auto"
-      alt="Ask & Answer" />
+    <figure>
+      <img
+        src="/assets/img/project/ask_and_answer_old.png"
+        width="100%"
+        height="auto"
+        alt="Ask & Answer (old)" />
+      <figcaption>Figure 1. First version of the Home Page</figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/ask_and_answer_home.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/ask_and_answer_home.png"
+        width="100%"
+        height="auto"
+        alt="Ask & Answer - Home Page" />
+      <figcaption>Figure 2. Redesign of the Home Page</figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/ask_and_answer_profile_detail.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/ask_and_answer_profile_detail.png"
+        width="100%"
+        height="auto"
+        alt="Ask & Answer - Profile Detail Page" />
+      <figcaption>Figure 3. Profile Detail Page</figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/ask_and_answer_topic_detail.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/ask_and_answer_topic_detail.png"
+        width="100%"
+        height="auto"
+        alt="Ask & Answer - Topic Detail Page" />
+      <figcaption>Figure 4. Topic Detail Page</figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/ask_and_answer_question_detail.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/ask_and_answer_question_detail.png"
+        width="100%"
+        height="auto"
+        alt="Ask & Answer - Question Detail Page" />
+      <figcaption>
+        Figure 5. Question Detail Page, highlighting the answer question feature
+      </figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/ask_and_answer_question_detail_comment.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/ask_and_answer_question_detail_comment.png"
+        width="100%"
+        height="auto"
+        alt="Ask & Answer - Question Detail Page Comment" />
+      <figcaption>
+        Figure 6. Question Detail Page, highlighting the comment and reaction
+        feature
+      </figcaption>
+    </figure>
   </a>
 
   <p>

@@ -33,28 +33,28 @@
     <div>
       <h4>Table of Content</h4>
       <ul>
-        <li><a href="#my-personal-website">My Personal Website</a></li>
-        <li><a href="#finanz">Finanz | Visualize Your Expenses</a></li>
-        <li><a href="#github-recommender">Github Recommender</a></li>
-        <li><a href="#hire">Hire | Paperless Applicant Tracking System</a></li>
         <li><a href="#ask-and-answer">Ask & Answer</a></li>
+        <li><a href="#hire">Hire | Paperless Applicant Tracking System</a></li>
+        <li><a href="#github-recommender">Github Recommender</a></li>
+        <li><a href="#finanz">Finanz | Visualize Your Expenses</a></li>
+        <li><a href="#my-personal-website">My Personal Website</a></li>
       </ul>
     </div>
     <div class="blocks">
       <div class="block">
-        <PersonalWebsite />
-      </div>
-      <div class="block">
-        <Finanz />
-      </div>
-      <div class="block">
-        <GithubRecommender />
+        <AskAndAnswer />
       </div>
       <div class="block">
         <Hire />
       </div>
       <div class="block">
-        <AskAndAnswer />
+        <GithubRecommender />
+      </div>
+      <div class="block">
+        <Finanz />
+      </div>
+      <div class="block">
+        <PersonalWebsite />
       </div>
     </div>
   </div>

@@ -1,10 +1,64 @@
 <script>
 </script>
 
+<style>
+  figure {
+    margin: 0 0 4rem 0;
+    text-align: center;
+  }
+  figure img {
+    border: 1px solid #eee;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+</style>
+
 <div class="block">
   <h2 id="hire">HIRE | Paperless Applicant Tracking System</h2>
-  <i>Last updated: 2 November 2020</i>
+  <i>Last updated: 19 November 2020</i>
   <br />
+
+  <a
+    href="/assets/img/project/hire_people.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/hire_people.png"
+        width="100%"
+        height="auto"
+        alt="HIRE - People Page" />
+      <figcaption>Figure 1. HIRE - People Page</figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/hire_company.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/hire_company.png"
+        width="100%"
+        height="auto"
+        alt="HIRE - Company Page" />
+      <figcaption>Figure 2. HIRE - Company Page</figcaption>
+    </figure>
+  </a>
+
+  <a
+    href="/assets/img/project/hire_job.png"
+    target="_blank"
+    rel="noreferrer noopener">
+    <figure>
+      <img
+        src="/assets/img/project/hire_job.png"
+        width="100%"
+        height="auto"
+        alt="HIRE - Job Page" />
+      <figcaption>Figure 3. HIRE - Job Page</figcaption>
+    </figure>
+  </a>
 
   <p>
     HIRE serves the needs of three different target audience - recruiters, job
