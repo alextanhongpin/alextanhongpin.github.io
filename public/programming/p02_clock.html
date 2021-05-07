@@ -1,169 +1,172 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
-<style>
-    @import url(http://fonts.googleapis.com/css?family=Dosis:300);
-    @font-face { 
-        font-family: Visitor; 
-        src: url('/fonts/visitor1.ttf'); 
-    } 
-    
-    *{
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Dosis:300);
+      @font-face {
+        font-family: Visitor;
+        src: url('/fonts/visitor1.ttf');
+      }
+
+      * {
         margin: 0;
         padding: 0;
         font-family: 'Dosis', sans-serif;
-    }
-    
-    body{
+      }
+
+      body {
         background: #eee;
         width: 100%;
         min-width: 240px;
         height: 100%;
         display: block;
         text-align: center;
-    }
+      }
 
-    div{
+      div {
         position: relative;
         z-index: 1000;
-    }
+      }
 
-    #canvas{
+      #canvas {
         display: block;
         background: #fff;
         position: absolute;
         top: 0;
-    }
-    /*@media only screen and (min-device-width: 720px){}*/
-</style>
-      
+      }
+      /*@media only screen and (min-device-width: 720px){}*/
+    </style>
+
     <title>@alextanhongpin</title>
-      
   </head>
   <body>
     <div>by alextanhongpin, #amalaysianprogrammer</div>
-    <canvas id='canvas'>Sorry, your browser does not support Canvas API.</canvas>  
+    <canvas id="canvas"
+      >Sorry, your browser does not support Canvas API.</canvas
+    >
   </body>
-    
-  <script>$(document).ready(function(){
 
-    'use strict';
+  <script>
+    $(document).ready(function () {
+      'use strict'
 
-    var canvas = document.getElementById('canvas');
-        canvas.height = window.innerHeight;
-        canvas.width = window.innerWidth;
-    var context = canvas.getContext('2d');
-    
-    var x = canvas.width / 2;
-    var y = canvas.height / 2;
-    
-    $(window).resize(function(){
-            canvas.height = window.innerHeight;
-            canvas.width = window.innerWidth;
-        
-            x = canvas.width / 2;
-            y = canvas.height / 2;
-        });
-    
-    function draw(){
-        context.clearRect(0,0,canvas.width,canvas.height);
-        context.save();
-        
+      var canvas = document.getElementById('canvas')
+      canvas.height = window.innerHeight
+      canvas.width = window.innerWidth
+      var context = canvas.getContext('2d')
+
+      var x = canvas.width / 2
+      var y = canvas.height / 2
+
+      $(window).resize(function () {
+        canvas.height = window.innerHeight
+        canvas.width = window.innerWidth
+
+        x = canvas.width / 2
+        y = canvas.height / 2
+      })
+
+      function draw() {
+        context.clearRect(0, 0, canvas.width, canvas.height)
+        context.save()
+
         //hours, seconds, minutes
-        var date = new Date();
-        var milliseconds = date.getMilliseconds() * 6 / 1000 * Math.PI / 180;
-        var seconds = date.getSeconds() * 6 * Math.PI / 180;
-        var minutes = date.getMinutes() * 6 * Math.PI / 180;
-        var hours = date.getHours() * 30 * Math.PI / 180;
-        
+        var date = new Date()
+        var milliseconds =
+          (((date.getMilliseconds() * 6) / 1000) * Math.PI) / 180
+        var seconds = (date.getSeconds() * 6 * Math.PI) / 180
+        var minutes = (date.getMinutes() * 6 * Math.PI) / 180
+        var hours = (date.getHours() * 30 * Math.PI) / 180
+
         //part 1: clock body - frame
-        context.beginPath();
-        context.translate(x,y);
-        context.arc(0,0,170,0,Math.PI * 2);
-            context.shadowOffsetX = 5;
-			context.shadowOffsetY = 5;
-			context.shadowBlur = 5;
-			context.shadowColor = "#444";
-        context.fillStyle = '#000';
-        context.fill();
-        context.closePath();
-        context.restore();
-        context.save();
-        
+        context.beginPath()
+        context.translate(x, y)
+        context.arc(0, 0, 170, 0, Math.PI * 2)
+        context.shadowOffsetX = 5
+        context.shadowOffsetY = 5
+        context.shadowBlur = 5
+        context.shadowColor = '#444'
+        context.fillStyle = '#000'
+        context.fill()
+        context.closePath()
+        context.restore()
+        context.save()
+
         //part 2: clock body - inner
-        context.beginPath();
-        context.translate(x,y);
-        context.arc(0,0,130,0,Math.PI * 2);
-        context.fillStyle = '#fff';
-        context.fill();
-        context.closePath();
-        context.restore();
-        context.save();
-        
+        context.beginPath()
+        context.translate(x, y)
+        context.arc(0, 0, 130, 0, Math.PI * 2)
+        context.fillStyle = '#fff'
+        context.fill()
+        context.closePath()
+        context.restore()
+        context.save()
+
         //part 3: hours hand
-        context.beginPath();
-        context.translate(x,y);
-        context.rotate(hours + minutes / 12);
-        context.moveTo(0,8);
-        context.lineTo(0,-60);
-        context.lineWidth = 4;
-        context.strokeStyle = '#222';
-        context.stroke();
-        context.closePath();
-        context.restore();
-        context.save();
-                
+        context.beginPath()
+        context.translate(x, y)
+        context.rotate(hours + minutes / 12)
+        context.moveTo(0, 8)
+        context.lineTo(0, -60)
+        context.lineWidth = 4
+        context.strokeStyle = '#222'
+        context.stroke()
+        context.closePath()
+        context.restore()
+        context.save()
+
         //part 4: minutes hand
-        context.beginPath();
-        context.translate(x,y);
-        context.rotate(minutes + seconds / 60);
-        context.moveTo(0,8);
-        context.lineTo(0,-80);
-        context.lineWidth = 2;
-        context.strokeStyle = '#222';
-        context.stroke();
-        context.closePath();
-        context.restore();
-        context.save();
-        
+        context.beginPath()
+        context.translate(x, y)
+        context.rotate(minutes + seconds / 60)
+        context.moveTo(0, 8)
+        context.lineTo(0, -80)
+        context.lineWidth = 2
+        context.strokeStyle = '#222'
+        context.stroke()
+        context.closePath()
+        context.restore()
+        context.save()
+
         //part 5: seconds hand
-        context.beginPath();
-        context.translate(x,y);
-        context.rotate(seconds + milliseconds);
-        context.moveTo(0,10);
-        context.lineTo(0,-90);
-        context.lineWidth = 5;
-        context.strokeStyle = '#f44';
-        context.stroke();
-        context.closePath();
-        context.restore();
-        context.save();
-        
-        for(var i=0; i<12; i++){
-            context.beginPath();
-            context.font="1.5em Visitor";
-            var angle = i*30*Math.PI/180;
-            context.translate(x,y+5);
-            context.textAlign = 'center';
-            if (i==0){
-                context.fillText(12,Math.sin(angle)*110,Math.cos(angle)*(-110));
-            }else{
-                context.fillText(i,Math.sin(angle)*110,Math.cos(angle)*(-110));
-            }
-            context.restore();
-            context.save();
-            context.closePath();
-		}
-  
-    }
-  
-    setInterval(draw, 1000/60);
-    
-    
-});</script>
+        context.beginPath()
+        context.translate(x, y)
+        context.rotate(seconds + milliseconds)
+        context.moveTo(0, 10)
+        context.lineTo(0, -90)
+        context.lineWidth = 5
+        context.strokeStyle = '#f44'
+        context.stroke()
+        context.closePath()
+        context.restore()
+        context.save()
+
+        for (var i = 0; i < 12; i++) {
+          context.beginPath()
+          context.font = '1.5em Visitor'
+          var angle = (i * 30 * Math.PI) / 180
+          context.translate(x, y + 5)
+          context.textAlign = 'center'
+          if (i == 0) {
+            context.fillText(12, Math.sin(angle) * 110, Math.cos(angle) * -110)
+          } else {
+            context.fillText(i, Math.sin(angle) * 110, Math.cos(angle) * -110)
+          }
+          context.restore()
+          context.save()
+          context.closePath()
+        }
+      }
+
+      setInterval(draw, 1000 / 60)
+    })
+  </script>
 </html>

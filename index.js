@@ -5,7 +5,7 @@ console.log(pathToFile)
 const data = require(pathToFile)
 const fs = require('fs')
 
-const newdata = data.map(img => {
+const newdata = data.map((img) => {
   return {
     name: img.image.baseName,
     dof: toNumber(img.image.properties['exif:ApertureValue'], 1),

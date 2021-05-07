@@ -16,18 +16,14 @@ export default {
     file: 'public/build/bundle.js',
   },
   plugins: [
-    css({ output: 'public/build/index.css' }),
     svelte({
       // enable run-time checks when not in production
-      dev: !production,
-      // Emit CSS as "files" for other plugins to process
-      emitCss: true,
-      // we'll extract any component CSS out into
-      // a separate file - better for performance
-      css: (css) => {
-        css.write('bundle.css')
+      compilerOptions: {
+        dev: !production,
       },
     }),
+    // Emit CSS as "files" for other plugins to process
+    css({ output: 'bundle.css' }),
 
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In

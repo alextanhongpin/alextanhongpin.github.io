@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css">
-    <script src='http://code.jquery.com/jquery-2.1.1.js'></script>
-<style>
-   
-
-    
-    *{
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../css/grid_layout.css" />
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      * {
         margin: 0;
         padding: 0;
-    }
-    
-    body{
-        -moz-user-select: none; 
-        -webkit-user-select: none; 
-        -ms-user-select:none;
+      }
+
+      body {
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
         cursor: pointer;
-        user-select:none;
+        user-select: none;
         background: #fff;
         width: 100%;
         height: 100%;
         display: block;
         text-align: center;
         font-family: Tahoma;
-    }
-    
-    form{
+      }
+
+      form {
         display: inline-block;
         background: #bf4;
         padding: 50px;
         border-radius: 10px;
         text-align: left;
         margin-top: 30%;
-    }
-    
-    input[type=text]{
+      }
+
+      input[type='text'] {
         border: 0px;
         padding: 5px;
         margin: 5px 0 5px 0;
-    }
-  
-    input[type=submit]{
+      }
+
+      input[type='submit'] {
         background: #444;
         color: #fff;
         border: 0px;
@@ -53,36 +53,32 @@
         margin-top: 20px;
         border-radius: 5px;
         box-shadow: 0px 5px #222;
-    }
-    
-  
-</style>
-      
+      }
+    </style>
+
     <title>@alextanhongpin</title>
-      
   </head>
   <body>
+    <form name="form1">
+      <div><b>Email</b></div>
+      <input type="text" name="email" /><br />
+      <div><b>Password</b></div>
+      <input type="text" name="password" /><br />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
 
-      <form name='form1'>
-        <div><b>Email</b></div> <input type='text' name='email'><br>
-        <div><b>Password</b></div><input type='text' name='password'><br>
-        <input type='submit' value='Submit'>
-      </form>
-	  
+  <script>
+    $(document).ready(function () {
+      'use strict'
 
-	
-   </body>
-    
-  <script>$(document).ready(function(){
-
-    'use strict';
-    
-    $("input[type='text']").eq(1).change(function(){
-        if($(this).val() == '123456'){
-            alert('Password Accepted');
-        }
-    });
- 
-    
-});</script>
+      $("input[type='text']")
+        .eq(1)
+        .change(function () {
+          if ($(this).val() == '123456') {
+            alert('Password Accepted')
+          }
+        })
+    })
+  </script>
 </html>

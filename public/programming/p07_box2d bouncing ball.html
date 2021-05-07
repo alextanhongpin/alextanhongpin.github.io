@@ -1,131 +1,140 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>canvas</title>
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>canvas</title>
+  </head>
 
-<style type="text/css" rel="stylesheet">
-	body{
-		margin: 0; padding: 0;
-		background-color: #ffffff;
-	}
-	canvas {
-		display: block;
-		background-color:#eee;
-	}
+  <style type="text/css" rel="stylesheet">
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #ffffff;
+    }
+    canvas {
+      display: block;
+      background-color: #eee;
+    }
+  </style>
 
-</style>
+  <script src="raf_polyfill.js"></script>
 
-<script src="raf_polyfill.js"></script>
+  <script src="js/Box2dWeb-2.1.a.3.min.js"></script>
+  <script
+    src="https://code.jquery.com/jquery-2.2.4.min.js"
+    integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    $(document).ready(function () {
+      var b2Vec2 = Box2D.Common.Math.b2Vec2,
+        b2BodyDef = Box2D.Dynamics.b2BodyDef,
+        b2Body = Box2D.Dynamics.b2Body,
+        b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
+        b2World = Box2D.Dynamics.b2World,
+        b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
+        b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
+        b2DebugDraw = Box2D.Dynamics.b2DebugDraw
 
-<script src='js/Box2dWeb-2.1.a.3.min.js'></script>
-<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
-<script>$(document).ready(function(){
-	
-	var b2Vec2 			= Box2D.Common.Math.b2Vec2,
-		b2BodyDef 		= Box2D.Dynamics.b2BodyDef,
-		b2Body 			= Box2D.Dynamics.b2Body,
-		b2FixtureDef 	= Box2D.Dynamics.b2FixtureDef,
-		b2World 		= Box2D.Dynamics.b2World,
-		b2PolygonShape 	= Box2D.Collision.Shapes.b2PolygonShape,
-		b2CircleShape 	= Box2D.Collision.Shapes.b2CircleShape,
-		b2DebugDraw 	= Box2D.Dynamics.b2DebugDraw;
+      var canvas = document.getElementById('canvas')
+      canvas.height = window.innerHeight
+      canvas.width = window.innerWidth
+      var context = canvas.getContext('2d')
 
-	var canvas = document.getElementById('canvas');
-		canvas.height = window.innerHeight;
-		canvas.width = window.innerWidth;
-	var context = canvas.getContext('2d');
+      var scaleFactor = 30
 
-	
-	var scaleFactor = 30;
-		
-	var world = new b2World( new b2Vec2(0,00), true);
+      var world = new b2World(new b2Vec2(0, 00), true)
 
-	var wallDefs = new Array(
-		{x:canvas.width, y:0, 			  w:canvas.width, h:1},
-		{x:canvas.width, y:canvas.height, w:canvas.width, h:1},
-		{x:0,     		 y:canvas.height, w:1, 			  h:canvas.height},
-		{x:canvas.width, y:canvas.height, w:1, 			  h:canvas.height}
-	);
-	var walls = new Array();
-	
-	for (var i=0; i<wallDefs.length; i++){
-		
-		var wallDef = new b2BodyDef;
-			wallDef.type = b2Body.b2_staticBody;
-			wallDef.position.Set(wallDefs[i].x/scaleFactor, wallDefs[i].y/scaleFactor);
-		var newWall = world.CreateBody(wallDef);
-		var wallFixture = new b2FixtureDef;
-			wallFixture.density 	= 10.0;
-			wallFixture.friction 	= 0.5;
-			wallFixture.restitution = 1;
-			wallFixture.shape = new b2PolygonShape;
-			wallFixture.shape.SetAsBox(wallDefs[i].w/scaleFactor, wallDefs[i].h/scaleFactor);
-			newWall.CreateFixture(wallFixture);
-			walls.push(newWall);
-	}
-	
-	var numBalls = 64;
-	var balls = new Array();
-	var ballColor = new Array();
-	for (var i=0; i<numBalls; i++){
-		var ballDef = new b2BodyDef;
-			ballDef.type = b2Body.b2_dynamicBody;
-		var ypos = (Math.random() * canvas.height)/scaleFactor;
-		var xpos = (Math.random() * canvas.width)/scaleFactor;
-		var size = 10/scaleFactor;
-			ballDef.position.Set(xpos, ypos);
-		var ballFixture = new b2FixtureDef;
-			ballFixture.densitity = 10.0;
-			ballFixture.friction = 0.0;
-			ballFixture.restitution = 1;
-			ballFixture.shape = new b2CircleShape(size);
-		var newBall = world.CreateBody(ballDef);
-			newBall.CreateFixture(ballFixture);
-		var xVelocity = Math.floor(Math.random()*20)-10;
-			yVelocity = Math.floor(Math.random()*20)-10;
-			newBall.SetLinearVelocity(new b2Vec2(xVelocity, yVelocity));
-			balls.push(newBall);
-        if(i==0){
-            var color = 'rgb(34,34,34)'
-		    ballColor.push(color);
-        }else{
-            var color = 'rgb('+6*i+',153,187)'
-		    ballColor.push(color);
-        
+      var wallDefs = new Array(
+        { x: canvas.width, y: 0, w: canvas.width, h: 1 },
+        { x: canvas.width, y: canvas.height, w: canvas.width, h: 1 },
+        { x: 0, y: canvas.height, w: 1, h: canvas.height },
+        { x: canvas.width, y: canvas.height, w: 1, h: canvas.height }
+      )
+      var walls = new Array()
+
+      for (var i = 0; i < wallDefs.length; i++) {
+        var wallDef = new b2BodyDef()
+        wallDef.type = b2Body.b2_staticBody
+        wallDef.position.Set(
+          wallDefs[i].x / scaleFactor,
+          wallDefs[i].y / scaleFactor
+        )
+        var newWall = world.CreateBody(wallDef)
+        var wallFixture = new b2FixtureDef()
+        wallFixture.density = 10.0
+        wallFixture.friction = 0.5
+        wallFixture.restitution = 1
+        wallFixture.shape = new b2PolygonShape()
+        wallFixture.shape.SetAsBox(
+          wallDefs[i].w / scaleFactor,
+          wallDefs[i].h / scaleFactor
+        )
+        newWall.CreateFixture(wallFixture)
+        walls.push(newWall)
+      }
+
+      var numBalls = 64
+      var balls = new Array()
+      var ballColor = new Array()
+      for (var i = 0; i < numBalls; i++) {
+        var ballDef = new b2BodyDef()
+        ballDef.type = b2Body.b2_dynamicBody
+        var ypos = (Math.random() * canvas.height) / scaleFactor
+        var xpos = (Math.random() * canvas.width) / scaleFactor
+        var size = 10 / scaleFactor
+        ballDef.position.Set(xpos, ypos)
+        var ballFixture = new b2FixtureDef()
+        ballFixture.densitity = 10.0
+        ballFixture.friction = 0.0
+        ballFixture.restitution = 1
+        ballFixture.shape = new b2CircleShape(size)
+        var newBall = world.CreateBody(ballDef)
+        newBall.CreateFixture(ballFixture)
+        var xVelocity = Math.floor(Math.random() * 20) - 10
+        yVelocity = Math.floor(Math.random() * 20) - 10
+        newBall.SetLinearVelocity(new b2Vec2(xVelocity, yVelocity))
+        balls.push(newBall)
+        if (i == 0) {
+          var color = 'rgb(34,34,34)'
+          ballColor.push(color)
+        } else {
+          var color = 'rgb(' + 6 * i + ',153,187)'
+          ballColor.push(color)
         }
-	}
-	
+      }
 
-	(function animLoop(){
-		world.Step(1/60,10,10);
-		world.ClearForces();
-		context.fillStyle = 'rgba(238,238,238,0.2)';
-		context.fillRect(0,0,canvas.width, canvas.height);
+      ;(function animLoop() {
+        world.Step(1 / 60, 10, 10)
+        world.ClearForces()
+        context.fillStyle = 'rgba(238,238,238,0.2)'
+        context.fillRect(0, 0, canvas.width, canvas.height)
 
-		for(var i=0;i<balls.length; i++){
-			var position = balls[i].GetPosition();
-			var fixtureList = balls[i].GetFixtureList();
-			var shape = fixtureList.GetShape();
-		
-			context.fillStyle = ballColor[i];
-			context.beginPath();
-			context.arc(position.x*scaleFactor, position.y*scaleFactor, shape.GetRadius()*scaleFactor,0,Math.PI*2);
-			context.closePath;
-			context.fill();
-		}
-		requestAnimationFrame(animLoop);
-	})();
-	
-	
+        for (var i = 0; i < balls.length; i++) {
+          var position = balls[i].GetPosition()
+          var fixtureList = balls[i].GetFixtureList()
+          var shape = fixtureList.GetShape()
 
-});</script>
+          context.fillStyle = ballColor[i]
+          context.beginPath()
+          context.arc(
+            position.x * scaleFactor,
+            position.y * scaleFactor,
+            shape.GetRadius() * scaleFactor,
+            0,
+            Math.PI * 2
+          )
+          context.closePath
+          context.fill()
+        }
+        requestAnimationFrame(animLoop)
+      })()
+    })
+  </script>
 
-
-<body>
-	<div id='container'>
-		<canvas id="canvas"></canvas>
-	</div>
-</body>
+  <body>
+    <div id="container">
+      <canvas id="canvas"></canvas>
+    </div>
+  </body>
 </html>
